@@ -1,0 +1,5 @@
+What we need to do is. 
+When we click on a anchor tag link which is present in our dynamically mapped gridbox component. 
+When the detail record component renders (runs) we need to fetch from Express route search 
+the search returns a singular sql request with the matching ID 
+the component of detail record gets populated. 

@@ -1,0 +1,39 @@
+.record {
+    height: 250px;
+    max-height: 250px;
+    width: 250px;
+    max-width: 250px;
+    overflow: hidden;
+    border: 1px solid green;
+    display: inline-flex;
+    margin: 10px;
+    
+
+
+
+}
+
+.record-div {
+ 
+    overflow: hidden;
+
+    display: inline-flex;
+   
+
+}
+
+
+.record:hover {
+    opacity: 50%;
+    transition-duration: 1s;
+}
+
+.img {
+    object-fit: fill;
+}
+
+.link_class {
+    display: block;
+    height: 100%;
+    width: 100%;
+}

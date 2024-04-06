@@ -1,6 +1,15 @@
 .App {
   text-align: center;
+  justify-content: center;
+
+  align-items: center;
 }
+
+.header {
+  justify-content: center;
+ 
+}
+
 
 .App-logo {
   height: 40vmin;
