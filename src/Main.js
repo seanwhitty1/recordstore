@@ -24,7 +24,7 @@ return(
     
     <Route path ='/about' element={<About/>}/>
     <Route path ='/contactus' element={<Contact/>}/>
-    <Route path ='/view/:id' element={<Detailrecord/>}/>
+    <Route path ='/records/view/:id' element={<Detailrecord/>}/>
     <Route path ='/addnew' element={<NewRecordForm/>}/>
     </Routes>
       </div>

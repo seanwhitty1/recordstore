@@ -2,6 +2,7 @@ import axios from 'axios';
 import './Record.css'
 import './Recordgrid.css'
 import $ from 'jquery'
+import { NavLink } from 'react-router-dom';
 
 function Record(props){
 const {id, artist, title, genre, price, color, image, setCount} = props;
@@ -20,26 +21,30 @@ const deleteHandler = async(id) => {
     selectedRecord.fadeOut(400);
     await axios.delete(`http://127.0.0.1:3001/records/delete/${id}`);
      
-    setTimeout(async() => {
-       
+    setTimeout(async() => {   
         fetch(`http://127.0.0.1:3001/records/`)
         .then(response => response.json())
         .then(res => setCount(res))
-
     },3000)
-  
 }
+const recordPath = "http://127.0.0.1:3000/records/view/" + id
 
 return(
     <>
     <div className='recordgrid-item' id={recordID}>
+    <NavLink to={recordPath}>
+    
         <div className='recordItemGridContainer'>
-     
         <img  className='recordItem-Image' src={image}></img>
         </div>
-        <button className="recordItem-gridButton" onClick={() => {deleteHandler(id)}}>x</button>
+      
+    
         
+    </NavLink>
+    <button className="recordItem-gridButton" onClick={() => {deleteHandler(id)}}>x</button>
     </div>
+ 
+   
 
     </>
 )
