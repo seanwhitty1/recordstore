@@ -1,6 +1,7 @@
+DROP TABLE records_genres;
 DROP TABLE records;
 DROP TABLE genres;
-DROP TABLE records_genres;
+
 
 CREATE TABLE records (
   id SERIAL PRIMARY KEY,
@@ -12,15 +13,15 @@ CREATE TABLE records (
 );
 
 CREATE TABLE genres (
-  id SERIAL PRIMARY KEY
-  genre_name TEXT NOT,
+  id SERIAL PRIMARY KEY,
+  genre_name TEXT NOT NULL,
   details TEXT
 );
  
 CREATE TABLE records_genres (
   id SERIAL PRIMARY KEY,
-  record_id INTEGER REFERENCES records,
-  genre_id TEXT REFERENCES genres
+  record_id INTEGER REFERENCES records ON DELETE CASCADE,
+  genre_id INTEGER REFERENCES genres ON DELETE CASCADE
 );
 
 

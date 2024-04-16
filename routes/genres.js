@@ -8,7 +8,7 @@ const router = new express.Router();
 // respond with "hello world" when a GET request is made to the homepage
 router.get('/', async function(req, res)  {
   //refactored the db query to the model as a static class method
-  const results = await Record.getAll()
+  const results = await Genre.getAll()
 
   return res.json(results)
   

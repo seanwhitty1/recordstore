@@ -1,25 +1,30 @@
 import Recordgrid from "./Recordgrid";
 import './Recordgrid.css'
-import About from "./pages/About";
+import './App.css'
 import './Nav.css'
 
+/**<div className="grid-item-header">
+<h1>Sean's Record Hut</h1>
 
-import { NavLink, Switch, Route, Router, Routes } from 'react-router-dom';
+<div className='grid-item-navbar navbar'>
 
-const Navigation = () => (
-<>
+
+
+
   
-<div className="navbar">
+
+
+
   <ul>
     <li className="nav-item">
       <a href="#" className="button">
-      <NavLink to='/'>Home</NavLink>
+      <NavLink to='/' >Home</NavLink>
       </a>
 
     </li>
     <li className="nav-item">
       <a href="#" className="button">
-      <NavLink to='/'>Browse All</NavLink>
+      <NavLink to='/browseall'>Browse All</NavLink>
       </a>
 
     </li>
@@ -35,16 +40,34 @@ const Navigation = () => (
       </a>
 
     </li>
-    <li className="nav-item">
-      <a href="#" className="button">
-      <NavLink to='/addnew'>Add new</NavLink>
-      </a>
-
-    </li>
+ 
   </ul>
 
 </div>
   
+</div> */
+
+import { NavLink, Switch, Route, Router, Routes } from 'react-router-dom';
+
+const Navigation = () => (
+<>
+<div className="container grid-item-navbar">
+
+    <nav>
+      <div class="logo">Seans Record Shack</div>
+      <div class="nav-menu">
+      <NavLink className="nav-link" to="/">Home</NavLink>
+        <NavLink className="nav-link" to="/addnew">Add</NavLink>
+        <NavLink className="nav-link" to="/browseall">Browse</NavLink>
+        <NavLink className="nav-link" to="/contactus">Contact</NavLink>
+        <NavLink className="nav-link" to="/about">About</NavLink>
+  
+      </div>
+
+    </nav>
+    </div>
+
+
 
 
 

@@ -1,0 +1,9 @@
+
+.alphabet-letter {
+    display: inline;
+    list-style: none;
+}
+
+.alphabet-list {
+    margin-left: 25px;
+}

@@ -18,10 +18,10 @@ class Genre {
                                     SELECT * FROM records WHERE id = ${id}`);
       console.log("inside get all static method: " + result.rows[0].title)
        
-
-      //SELECT title, genre_name FROM records r 
-      //JOIN records_genres rg ON r.id = rg.record_id 
-      //JOIN genres g ON rg.genre_id = g.id;
+/*
+      SELECT title, genre_name FROM records r 
+      JOIN records_genres rg ON r.id = rg.record_id 
+      JOIN genres g ON rg.genre_id = g.id; */
 
 
       return result.rows[0]

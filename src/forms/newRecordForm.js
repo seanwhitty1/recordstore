@@ -7,7 +7,7 @@ const initalializers =  {
     artist: "",
     title: "",
     genre: "",
-    price: "",
+    price: 0,
     description: "",
     image_src: ""
 }

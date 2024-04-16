@@ -1,30 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Recordgrid from './Recordgrid';
-import About from './pages/About';
+import './index.css'
+import GenreSideBar from './GenreSideBar';
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
 } from "react-router-dom";
-import { NavLink, Switch} from 'react-router-dom';
 import Main from './Main';
 import Navigation from './Nav';
-
+import Header from './Header';
 
 const App = () => {
   return (
 
     <>
+    <div id='app' className='grid-container'>
+   
     <Router>
-    <div className='App'>
-    <h1 className='header'>Sean's Record Hut</h1>
-    <Navigation/>
-    <Main />
-  
-    </div>
+    <GenreSideBar className='grid-item3' />
+    <Navigation />
+    <Main className='grid-item4'/>
     </Router>
-
+    </div>
+  
     </>
   );
 };

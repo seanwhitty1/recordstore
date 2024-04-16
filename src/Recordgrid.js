@@ -1,63 +1,68 @@
 import './Recordgrid.css'
-import React, { useEffect, useState, useParams } from "react";
+import React, { useEffect, useState} from "react";
+import { useParams } from 'react-router-dom';
 import Record from './Record'
-import axios from 'axios';
 
-const images = require.context('/Users/seanwhitty/Documents/React/recordcomponents/recordstore/src/images', true);
 
 function Recordgrid(){
-    const [count, setCount] = useState([1,2,4]);
+    const [count, setCount] = useState([]);
+    const [genre, SetGenre] = useState(null);
+    console.log("++++++++ rendering our recordgrid ++++++++++++")
 
+    let params = useParams()
+    console.log("here is our search param", params.genre)
+    console.log("inside recordgrid count is ", count)
+    
+   
 
     useEffect(() => {
-        console.log("fetching")
-         fetch(`http://127.0.0.1:3001/records/`)
+        let routeURL;
+        if(params.genre != null){
+            console.log("params.genre is not null")
+            routeURL = `http://127.0.0.1:3001/records/genre/${params.genre}`
+
+        } else {
+            routeURL = `http://127.0.0.1:3001/records/`
+
+        }
+        console.log("fetching records")
+         fetch(`${routeURL}`)
         .then(response => response.json())
         .then(res => {
             console.log("promise resolved")
             console.log(typeof res)
-            console.log(res)
+            console.log("retrieved objects", res)
     
             setCount(res);
+            SetGenre(params.genre)
            ;
         })
-    },[])
-    
-      /*
-           const records = await getAllRecords()
-           */
-           //here we are sourcing our files from src image folder.
-           //ultimately their path should be stored in the db and retrieved this way. 
-            console.log("this is now our saved state: " + typeof count)
-           for(let i in count){
-            console.log(Object.keys(i))
-           }
+    },[params.genre])
            let result = [];
-          
+          console.log("how do we iterate through count", count)
            for(var i in count)
         result.push(count[i]);
+        console.log("result is")
     
-        console.log("results: " + result[0])
-        console.log("type of results collection: " + typeof result)
-        console.log("type of first result " + typeof result[0])
-        console.log("titlte of result[0]: " + result[0])
-          
         return(
             <>
-            <div className='gridbox'>
+            <div className='recordgrid-container'>
+        
+
             {result.map
             
-            (r => <Record id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src}/>)}
+            (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} setCount={setCount}/>)}
             </div>
-    
            </>
-    
         )
     }
+/**
+SELECT r.artist, g.genre_name
+FROM records R JOIN records_genres rg ON r.id = rg.record_id
+JOIN genres g ON rg.genre_id = g.id AND g.genre_name = $1;
 
-
-// <Record id={record.id} artist={record.artist} title={record.title} price={record.price} descr={record.descr} genre={record.genre} image={record.image_src} />
-
-
-
+SELECT r.id, r.artist, r.title, r.price, r.descr, r.image_src, g.genre_name
+FROM records r JOIN records_genres rg ON r.id = rg.record_id
+JOIN genres g ON rg.genre_id = g.id;
+ */
 export default Recordgrid;
