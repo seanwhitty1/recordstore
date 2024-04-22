@@ -16,7 +16,7 @@ class Record {
 
     static async getGenre(genre){
 
-      const result = await db.query(`SELECT r.artist, g.genre_name
+      const result = await db.query(`SELECT r.id r.artist r.image_src, r.price, r.title, r.descr g.genre_name
       FROM records R JOIN records_genres rg ON r.id = rg.record_id
       JOIN genres g ON rg.genre_id = g.id AND g.genre_name = $1`,[genre]);
 
@@ -36,7 +36,6 @@ class Record {
     }
 
     static async addNew(artist, title, genre, price, description, image_src){
-      console.log("what is our iamge_src before we input")
       const result = await db.query(`INSERT INTO records(artist, title, price, descr, image_src)
                                      VALUES($1,$2,$3,$4,$5) 
                                      RETURNING id, artist, title, price, descr AS description, image_src`,[artist, title, price, description, image_src])
