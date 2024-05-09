@@ -14,12 +14,13 @@ router.get('/', async function(req, res)  {
   
 })
 
-router.get('/view/:id', async function(req, res){
+router.get('/view/:genre_name', async function(req, res){
 
-  const {id} = req.params
-  const result = await Record.getRecord(id)
-  console.log("our request parameters:" + id)
-
+  const {genre_name} = req.params
+ 
+  const result = await Genre.getGenre(genre_name)
+  console.log("our request parameters:" + genre_name)
+  console.log("within get genre route", result)
 
   return res.json(result)
 

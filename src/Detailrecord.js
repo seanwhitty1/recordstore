@@ -1,70 +1,60 @@
 import './Record.css'
-import Record from './Record';
 import { useParams } from 'react-router-dom';
+import './App.css'
+import './Detailrecord.css'
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-
+import RelatedRecords from './RelatedRecords';
+import UpdateRecordForm from './forms/updateRecordForm';
+import 'react-flash-message'
 
 function Detailrecord(){
-    const [count, setCount] = useState({id:"test", artist:"test-artist", title:"test-title",  price:"test-price", descr:"test-descr"});
-    console.log("creating detail record component")
+    const [r, setR] = useState({id:"placeholder"});
+    const [allFromArtist, setAllFromArtist] = useState([])
+    const [allFromGenre, setAllFromGenre] = useState([])
+    const [showEdit, setShowEdit] = useState(false)
     const params = useParams()
-    const id = params.id
-    console.log("passed product id is: " + id) //working
-    useEffect(() => {
-        console.log("fetching")
-         fetch(`http://127.0.0.1:3001/records/view/${id}`)
-        .then(response => response.json())
-        .then(res => {
-            console.log("promise resolved")
-            console.log(typeof res)
-            console.log(res)
-    
-            setCount(res);
-           ;
-        })
-    },[])
-//use effect was passed a second argument of an empty array, thus there are no dependencies
-//dependencies  trigger a re-run of the use effect function 
-      /*
-           const records = await getAllRecords()
-           */
-           //here we are sourcing our files from src image folder.
-           //ultimately their path should be stored in the db and retrieved this way. 
-            console.log("this is now our saved state: " + typeof count)
-      
-           let result = [];
-           result.push(count)
-          
-         
-    
-        console.log("results: " + result[0])
-        let r = result[0]
-       //to do: in detail record, we need to conditionally remove link to the same record
-       //to do: we need to create a back to home button,. 
-          
-        return(
-            <>
-            <div className='gridbox'>
-            <h1>{r.title}</h1>
-            <Record id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src}/>
-            <p>{r.descr}</p>
-        
-            </div>
-    
-           </>
-    
-        )
-    }
-
-
+    const {id} = params
 
  
 
-// <Record id={record.id} artist={record.artist} title={record.title} price={record.price} descr={record.descr} genre={record.genre} image={record.image_src} />
-
-
-
-
-
+    useEffect(() => {
+        const getRecordAndArtist = async() => {
+            console.log("running get record and artist")
+            let record = await axios.get(`http://127.0.0.1:3001/records/view/${id}`)
+            let allFromArtist = await axios.get(`http://127.0.0.1:3001/artists/${record.data.artist}`)
+            let allFromGenre = await axios.get(`http://127.0.0.1:3001/genres/view/${record.data.genre}`)
+            setAllFromArtist(allFromArtist.data.filter((release) => release.record_id != record.data.id))
+            setR(record.data)
+            setAllFromGenre(allFromGenre.data.filter((release) => release.artist != record.data.artist))   
+        }
+        
+        getRecordAndArtist()
+    },[id])
+       if(r.id != 'placeholder'){
+        console.log("record is loaded, what are our other records from the artist", allFromArtist) //returns an array with objects 
+        return(
+            <>
+            <div className='detail-record-grid-container'>
+            <h1 className='detail-record-grid-item-artist'>{r.artist}</h1>
+            <h2 className='detail-record-grid-item-title'>{r.title}</h2>
+            <img className='detail-record-grid-item-image' src={r.image_src}></img>
+            <p className='detail-record-grid-item-description'>{r.descr} <button onClick={() => setShowEdit(!showEdit)}>Edit</button></p>
+            {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.descr} genre={r.genre} id={r.id}/>}
+            </div>
+           
+            {allFromArtist.length > 0 &&  <h1 className='detail-record-grid-related-header'>More from this artist:</h1> }    
+            <RelatedRecords collection={allFromArtist}/> 
+           
+            <h1 className='detail-record-grid-related-header2'>You may also like:</h1>
+            <RelatedRecords className='detail-record-grid-related-records2' collection={allFromGenre}/>
+            </>     
+        )
+       } else {
+        return(
+            <p>Loading..</p>
+        )
+       }      
+        
+    }
 export default Detailrecord

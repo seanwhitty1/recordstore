@@ -5,37 +5,36 @@ import Record from './Record'
 import axios from "axios"
 
 const BrowseAll = () => {
-    let [recordsInGrid, setRecordsInGrid] = useState([])
-    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
-    const alphabetize = async(letter) => {
-        let records = await axios.get("http://localhost:3001/records/")
-        setRecordsInGrid(records.data.filter((record) => record.artist[0] === letter))
-
+    let [recordsByLetter, setRecordsByLetter] = useState([])
+    let [allRecords, setAllRecords] = useState([])
+    const [focus, setFocus] = useState(null)
+    const setFocusHandler = (id) => {
+        console.log("handling our set focus",id)
+        setFocus(id)
 
     }
-   
-
+    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+    const alphabetize = async(letter) => {
+        setRecordsByLetter(allRecords.filter((record) => record.artist[0] === letter))
+    }
     useEffect(() => {
         async function getRecords(){
           let records = await axios.get("http://localhost:3001/records/")
-          setRecordsInGrid(records.data)
+          setRecordsByLetter(records.data)
+          setAllRecords(records.data)
     }
     getRecords()} 
     ,[])
 
+    //to do, replace this with record grid
     return(
         <>
         <ul className="alphabet-list">
         {alphabet.map(a =>
             <li className="alphabet-letter"><button onClick={() => {alphabetize(a)}}>{a}</button></li>)}
             </ul>
-          {recordsInGrid.map
-            
-            (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src}/>)}
-          
-     
-        
-          
+          {recordsByLetter.map   
+            (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} setFocusHandler={setFocusHandler}/>)}
         </>
     )
 }

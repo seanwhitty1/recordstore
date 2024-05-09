@@ -11,20 +11,16 @@ class Genre {
         return result.rows
     }
 
-    static async getGenre(id){
-      console.log("getting individsual record")
+    static async getGenre(genre_name){
+     
       //this has to be our JOIN on - many to many request
-      const result = await db.query(`
-                                    SELECT * FROM records WHERE id = ${id}`);
-      console.log("inside get all static method: " + result.rows[0].title)
-       
-/*
-      SELECT title, genre_name FROM records r 
-      JOIN records_genres rg ON r.id = rg.record_id 
-      JOIN genres g ON rg.genre_id = g.id; */
-
-
-      return result.rows[0]
+      const result = await db.query(`SELECT * FROM records r
+      JOIN records_genres rg ON rg.record_id = r.id
+      JOIN genres g
+      ON g.id = rg.genre_id
+      WHERE g.genre_name = $1`,[genre_name]);
+      
+      return result.rows
 
 
     }

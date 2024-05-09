@@ -2,22 +2,25 @@ import React, { useState} from 'react';
 import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-let timestamp = new Date()
 
 
+function UpdateRecordForm(props){
+
+const {artist, title, genre, price, descr, image_src, id} = props
+console.log("inside our updated record form what are our props", artist)
 
 const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
 const initalializers =  {
-    artist: "",
-    title: "",
-    genre: "",
-    price: 0,
-    description: "",
-    image_src: "",
-    date_added: timestamp
+    artist: artist,
+    title: title,
+    genre: genre,
+    price: price,
+    description: descr,
+    image_src: image_src,
+
 }
 
-function NewRecordForm(){
+
     let [failedValidation, setFailedValidation] = useState(false)
     const navigate = useNavigate()
 
@@ -32,8 +35,9 @@ function NewRecordForm(){
         
             //send to route
             console.log("heres our value object compiled with formik", values)
-            let record = await axios.post("http://localhost:3001/records/addnew",
+            let record = await axios.put(`http://localhost:3001/records/update/${id}`,
             values)
+            console.log("lets now navigate to home /")
             navigate("/")
             
         }    
@@ -42,6 +46,7 @@ function NewRecordForm(){
     let {errors, touched, values, handleChange, handleBlur} = useFormik({
         initialValues: initalializers,
     });
+    console.log("initial values", values)
 
     return(
         <>
@@ -55,7 +60,7 @@ function NewRecordForm(){
              value={values.word}
              onChange={handleChange}
              onBlur={handleBlur}
-             placeholder={word}
+             placeholder={values[word]}
              className={errors.word? 'input-error form-control': "form-control"}
             ></input>
             {failedValidation? <p className='text-danger'>{errors[word]}</p>: null}   
@@ -70,4 +75,4 @@ function NewRecordForm(){
     )
 } 
 
- export default NewRecordForm;
+ export default UpdateRecordForm;

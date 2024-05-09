@@ -114,7 +114,7 @@
     }
   
     to {
-      transform: rotate(60deg);
+   
       box-shadow: 1px 1px 1px 3px #fff;
       filter: drop-shadow(1px 1px 2rem red);
       border: none;

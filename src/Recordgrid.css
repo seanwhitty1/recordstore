@@ -8,13 +8,31 @@
   }
 
   .recordgrid-item{
-    border: 1px solid black;
+
     max-width: 250px;
     max-height: 250px;
     margin: 10px;
   }
 
-  .deleted-record {
-    opacity: 100%;
-    transition: 2000ms;
+
+  .related-recordgrid-container {
+
+    display: flex;
+    flex-direction: row;
+    justify-items: space-evenly;
+    flex-wrap: wrap;
+
   }
+
+  .related-recordgrid-item{
+
+    max-width: 150px;
+    max-height: 150px;
+    margin: 10px;
+  }
+
+  
+  
+
+
+  

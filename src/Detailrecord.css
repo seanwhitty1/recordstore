@@ -1,0 +1,68 @@
+.detail-record-grid-container {
+
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(6,100px);
+  
+  }
+
+.detail-record-grid-item-artist {
+    grid-row: 1;
+    grid-column: 1/10;
+  
+  }
+  
+  .detail-record-grid-item-title {
+    grid-row: 7;
+    grid-column: 1/10;
+  
+  }
+  
+  .detail-record-grid-item-image {
+    grid-row: 2/7;
+    grid-column: 1/6;
+    height: 100%;
+    width: 100%;
+    
+  
+  }
+  
+  .detail-record-grid-item-description {
+    grid-row: 2/4;
+    grid-column: 6/11;
+    padding: 0 10px;
+    
+  }
+  
+  .detail-record-grid-related-header {
+    grid-row: 8;
+    grid-column: 1/14;
+
+  
+  }
+  
+  .detail-record-grid-related-records {
+    grid-row: 9;
+    grid-column:1/14;
+
+    border:0ch 10px solid pink;
+    background-color: red;
+  }
+
+  .detail-record-grid-related-header2 {
+    grid-row: 14;
+    grid-column: 1/14;
+
+  
+  }
+
+  .detail-record-grid-related-records2 {
+    grid-row: 15;
+    grid-column:1/14;
+
+    border:0ch 10px solid pink;
+  }
+
+  .related-search {
+    background-color: pink;
+  }

@@ -1,0 +1,28 @@
+#detail-bubble {
+   
+    background-color: black;
+    color: wheat;
+    grid-row: 6/7;
+    grid-column: 1/6;
+    border: 2px solid black;
+    z-index: 2;
+    text-decoration: none;
+
+}
+
+#detail-bubble-list {
+    list-style: none;
+    text-decoration: underline;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration-color: black;
+  
+}
+
+
+
+.detail-bubble-list-item:hover {
+    text-decoration: none;
+    font-size: 2em;
+    
+}
+
