@@ -1,30 +1,19 @@
 import './Recordgrid.css'
 import React, { useEffect, useState} from "react";
 import Record from './Record'
-import { useSelector, useDispatch } from "react-redux";
+
 
 function RelatedRecords(props){
-const dispatch = useDispatch();
-const updateInFocus = (id) => dispatch({ type: "UPDATEFOCUS",payload: id});
-
 
  let {collection} = props;
-
- const [focus, setFocus] = useState(null)
  const [count, setCount] = useState([])
  console.log("rendering our related records componenet focus=", collection)
  
-
-    const setFocusHandler = (id) => {
-        console.log("handling our set focus ",id)
-        setFocus(id)
-    }
-
         return(
             <>
             <div className='related-recordgrid-container'>
             {collection.map     
-            (r => <div onMouseOver={() => updateInFocus(r.id)} onMouseOut={() => updateInFocus(null)}><Record className='related-recordgrid-item' id={r.record_id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} setCount={setCount} focus={focus} setFocusHandler={setFocusHandler}/></div>
+            (r => <Record className='related-recordgrid-item' id={r.record_id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} setCount={setCount} />
             ) 
             }
             </div>

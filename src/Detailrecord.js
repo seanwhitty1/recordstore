@@ -16,8 +16,6 @@ function Detailrecord(){
     const params = useParams()
     const {id} = params
 
- 
-
     useEffect(() => {
         const getRecordAndArtist = async() => {
             console.log("running get record and artist")
@@ -27,8 +25,7 @@ function Detailrecord(){
             setAllFromArtist(allFromArtist.data.filter((release) => release.record_id != record.data.id))
             setR(record.data)
             setAllFromGenre(allFromGenre.data.filter((release) => release.artist != record.data.artist))   
-        }
-        
+        }   
         getRecordAndArtist()
     },[id])
        if(r.id != 'placeholder'){
@@ -41,11 +38,9 @@ function Detailrecord(){
             <img className='detail-record-grid-item-image' src={r.image_src}></img>
             <p className='detail-record-grid-item-description'>{r.descr} <button onClick={() => setShowEdit(!showEdit)}>Edit</button></p>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.descr} genre={r.genre} id={r.id}/>}
-            </div>
-           
+            </div> 
             {allFromArtist.length > 0 &&  <h1 className='detail-record-grid-related-header'>More from this artist:</h1> }    
             <RelatedRecords collection={allFromArtist}/> 
-           
             <h1 className='detail-record-grid-related-header2'>You may also like:</h1>
             <RelatedRecords className='detail-record-grid-related-records2' collection={allFromGenre}/>
             </>     

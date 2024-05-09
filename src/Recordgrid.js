@@ -2,12 +2,9 @@ import './Recordgrid.css'
 import React, { useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import Record from './Record'
-import { useSelector, useDispatch } from "react-redux";
 
 function Recordgrid(){
-  
-    const dispatch = useDispatch();
-    const updateInFocus = (id) => dispatch({ type: "UPDATEFOCUS",payload: id});
+   
     const [count, setCount] = useState([]);
     const [genre, SetGenre] = useState(null);
     let [recordsByLetter, setRecordsByLetter] = useState([]) //used for the browse all iteration of this component
@@ -42,7 +39,7 @@ function Recordgrid(){
             <>
             <div className='recordgrid-container'>
             {result.slice(0,8).map     
-            (r => <div onMouseOver={() => updateInFocus(r.id)} onMouseOut={() => updateInFocus(null)}><Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} setCount={setCount}/></div>
+            (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} setCount={setCount}/>
             ) 
             }
             </div>
