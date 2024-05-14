@@ -6,30 +6,42 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
+import { useSelector } from 'react-redux';
 import 'react-flash-message'
 
 function Detailrecord(){
-    const [r, setR] = useState({id:"placeholder"});
-    const [allFromArtist, setAllFromArtist] = useState([])
-    const [allFromGenre, setAllFromGenre] = useState([])
+    const [r, setR] = useState({id:"placeholder", artist:"placeholder",genre:"placeholder"});
     const [showEdit, setShowEdit] = useState(false)
     const params = useParams()
-    const {id} = params
+    const {id} = params;
+    const records = useSelector(state => state.records)
+    console.log("detail record component rendering", records)
+    let allFromArtist = ["placeholder"];
+    let allFromGenre = ["placeholder"];
 
+   if(r.id != "placeholder"){ //loaded
+    console.log("r was loaded")
+    console.log(r)
+    allFromArtist = records.filter((record) => record.artist == r.artist)
+    console.log("All from artist", allFromArtist)
+    allFromGenre = records.filter((record) => record.genre == r.genre)
+    console.log("all from genre,", allFromGenre)
+   
+   }
+ 
     useEffect(() => {
         const getRecordAndArtist = async() => {
-            console.log("running get record and artist")
-            let record = await axios.get(`http://127.0.0.1:3001/records/view/${id}`)
-            let allFromArtist = await axios.get(`http://127.0.0.1:3001/artists/${record.data.artist}`)
-            let allFromGenre = await axios.get(`http://127.0.0.1:3001/genres/view/${record.data.genre}`)
-            setAllFromArtist(allFromArtist.data.filter((release) => release.record_id != record.data.id))
-            setR(record.data)
-            setAllFromGenre(allFromGenre.data.filter((release) => release.artist != record.data.artist))   
+            console.log(records) // null
+            console.log(id) //null
+            let record = records.filter((r) => r.id == id)
+            console.log(record)
+            
+            setR(record[0])  
         }   
         getRecordAndArtist()
     },[id])
-       if(r.id != 'placeholder'){
-        console.log("record is loaded, what are our other records from the artist", allFromArtist) //returns an array with objects 
+
+       if(r.id !== 'placeholder'){
         return(
             <>
             <div className='detail-record-grid-container'>
@@ -39,10 +51,10 @@ function Detailrecord(){
             <p className='detail-record-grid-item-description'>{r.descr} <button onClick={() => setShowEdit(!showEdit)}>Edit</button></p>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.descr} genre={r.genre} id={r.id}/>}
             </div> 
-            {allFromArtist.length > 0 &&  <h1 className='detail-record-grid-related-header'>More from this artist:</h1> }    
-            <RelatedRecords collection={allFromArtist}/> 
+            {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1> }    
+            <RelatedRecords collection={allFromArtist.filter((record) => record.id != id)}/> 
             <h1 className='detail-record-grid-related-header2'>You may also like:</h1>
-            <RelatedRecords className='detail-record-grid-related-records2' collection={allFromGenre}/>
+            {allFromGenre.length < 2?  <RelatedRecords className='detail-record-grid-related-records2' collection={records.slice(0,4)}/> : <RelatedRecords className='detail-record-grid-related-records2' collection={allFromGenre.filter((record) => record.artist != r.artist)}/> }
             </>     
         )
        } else {
@@ -50,6 +62,6 @@ function Detailrecord(){
             <p>Loading..</p>
         )
        }      
-        
+
     }
 export default Detailrecord

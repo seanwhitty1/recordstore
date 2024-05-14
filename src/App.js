@@ -9,7 +9,7 @@ import Main from './Main';
 import Navigation from './Nav';
 
 const App = () => {
- 
+
   return (
     <>
     <div id='app' className='grid-container'>
