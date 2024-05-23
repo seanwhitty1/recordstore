@@ -4,8 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 let timestamp = new Date()
 
-
-
 const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
 const initalializers =  {
     artist: "",
@@ -29,16 +27,13 @@ function NewRecordForm(){
             setFailedValidation(true)
         } else {
             setFailedValidation(false)
-        
             //send to route
-            console.log("heres our value object compiled with formik", values)
-            let record = await axios.post("http://localhost:3001/records/addnew",
+            console.log(values)
+            await axios.post("http://localhost:3001/records/addnew",
             values)
             navigate("/")
-            
         }    
-    }    
-        
+    }         
     let {errors, touched, values, handleChange, handleBlur} = useFormik({
         initialValues: initalializers,
     });
@@ -62,8 +57,7 @@ function NewRecordForm(){
             {touched[word] && errors[word] && (<p className='invalid-feedback'>{errors[word]}</p>)}
             </label>
             </div>  
-            )}
-      
+            )} 
         <button type='submit'>Submit!</button>
         </form>
         </>

@@ -33,7 +33,7 @@ return(
     <NavLink to={recordPath}>
         <div className='recordItemGridContainer'onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
         <img  className='recordItem-Image' src={image}></img>
-         {id == inFocus && <DetailBubble  artist={artist} title={title} genre={genre} price={price}/>}
+         {id == inFocus && <DetailBubble  artist={artist} title={title} genre={genre} price={price} id={id}/>}
         </div>   
     </NavLink>
     </div>

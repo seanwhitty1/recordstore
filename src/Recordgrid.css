@@ -4,14 +4,15 @@
     flex-direction: row;
     justify-items: space-evenly;
     flex-wrap: wrap;
-    padding: 50px;
+    padding: 5px;
+
   }
 
   .recordgrid-item{
 
     max-width: 250px;
     max-height: 250px;
-    margin: 10px;
+    margin: 5px;
   }
 
 

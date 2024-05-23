@@ -10,33 +10,29 @@ import NewRecordForm from "./forms/newRecordForm";
 import BrowseAll from "./BrowseAll2";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { createURL } from './helpers';
 const commonRecordPath = new RegExp("^/records/view")
 
-
 const Main = () => {
-
     const dispatch = useDispatch();
-    const {genre} = useParams()
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
     const records = useSelector(state => state.records)
-  
+    const genre = useSelector(state => state.genre)
+    const cart = useSelector(state => state.cart)
+    
     useEffect(() => {
       const getRecords = async() => {
         console.log("our useEffect in main component should be tracking genre:",genre)
-          let routeURL;
-          if(genre != null){
-              routeURL = `http://127.0.0.1:3001/records/genre/${genre}`
-  
-          } else {
-              routeURL = `http://127.0.0.1:3001/records/`
-          }
-          let records = await axios.get(routeURL)
-          upRecordsInState(records.data)   
+          try {
+            let records = await axios.get(createURL(genre))
+            upRecordsInState(records.data)  
+          } catch(error) {
+            console.log("There was an error fetching records", error)
+          } 
       }
       getRecords()
-  },[genre])
+  },[genre, cart])
 
   if(records != null){
 return(

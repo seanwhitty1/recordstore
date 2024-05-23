@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Main from './Main';
 import Navigation from './Nav';
+import Cart from './Cart';
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
     <Navigation />
     <Main className='grid-item4'/>
     </Router>
+    <Cart/>
     </div>
     </>
   );

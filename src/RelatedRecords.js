@@ -2,8 +2,6 @@ import './Recordgrid.css'
 import Record from './Record'
 
 function RelatedRecords({collection}){
-
-    console.log("re rendering our related Records", collection)
       return(
             <>
             <div className='related-recordgrid-container'>

@@ -29,7 +29,7 @@
   
   .detail-record-grid-item-description {
     grid-row: 2/4;
-    grid-column: 6/11;
+    grid-column: 6/10;
     padding: 0 10px;
     
   }
@@ -65,4 +65,8 @@
 
   .related-search {
     background-color: pink;
+  }
+
+  .detail-record-buttonToCart {
+    grid-column: 8;
   }

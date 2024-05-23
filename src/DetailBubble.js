@@ -1,13 +1,7 @@
 import './DetailBubble.css'
-import React from 'react';
-
 
 function DetailBubble(props){
-
     const {artist, title, genre, price} = props;
-
-
-
     return(
         <>
         <div id="detail-bubble">
@@ -16,14 +10,10 @@ function DetailBubble(props){
         <li>{title}</li>
         <li>{genre}</li>
         <li>${price}</li>
-     
         </ul>
         </div>
-
        </>
     )
-
-
 }
 
 export default DetailBubble;

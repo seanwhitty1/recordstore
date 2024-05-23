@@ -7,7 +7,6 @@
     border: 2px solid black;
     z-index: 2;
     text-decoration: none;
-
 }
 
 #detail-bubble-list {
@@ -15,14 +14,12 @@
     text-decoration: underline;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration-color: black;
-  
 }
 
 
 
 .detail-bubble-list-item:hover {
     text-decoration: none;
-    font-size: 2em;
-    
+    font-size: 2em;  
 }
 
