@@ -13,7 +13,7 @@ return(
 <div className="container grid-item-navbar">
     <nav>
 
-      <div class="logo">Seans Record Shack</div>
+      <div class="logo"><p className='siteTitle'>Seans Record Shack</p></div>
       <div class="nav-menu">
       <NavLink className="nav-link" to="/" id="homeButton" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
         <NavLink className="nav-link" to="/addnew">Add</NavLink>

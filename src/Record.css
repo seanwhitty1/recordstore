@@ -8,15 +8,7 @@
     height: 100%;
     width: 100%;
 }
-.recordItemGridContainer {
-    display: grid;
-    height: 200px;
-    width: 200px;
-    margin: 25px;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
-   
-}
+
 .deleted-record {
     opacity: 100%;
     transition: 2000ms;
@@ -32,37 +24,14 @@
    width: 100%;
    height: 100%;
     object-fit: cover;
-    z-index: 1;
-    position: static;
-}
-
-.recordItem-Image:hover {
-    grid-column: 1/6;
-    grid-row: 1/6;
-   width: 100%;
-   height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    size-adjust: 1.45rem;
-}
-
-.recordItem-Image:hover {
-    opacity: 50%;
-    
-
-
-}
-.recordItemGridContainer .recordItem-gridButton{
-    border: 4px solid red;
-    grid-column: 1/4;
-    grid-row:8
+    z-index: 0;
+ 
 }
 
 .recordAddToCartButton {
-    position: relative;
     grid-row: 1;
     grid-column: 5;
-    z-index: 1;
+
     align-items: end;
     justify-content: end;
  
@@ -78,7 +47,7 @@
 }
 
 .shown {
-    opacity: 70%;
+    opacity: 0%;
     float: right 100%;
 }
 

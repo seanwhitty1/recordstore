@@ -21,13 +21,16 @@ function GenreSideBar(){
 
     },[])
     //<li </li>
+    //we need to change genre sider bars to nav items
+    //we then extract the genre name from the param passed
+    //and use that to update the state... 
 return(
 <>
 <div id="genreSide" className='grid-item3'>
 <p>Browse by Genre</p>
 <ul>
 
-{count.map((c) => <li><a className="genre-title" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</a></li>)}
+{count.map((c) => <li><a className="genre-title" href={`/`+ c.genre_name} onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</a></li>)}
  
 </ul>
 

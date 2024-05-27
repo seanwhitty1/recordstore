@@ -63,9 +63,7 @@
     border:0ch 10px solid pink;
   }
 
-  .related-search {
-    background-color: pink;
-  }
+
 
   .detail-record-buttonToCart {
     grid-column: 8;

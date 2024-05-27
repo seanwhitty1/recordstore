@@ -10,10 +10,27 @@
 
   .recordgrid-item{
 
-    max-width: 250px;
-    max-height: 250px;
-    margin: 5px;
+    max-width: 225px;
+    max-height: 225px;
+    border: 1px solid #212529;
+    margin: 1px;
+    display: grid;
+    height: 250px;
+    width: 250px;
+    margin: 20px;
+    grid-template-columns: repeat(5, 45px);
+    grid-template-rows: repeat(5, 45px);
+    border: 1px solid black;
   }
+
+
+
+.outer:hover {
+  opacity: 60%;
+  position:absolute;
+  size:2em;
+
+}
 
 
   .related-recordgrid-container {
