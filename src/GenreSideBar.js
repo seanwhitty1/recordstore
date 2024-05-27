@@ -4,7 +4,8 @@ import "./GenreSideBar.css"
 import "./App.css"
 import { useDispatch } from "react-redux";
 import axios from "axios";
-//to do - centralize the state for genre
+
+
 function GenreSideBar(){
     const dispatch = useDispatch()
     const [count, setCount] = useState([1,2,4]);
@@ -19,17 +20,17 @@ function GenreSideBar(){
         getGenres()
 
     },[])
+    //<li </li>
 return(
 <>
 <div id="genreSide" className='grid-item3'>
 <p>Browse by Genre</p>
-<ul id="genreList">
-{
-count.map( 
-  c => <button onClick={() => updateGenreInState(c.genre_name)}>{c.genre_name}</button>
-)
-}
+<ul>
+
+{count.map((c) => <li><a className="genre-title" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</a></li>)}
+ 
 </ul>
+
 </div> 
 </>
 )

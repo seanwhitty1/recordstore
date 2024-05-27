@@ -3,28 +3,38 @@ import './App.css'
 import { useSelector } from 'react-redux'
 import CartItem from './CartItem'
 import { total } from './helpers'
+import cartIcon  from './svg/shopping-cart.svg'
+
+
 
 function Cart(){
-console.log("rendering the cart component")
-//to do - create a reducer function that will acumulate all prices of cart items. 
-let cartItems = useSelector(state => state.cart)
-console.log("inside our cart, items:", cartItems)
-let cartTotal = 0;
-if(cartItems.length > 0){ cartTotal = total(cartItems)};
-console.log("what is the car total,", cartTotal)
- 
 
+let cartItems = useSelector(state => state.cart)
+let cartTotal = 0;
+
+if(cartItems.length > 0){cartTotal = total(cartItems)};
+//todo - make row 2 responsive to the height needed to store cartItems 
+//to do if cart item = 2 and beyond, no top margin
+
+ 
      return(  <>
+       
         <div className="grid-item-cart">
-        <div className='grid-item-cart-header'>Items in cart: {cartItems.length}</div>
+        <div className='grid-item-cart-header'> <img src={cartIcon}></img>Items in cart: {cartItems.length}</div>
         <div className='grid-item-cart-itembox'>
         {cartItems.map(cItem => 
-           <CartItem title={cItem.title}  artist={cItem.artist} price={cItem.price} image={cItem.image_src}/>
+           <CartItem title={cItem.title}  artist={cItem.artist} price={cItem.price * cItem.quantity} image={cItem.image_src}
+            quantity={cItem.quantity}/>
         )}
         </div>
-        {cartItems.length > 0 && <p>Total: ${cartTotal}</p>}
-
+        {cartTotal > 0 &&<p className='grid-item-cart-total'>Total: ${cartTotal}</p>}
         </div>
+ 
+        
+     
+       
+      
+     
         </>)
 }
 

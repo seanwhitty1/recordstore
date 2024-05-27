@@ -12,7 +12,7 @@ function Detailrecord(){
     const dispatch = useDispatch()
     const [r, setR] = useState({id:"placeholder", artist:"placeholder",genre:"placeholder"});
     const addToCart = (id) => {
-        dispatch({type:"ADDTOCART", payload:r})
+        dispatch({type:"ADDTOCART", payload:r, quantity:1})
     
     }
     const [showEdit, setShowEdit] = useState(false)
@@ -41,8 +41,8 @@ function Detailrecord(){
             <h1 className='detail-record-grid-item-artist'>{r.artist}</h1>
             <h2 className='detail-record-grid-item-title'>{r.title}</h2>
             <img className='detail-record-grid-item-image' src={r.image_src}></img>
-            <p className='detail-record-grid-item-description'>{r.descr} <button onClick={() => setShowEdit(!showEdit)}>Edit</button></p>
-            <button className='detail-record-buttonToCart ' id="addToCart" onClick={() => addToCart(r.id)}>add to cart</button>
+            <p className='detail-record-grid-item-description'>{r.descr} <button  className='rounded-full' onClick={() => setShowEdit(!showEdit)}>Edit</button></p>
+            <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}>add to cart</button>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.descr} genre={r.genre} id={r.id}/>}
             </div> 
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1> }    

@@ -8,13 +8,21 @@
 }
 
 #genreSide {
-    padding: 10px;
-   
-    overflow: auto;
+    padding: 5px;
+
+    overflow: scroll;
+    font-size:12px;
     height: 500px;
 
 
 }
+
+  .genre-title {
+    font-size: 25px;
+
+  }
+
+
 
  
 

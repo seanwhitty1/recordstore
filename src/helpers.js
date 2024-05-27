@@ -1,4 +1,4 @@
-const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price; },0); 
+const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price * curr.quantity; },0); 
 //for our arr.reduce function, it is a higher order function 
 //our first argument is the callback functionc (which takes two arguments, accumulator + currentvalue)
 //its function is that it will add the current value to the accumulator and return the accumulated result
@@ -18,9 +18,6 @@ const deleteHandler = async(id) => {
 
 const createURL = (genre) => 
     genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
-
-
-
 
 
 module.exports = {total,  createURL}

@@ -1,10 +1,10 @@
 #detail-bubble {
    
-    background-color: black;
+    background-color: #212529;
     color: wheat;
     grid-row: 6/7;
     grid-column: 1/6;
-    border: 2px solid black;
+    border: 2px solid #212529;
     z-index: 2;
     text-decoration: none;
 }
@@ -13,7 +13,7 @@
     list-style: none;
     text-decoration: underline;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-decoration-color: black;
+    text-decoration-color: #212529;
 }
 
 

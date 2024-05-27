@@ -4,6 +4,7 @@ import './Nav.css'
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+
 const Navigation = () => {
 const dispatch = useDispatch()
 
@@ -11,6 +12,7 @@ return(
 <>
 <div className="container grid-item-navbar">
     <nav>
+
       <div class="logo">Seans Record Shack</div>
       <div class="nav-menu">
       <NavLink className="nav-link" to="/" id="homeButton" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>

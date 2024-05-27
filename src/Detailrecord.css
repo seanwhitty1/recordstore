@@ -69,4 +69,5 @@
 
   .detail-record-buttonToCart {
     grid-column: 8;
+    border: 1px solid black;
   }

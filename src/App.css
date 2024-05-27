@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.offBlack {
+  filter: invert(12%) sepia(9%) saturate(1325%) hue-rotate(182deg) brightness(94%) contrast(86%);
+}
+
 .header {
   justify-content: center;
  
@@ -77,5 +81,24 @@
  
   padding: 5px;
 
+}
+
+.removeButton {
+  max-width: 10px;
+  max-height: 10px;
+}
+
+.vinylImage {
+  position: absolute;
+  max-width: 180px;
+  max-height: 180px;
+
+  transform: rotate(35);
+}
+
+.vinylImage:hover {
+
+  transform: rotate(360deg);
+  transition: 10s;
 }
 

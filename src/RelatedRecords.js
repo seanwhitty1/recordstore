@@ -6,7 +6,7 @@ function RelatedRecords({collection}){
             <>
             <div className='related-recordgrid-container'>
             {collection.map     
-            (r => <Record className='related-recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image={r.image_src} />
+            (r => <Record className='related-recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image_src={r.image_src} />
             ) 
             }
             </div>
