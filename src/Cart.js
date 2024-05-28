@@ -27,7 +27,10 @@ if(cartItems.length > 0){cartTotal = total(cartItems)};
             quantity={cItem.quantity}/>
         )}
         </div>
-        {cartTotal > 0 &&<p className='grid-item-cart-total'>Total: ${cartTotal}</p>}
+        {cartTotal > 0 &&<div><p className='grid-item-cart-total'>Total: ${cartTotal}</p><br></br>
+        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+Visit Cart 
+</button></div>}
         </div>
  
         

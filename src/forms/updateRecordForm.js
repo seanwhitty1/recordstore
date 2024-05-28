@@ -50,7 +50,7 @@ const initalializers =  {
 
     return(
         <>
-        <h1>Here we can add a new record Admin use only</h1>
+  
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
         <div className='form-group'>
