@@ -15,12 +15,12 @@ function BrowseAll(){
     const inputQuery = $('#filterQuery').val()
 
     const handleInputChange = (e) => { 
-        const searchTerm = e.target.value;
-        setSearchItem(searchTerm)
-        const regex = new  RegExp(`${searchTerm}`,'g')
-        
+        setSearchItem( e.target.value)
+        const regex = new  RegExp(`${e.target.value}`)
 
         if (records.filter((record) => regex.test(record.title) == true)){
+            console.log("found", records.filter((record) => regex.test(record[inputQuery])))
+           
           setRecordsByLetter(records.filter((record) => regex.test(record[inputQuery])))
   
         } else {
@@ -58,15 +58,12 @@ function BrowseAll(){
         />
         {searchItem && <h1>Searching {inputQuery}s for: {searchItem}</h1>}
       </div>
-        
-
             <div className="recordgrid-container">
             {recordsByLetter.length > 0? toRender.map     
             (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image_src={r.image_src} />
             ): <h1 className="no-results">No results found</h1>
             } 
             </div>
-           
            </>
         )
     }

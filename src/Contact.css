@@ -1,3 +1,17 @@
 #getInTouch {
     text-align: center;
 }
+
+.map-embedding {
+    margin: 0 auto;
+    justify: center;
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr
+  
+  }
+  
+  .map {
+    grid-column: 2;
+    border: 1px solid black;
+  }
