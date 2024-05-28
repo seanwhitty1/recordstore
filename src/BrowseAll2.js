@@ -2,26 +2,26 @@ import {useState} from "react"
 import './Recordgrid.css'
 import './BrowseAll.css'
 import './App.css'
+import $ from 'jquery';
 import Record from './Record'
 import { useSelector} from 'react-redux';
 
-
 function BrowseAll(){
     const records = useSelector(state => state.records)
-    let [recordsByLetter, setRecordsByLetter] = useState([])
+    let [recordsByLetter, setRecordsByLetter] = useState(records)
     let [searchItem, setSearchItem] = useState("")
     let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+    const inputs = ["artist","title", "genre", "price"]
+    const inputQuery = $('#filterQuery').val()
 
     const handleInputChange = (e) => { 
         const searchTerm = e.target.value;
         setSearchItem(searchTerm)
-        console.log("updating", searchItem)
-        
         const regex = new  RegExp(`${searchTerm}`,'g')
-        console.log("whatis our regex", regex)
-        console.log(regex.test("m"))
+        
+
         if (records.filter((record) => regex.test(record.title) == true)){
-          setRecordsByLetter(records.filter((record) => regex.test(record.title)))
+          setRecordsByLetter(records.filter((record) => regex.test(record[inputQuery])))
   
         } else {
           console.log("nothing found")
@@ -44,13 +44,19 @@ function BrowseAll(){
             <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
   Search Filters
 </button>
-<div>      
+<div>     
+<select id="filterQuery" name="filterQuery" >
+  {inputs.map(input => <option value={input}>{input}</option>)}
+
+</select>
         <input
           type="text"
           value={searchItem}
+
           onChange={handleInputChange}
           placeholder='Search by Title'
         />
+        {searchItem && <h1>Searching {inputQuery}s for: {searchItem}</h1>}
       </div>
         
 
