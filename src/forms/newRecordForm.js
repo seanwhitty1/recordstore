@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../App.css'
 let timestamp = new Date()
 
 const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
@@ -40,7 +41,7 @@ function NewRecordForm(){
 
     return(
         <>
-        <h1>Here we can add a new record Admin use only</h1>
+        <h1 className='main-header'>Here we can add a new record Admin use only</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
         <div className='form-group'>

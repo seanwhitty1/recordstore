@@ -7,8 +7,9 @@ import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
 import { useSelector, useDispatch } from 'react-redux';
 import 'react-flash-message'
+import axios from 'axios';
 
-//https://api.discogs.com/database/search?title=tropisch%20verlangen&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr
+//
 
 function Detailrecord(){
     const dispatch = useDispatch()
@@ -24,6 +25,27 @@ function Detailrecord(){
     let allFromGenre = records.filter((record) => record.genre == r.genre);
   
     useEffect(() => {
+        const getDiscogsID = async()  => {
+            const id = await axios.get(`https://api.discogs.com/database/search?title=${r.title}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
+            console.log(id.data.results[0].id) // gets the id
+
+            console.log("attempting id search")
+
+            try {
+                const searchById = 'https://api.discogs.com/releases/' + id.data.results[0].id
+                const record = await axios.get(searchById)
+                console.log(record.data.tracklist)
+                
+
+            } catch(err){
+                console.log("heres our error", err)
+            }
+
+         
+
+
+        }
+        getDiscogsID()
     
     },[])
 

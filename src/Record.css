@@ -40,6 +40,7 @@
 .addToCartImage {
     align-self: end;
     margin-right: 0;
+    color:red;
 }
 
 .hidden {
@@ -47,8 +48,9 @@
 }
 
 .shown {
-    opacity: 0%;
+    opacity: 100%;
     float: right 100%;
+    z-index: 1;
 }
 
 

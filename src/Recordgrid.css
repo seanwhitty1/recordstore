@@ -2,7 +2,7 @@
 
     display: flex;
     flex-direction: row;
-    justify-items: space-evenly;
+    justify-items: Start;
     flex-wrap: wrap;
     padding: 5px;
 
@@ -24,13 +24,12 @@
   }
 
 
+  .recordgrid-item:hover {
+    opacity: 60%;
 
-.outer:hover {
-  opacity: 60%;
-  position:absolute;
-  size:2em;
+ 
+  }
 
-}
 
 
   .related-recordgrid-container {

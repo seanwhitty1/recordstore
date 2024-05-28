@@ -43,7 +43,6 @@
     grid-row: 1;
     grid-column: 1;
     margin-top: -1px;
-   
     border-right: 1px solid #212529;
     border-bottom: 1px solid #212529;
     border-top: 1px solid #212529;
@@ -85,7 +84,7 @@
     max-height: 30px;
     margin-top: -1px;
     margin-left: 5px;
-    border: 1px sold #212529;
+    border: 1px solid #212529;
   }
 
   .grid-item-cart-total {

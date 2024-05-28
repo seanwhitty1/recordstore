@@ -7,4 +7,9 @@
 
 .alphabet-list {
     margin-left: 25px;
+    margin-right:25px;
+}
+
+.no-results {
+    margin-top: 40px
 }

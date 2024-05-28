@@ -9,16 +9,14 @@
 
 #genreSide {
     padding: 5px;
-
     overflow: scroll;
     font-size:12px;
     height: 500px;
 
-
 }
 
   .genre-title {
-    font-size: 25px;
+    font-size: 15px;
 
   }
 

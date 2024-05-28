@@ -13,9 +13,18 @@
   filter: invert(12%) sepia(9%) saturate(1325%) hue-rotate(182deg) brightness(94%) contrast(86%);
 }
 
+.text-offBlack {
+  color: #212529;
+}
+
 .header {
   justify-content: center;
  
+}
+
+.main-header {
+  margin-left: 57px;
+  color: #212529;
 }
 
 .App-header {

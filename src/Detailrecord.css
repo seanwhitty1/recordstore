@@ -44,8 +44,6 @@
   .detail-record-grid-related-records {
     grid-row: 9;
     grid-column:1/14;
-
-    border:0ch 10px solid pink;
     background-color: red;
   }
 
@@ -59,11 +57,7 @@
   .detail-record-grid-related-records2 {
     grid-row: 15;
     grid-column:1/14;
-
-    border:0ch 10px solid pink;
   }
-
-
 
   .detail-record-buttonToCart {
     grid-column: 8;

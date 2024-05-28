@@ -1,4 +1,5 @@
 import './Main.css'
+import './App.css'
 import Recordgrid from "./Recordgrid";
 import { useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';

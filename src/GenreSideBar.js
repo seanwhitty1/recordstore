@@ -30,7 +30,7 @@ return(
 <p>Browse by Genre</p>
 <ul>
 
-{count.map((c) => <li><a className="genre-title" href={`/`+ c.genre_name} onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</a></li>)}
+{count.map((c) => <li><p className="genre-title"  onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</p></li>)}
  
 </ul>
 

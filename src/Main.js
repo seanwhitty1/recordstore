@@ -1,7 +1,7 @@
 import './Recordgrid.css'
 import Home from "./Home";
 import './Main.css'
-import About from "./pages/About";
+import About from "./About";
 import Contact from "./Contact";
 import './index.css'
 import { Route, Routes } from 'react-router-dom';
@@ -23,7 +23,6 @@ const Main = () => {
     
     useEffect(() => {
       const getRecords = async() => {
-        console.log("our useEffect in main component should be tracking genre:",genre)
           try {
             let records = await axios.get(createURL(genre))
             upRecordsInState(records.data)  
