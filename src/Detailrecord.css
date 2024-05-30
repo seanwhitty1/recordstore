@@ -1,46 +1,37 @@
 .detail-record-grid-container {
-
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(8,minmax(100px, auto));
-  
   }
 
 .detail-record-grid-item-artist-description {
   padding: 15px;
     grid-row: 1;
-    grid-column: 5/10;
-  
+    grid-column: 5/10; 
   }
   
   .detail-record-grid-item-title {
     grid-row: 5;
     grid-column: 5/10;
     display: inline;
-  
   }
   
   .detail-record-grid-item-image {
     grid-row: 1/2;
     grid-column: 2/5;
     height: 100%;
-    width: 100%;
-    
-  
+    width: 100%; 
   }
   
   .detail-record-grid-item-description {
     grid-row: 2;
     grid-column: 5/10;
-    padding: 0 10px;
-    
+    padding: 0 10px;  
   }
   
   .detail-record-grid-related-header {
     grid-row: 8;
     grid-column: 1/14;
-
-  
   }
   
   .detail-record-grid-related-records {
@@ -52,8 +43,6 @@
   .detail-record-grid-related-header2 {
     grid-row: 14;
     grid-column: 1/14;
-
-  
   }
 
   .detail-record-grid-related-records2 {
@@ -66,8 +55,6 @@
     grid-row:1;
     max-height:100px;
     margin-right:50px;
-    
-  
     border: 1px solid black;
   }
 

@@ -3,36 +3,46 @@ import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
-let timestamp = new Date()
+const bcrypt = require('bcryptjs');
 
-const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
+const inputs = ["username", "password"]
 const initalializers =  {
-    artist: "",
-    title: "",
-    genre: "",
-    price: 0,
-    description: "",
-    image_src: "",
-    date_added: timestamp
+    username: "",
+    password: "",
+
 }
 
-function NewRecordForm(){
+function LoginForm(){
     let [failedValidation, setFailedValidation] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log("running hansdlesubmit")
+        console.log("running hansdlesubmit") //need to destructur
+        const username = values.username;
+      
+       
+        let storedUser = await axios.get(`http://localhost:3001/users/${username}`)
+        console.log("stored user is", storedUser.data)
+        const hashedPW = await bcrypt.hash(values.password, storedUser.data.salt)
+        console.log(hashedPW, storedUser.data.passkey)
+    
+
+       
+            if (hashedPW == storedUser.data.passkey) {
+             // 
+             console.log("matched!")
+            } else {
+             // Passwords don't match
+             console.log("did not match")
+            }
+          ;
         if (Object.keys(errors).length > 0){
             alert("please fill out all fields")
             setFailedValidation(true)
         } else {
             setFailedValidation(false)
-            //send to route
-            console.log(values)
-            await axios.post("http://localhost:3001/users/addnew",
-            values)
-            navigate("/")
+      
         }    
     }         
     let {errors, touched, values, handleChange, handleBlur} = useFormik({
@@ -41,7 +51,7 @@ function NewRecordForm(){
 
     return(
         <>
-        <h1 className='main-header'>Here we can add a new record Admin use only</h1>
+        <h1 className='main-header'>Please login</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
         <div className='form-group'>
@@ -59,10 +69,17 @@ function NewRecordForm(){
             </label>
             </div>  
             )} 
-        <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"'>Submit!</button>
+            <button type="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+  Login!
+</button>
+        
+
         </form>
+
+
+
         </>
     )
 } 
 
- export default NewRecordForm;
+ export default LoginForm;

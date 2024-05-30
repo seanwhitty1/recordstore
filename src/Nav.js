@@ -3,6 +3,8 @@ import './App.css'
 import './Nav.css'
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import userIcon from './svg/user.svg'
+import cartIcon  from './svg/shopping-cart.svg'
 
 
 const Navigation = () => {
@@ -20,7 +22,12 @@ return(
         <NavLink className="nav-link" to="/browseall">Browse</NavLink>
         <NavLink className="nav-link" to="/contactus">Contact</NavLink>
         <NavLink className="nav-link" to="/about">About</NavLink>
+        <div id="navbar-icons">
+        <NavLink to="userdashboard"><a href=""><img className='userIcon'src={userIcon}></img></a></NavLink><img className='cartIcon' src={cartIcon}></img>
+        </div>
       </div>
+
+
 
     </nav>
     </div>

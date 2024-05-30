@@ -43,18 +43,18 @@ function BrowseAll(){
             </ul>
 
 <div className="searchBar">     
-<select id="filterQuery" name="filterQuery" >
+<select id="filterQuery" name="filterQuery" className="margin-right-10">
   {inputs.map(input => <option value={input}>{input}</option>)}
 
 </select>
-        <input
+          <input
           type="text"
           value={searchItem}
 
           onChange={handleInputChange}
           placeholder='Search by Title'
         />
-        {searchItem && <h1>Searching {inputQuery}s for: {searchItem}</h1>}
+        {searchItem && <h1 className="margin-left-15 margin-top-10 text-offBlack">Searching {inputQuery}s for: {searchItem}</h1>}
       </div>
             <div className="recordgrid-container">
             {recordsByLetter.length > 0? toRender.map     

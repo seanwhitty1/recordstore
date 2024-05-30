@@ -3,20 +3,18 @@ import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
-let timestamp = new Date()
 
-const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
+const inputs = ["username", "fullname", "shipping_address", "email", "passkey"]
 const initalializers =  {
-    artist: "",
-    title: "",
-    genre: "",
-    price: 0,
-    description: "",
-    image_src: "",
-    date_added: timestamp
+    username: "",
+    fullname: "",
+    shipping_address: "",
+    email: "",
+    passkey: ""
+
 }
 
-function NewRecordForm(){
+function RegisterForm(){
     let [failedValidation, setFailedValidation] = useState(false)
     const navigate = useNavigate()
 
@@ -29,7 +27,7 @@ function NewRecordForm(){
         } else {
             setFailedValidation(false)
             //send to route
-            console.log(values)
+            console.log(values) //object
             await axios.post("http://localhost:3001/users/addnew",
             values)
             navigate("/")
@@ -41,7 +39,7 @@ function NewRecordForm(){
 
     return(
         <>
-        <h1 className='main-header'>Here we can add a new record Admin use only</h1>
+        <h1 className='main-header'>If you do not have an account please register</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
         <div className='form-group'>
@@ -59,10 +57,13 @@ function NewRecordForm(){
             </label>
             </div>  
             )} 
-        <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"'>Submit!</button>
+       <button  type="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+  Register
+</button>
         </form>
+
         </>
     )
 } 
 
- export default NewRecordForm;
+ export default RegisterForm;

@@ -2,11 +2,14 @@
    
     background-color: #212529;
     color: wheat;
-    grid-row: 6/7;
+    grid-row: 6;
     grid-column: 1/6;
     border: 2px solid #212529;
-    z-index: 2;
+    z-index: -1;
     text-decoration: none;
+    max-height: 225px;
+    max-width: 225px;
+    min-width: 225px;
 }
 
 #detail-bubble-list {

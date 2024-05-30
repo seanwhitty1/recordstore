@@ -12,7 +12,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { createURL } from './helpers';
+import UserDashboard from './UserDashboard';
 const commonRecordPath = new RegExp("^/records/view")
+
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -45,6 +47,7 @@ return(
     <Route path ='/contactus' element={<Contact/>}/>
     <Route path ='/records/view/:id' element={<Detailrecord/>}/>
     <Route path ='/addnew' element={<NewRecordForm/>}/>
+    <Route path ='/userdashboard' element={<UserDashboard/>}/>
     </Routes>
       </div>
     </>)

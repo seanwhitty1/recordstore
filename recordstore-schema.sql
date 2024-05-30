@@ -40,4 +40,14 @@ CREATE TABLE artists_records (
   artist_id INTEGER REFERENCES artists ON DELETE CASCADE
 );
 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username TEXT NOT NULL,
+  fullname TEXT NOT NULL,
+  shipping_address TEXT NOT NULL,
+  email TEXT NOT NULL,
+  passkey TEXT NOT NULL,
+  salt TEXT NOT NULL
+
+);
 

@@ -1,4 +1,5 @@
 import './DetailBubble.css'
+import './Record.css'
 
 function DetailBubble(props){
     const {artist, title, genre, price} = props;

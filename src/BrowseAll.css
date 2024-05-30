@@ -18,3 +18,13 @@
     margin-top: 15px;
     margin-left: 25px;
 }
+
+#searchQuery {
+    margin-left: 25px;
+    display:inline;
+}
+
+#filterQuery {
+    margin-left: 37px;
+
+}

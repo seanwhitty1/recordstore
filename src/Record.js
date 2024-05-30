@@ -24,7 +24,7 @@ return(
         <img src={image_src}></img> 
     </NavLink>
          {id == inFocus && <DetailBubble  artist={artist} title={title} genre={genre} price={price} id={id}/>}
-    <a className={`recordAddToCartButton ${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={cartIcon} className='addToCartImage'></img></a>
+    <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={cartIcon} className='addToCartImage'></img></a></div>
     </div>
     
     

@@ -9,8 +9,14 @@ import Main from './Main';
 import Navigation from './Nav';
 import Cart from './Cart';
 import vinyl  from './svg/vinyl-record-svgrepo-com.svg'
+import Footer from './Footer';
+import bcryptjs from 'bcryptjs'
+
+
 
 const App = () => {
+
+
 
   return (
     <>
@@ -23,6 +29,7 @@ const App = () => {
     </Router>
     <Cart/>
     </div>
+    <Footer/>
     </>
   );
 };

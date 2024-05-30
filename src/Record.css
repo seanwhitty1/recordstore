@@ -28,19 +28,34 @@
  
 }
 
+.recordgrid-item{
+
+    max-width: 225px;
+    max-height: 225px;
+    border: 1px solid #212529;
+    margin: 1px;
+    display: grid;
+    height: 250px;
+    width: 250px;
+    margin: 20px;
+    grid-template-columns: repeat(5, 45px);
+    grid-template-rows: repeat(5, 45px);
+    border: 1px solid black;
+  }
+
 .recordAddToCartButton {
     grid-row: 1;
     grid-column: 5;
 
     align-items: end;
     justify-content: end;
+    z-index: 1;
  
 }
 
 .addToCartImage {
     align-self: end;
     margin-right: 0;
-    color:red;
 }
 
 .hidden {
@@ -50,7 +65,7 @@
 .shown {
     opacity: 100%;
     float: right 100%;
-    z-index: 1;
+    z-index:
 }
 
 
