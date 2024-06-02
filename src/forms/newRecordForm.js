@@ -30,7 +30,7 @@ function NewRecordForm(){
             setFailedValidation(false)
             //send to route
             console.log(values)
-            await axios.post("http://localhost:3001/users/addnew",
+            await axios.post("http://localhost:3001/records/addnew",
             values)
             navigate("/")
         }    

@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 app.use(express.json());
-const db = require("../db")
-const Artist = require("../models/Artist")
+const Artist = require("../models/artist.js")
 const router = new express.Router();
 
 

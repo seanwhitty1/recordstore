@@ -220,7 +220,7 @@
     border-left: none;
     border-right: none;
     background: none;
-    border-bottom-color: #fff;
+ 
     outline: none;
     color: #fff;
     text-shadow: 0 0 2px #000;
@@ -259,7 +259,7 @@
     left: -5px;
     width: calc(100% + 10px);
     height: calc(100% + 10px);
-    border: 2px solid #ffffff;
+  
     animation: rotateBorder 5s linear infinite;
   }
   

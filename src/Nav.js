@@ -5,8 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import userIcon from './svg/user.svg'
 import cartIcon  from './svg/shopping-cart.svg'
-
-
 const Navigation = () => {
 const dispatch = useDispatch()
 

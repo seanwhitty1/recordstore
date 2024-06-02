@@ -22,7 +22,6 @@ const Main = () => {
     const records = useSelector(state => state.records)
     const genre = useSelector(state => state.genre)
     const cart = useSelector(state => state.cart)
-    
     useEffect(() => {
       const getRecords = async() => {
           try {
@@ -34,7 +33,6 @@ const Main = () => {
       }
       getRecords()
   },[genre, cart])
-
   if(records != null){
 return(
     <>

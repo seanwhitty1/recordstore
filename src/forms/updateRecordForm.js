@@ -4,9 +4,21 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-function UpdateRecordForm(props){
 
+
+function UpdateRecordForm(props){
+const navigate = useNavigate()
 const {artist, title, genre, price, descr, image_src, id} = props
+
+const deleteHandler = async(id) => {
+    console.log("running our delete hander on id,", id)
+    await axios.delete(`http://localhost:3001/records/delete/${id}`)
+    navigate("/")
+
+
+
+
+}
 console.log("inside our updated record form what are our props", artist)
 
 const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
@@ -22,7 +34,7 @@ const initalializers =  {
 
 
     let [failedValidation, setFailedValidation] = useState(false)
-    const navigate = useNavigate()
+  
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -49,8 +61,7 @@ const initalializers =  {
     console.log("initial values", values)
 
     return(
-        <>
-  
+        <>n
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
         <div className='form-group'>
@@ -71,6 +82,7 @@ const initalializers =  {
       
         <button type='submit'>Submit!</button>
         </form>
+        <button onClick={() => deleteHandler(id)}>Delete</button>
         </>
     )
 } 

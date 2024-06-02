@@ -19,6 +19,8 @@ const deleteHandler = async(id) => {
 const createURL = (genre) => 
     genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
 
+const baseURL = 'http://127.0.0.1:3001/'
 
-module.exports = {total,  createURL}
+
+module.exports = {total,  createURL, baseURL}
 

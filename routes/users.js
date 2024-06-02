@@ -18,8 +18,18 @@ router.get('/:username', async function(req, res)  {
   user.greet() //this works as an instance method
   console.log("the result of calling class method get user is ", user) //instance of user. 
   return res.json(user)
-  
 })
+
+router.get("/auth/token/:token", async function(req, res) {
+  console.log("running jwt validation")
+  console.log(req.body)
+  console.log("what is the token",token)
+  let payload = await jwt.verify(token, SECRET_KEY); 
+  console.log(payload)
+
+})
+
+
 
 
 router.post("/addnew", async function(req, res){
