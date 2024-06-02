@@ -8,6 +8,8 @@ function Home(){
     let records = useSelector(state => state.records)
     let params = useParams()
     let {genre} = params;
+    const token = useSelector(state => state.token)
+    console.log("stored in redux store is", token)
     if(genre){
         records = records.filter((record) => record.genre == genre)
     }

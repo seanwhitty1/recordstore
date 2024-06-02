@@ -2,10 +2,12 @@ import React, { useState} from 'react';
 import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import '../App.css'
 const bcrypt = require('bcryptjs');
 
 const inputs = ["username", "password"]
+
 const initalializers =  {
     username: "",
     password: "",
@@ -15,33 +17,61 @@ const initalializers =  {
 function LoginForm(){
     let [failedValidation, setFailedValidation] = useState(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+const updaTokenInState = (token) => dispatch({ type: "UPDATETOKEN", payload: token.data});
+
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log("running hansdlesubmit") //need to destructur
-        const username = values.username;
-      
-       
-        let storedUser = await axios.get(`http://localhost:3001/users/${username}`)
-        console.log("stored user is", storedUser.data)
-        const hashedPW = await bcrypt.hash(values.password, storedUser.data.salt)
-        console.log(hashedPW, storedUser.data.passkey)
-    
-
-       
-            if (hashedPW == storedUser.data.passkey) {
-             // 
-             console.log("matched!")
-            } else {
-             // Passwords don't match
-             console.log("did not match")
-            }
-          ;
         if (Object.keys(errors).length > 0){
             alert("please fill out all fields")
             setFailedValidation(true)
         } else {
             setFailedValidation(false)
+            console.log("running hansdlesubmit")
+            const {username, password} = values
+            let storedUser = await axios.get(`http://localhost:3001/users/${username}`)
+             
+            console.log("when we retrieve our stored user instance:", storedUser)
+            bcrypt.compare(password, storedUser.data.passkey, async function(err, res) {
+
+            /**To verify an existing password you don't compute the hash and then compare, 
+             * instead you use the compare function with the unhashed user-provided password
+             *  together with the hashed password from the database. 
+             * The "hashed" password in the database actually is stored
+             *  in a format that includes the algorithm parameters and the salt 
+             * in addition to the hash, so it as easy and foolproof as possible. */
+                if (err){
+                  // handle error
+                  console.log(err)
+                }
+                if (res) {
+                  // Send JWT
+                  console.log("its a match")
+                  //the we send a post requist for GET JWT in user ROute. 
+                  try {
+                    let token = await axios.post("http://localhost:3001/users/gettoken", {username:username, password:password}) 
+                    console.log("now we have a signed token", token)
+                    localStorage.setItem("token", token.data);
+                    updaTokenInState(token)
+
+              
+                  } catch(err) {
+                    console.log(err)
+                  }
+                  //then we use the returned token to do something. . . .
+              
+               
+              //    return res.json({ token });
+                 
+                } else {
+                console.log("did not match")
+                  // response is OutgoingMessage object that server response http request
+                }
+              });
+
+          
+          
       
         }    
     }         

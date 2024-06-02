@@ -46,8 +46,6 @@ CREATE TABLE users (
   fullname TEXT NOT NULL,
   shipping_address TEXT NOT NULL,
   email TEXT NOT NULL,
-  passkey TEXT NOT NULL,
-  salt TEXT NOT NULL
-
+  passkey TEXT NOT NULL
 );
 
