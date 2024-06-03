@@ -2,25 +2,28 @@ import React, { useState} from 'react';
 import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import {useAuth} from '../AuthProvider'
+
+
 import '../App.css'
 const bcrypt = require('bcryptjs');
 
 const inputs = ["username", "password"]
+const validateToken = async(token) => {
+    let user = await axios.get(`http://127.0.0.1:3001/users/auth/token/${token}`)
+    const {username} = user.data
+    return {username, token} 
+  }
 
 const initalializers =  {
     username: "",
     password: "",
 
 }
-
 function LoginForm(){
+  const { setToken, token, setUser } = useAuth();
     let [failedValidation, setFailedValidation] = useState(false)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-const updaTokenInState = (token) => dispatch({ type: "UPDATETOKEN", payload: token.data});
-
-
     const handleSubmit = async(e) => {
         e.preventDefault()
         if (Object.keys(errors).length > 0){
@@ -28,11 +31,8 @@ const updaTokenInState = (token) => dispatch({ type: "UPDATETOKEN", payload: tok
             setFailedValidation(true)
         } else {
             setFailedValidation(false)
-            console.log("running hansdlesubmit")
-            const {username, password} = values
+            const {username, password} = values;
             let storedUser = await axios.get(`http://localhost:3001/users/${username}`)
-             
-            console.log("when we retrieve our stored user instance:", storedUser)
             bcrypt.compare(password, storedUser.data.passkey, async function(err, res) {
 
             /**To verify an existing password you don't compute the hash and then compare, 
@@ -50,29 +50,24 @@ const updaTokenInState = (token) => dispatch({ type: "UPDATETOKEN", payload: tok
                   console.log("its a match")
                   //the we send a post requist for GET JWT in user ROute. 
                   try {
-                    let token = await axios.post("http://localhost:3001/users/gettoken", {username:username, password:password}) 
-                    console.log("now we have a signed token", token)
-                    localStorage.setItem("token", token.data);
-                    updaTokenInState(token)
+                    let token = await axios.post("http://localhost:3001/users/gettoken", {username:username, password:password})
+                    console.log("inside the form submit", token) 
+                    let user = await axios.get(`http://localhost:3001/users/auth/token/${token.data}`)
+                    console.log("decoded user is", user.data)
+                    setToken(token.data)
+                    setUser(user.data)
+                  
+                    
+                    navigate("/")
 
-              
                   } catch(err) {
                     console.log(err)
                   }
-                  //then we use the returned token to do something. . . .
-              
-               
-              //    return res.json({ token });
-                 
+
                 } else {
                 console.log("did not match")
-                  // response is OutgoingMessage object that server response http request
                 }
               });
-
-          
-          
-      
         }    
     }         
     let {errors, touched, values, handleChange, handleBlur} = useFormik({
@@ -81,6 +76,7 @@ const updaTokenInState = (token) => dispatch({ type: "UPDATETOKEN", payload: tok
 
     return(
         <>
+   
         <h1 className='main-header'>Please login</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 

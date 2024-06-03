@@ -10,6 +10,7 @@ const write = require('../helpers/writeToCSV')
 router.get('/', async function(req, res)  {
   //refactored the db query to the model as a static class method
   const results = await Record.getAll()
+  
   return res.json(results)
   
 })

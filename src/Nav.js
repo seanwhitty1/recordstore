@@ -21,7 +21,7 @@ return(
         <NavLink className="nav-link" to="/contactus">Contact</NavLink>
         <NavLink className="nav-link" to="/about">About</NavLink>
         <div id="navbar-icons">
-        <NavLink to="userdashboard"><a href=""><img className='userIcon'src={userIcon}></img></a></NavLink><img className='cartIcon' src={cartIcon}></img>
+        <NavLink to="userdashboard"><a href=""><img className='userIcon'src={userIcon}></img></a></NavLink><NavLink to="/fullcart"><img className='cartIcon' src={cartIcon}></img></NavLink>
         </div>
       </div>
 

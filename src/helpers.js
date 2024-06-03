@@ -1,3 +1,4 @@
+
 const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price * curr.quantity; },0); 
 //for our arr.reduce function, it is a higher order function 
 //our first argument is the callback functionc (which takes two arguments, accumulator + currentvalue)
@@ -16,11 +17,14 @@ const deleteHandler = async(id) => {
     },3000)
 }*/
 
-const createURL = (genre) => 
+const createRecordGetURL = (genre) => 
     genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
+//both arrays
 
 const baseURL = 'http://127.0.0.1:3001/'
 
 
-module.exports = {total,  createURL, baseURL}
+
+
+module.exports = {total,  createRecordGetURL, baseURL};
 

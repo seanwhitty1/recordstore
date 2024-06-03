@@ -6,37 +6,50 @@ import Contact from "./Contact";
 import './index.css'
 import { Route, Routes } from 'react-router-dom';
 import Detailrecord from "./Detailrecord";
+import CartDetail from './CartDetail.js';
 import NewRecordForm from "./forms/newRecordForm";
 import BrowseAll from "./BrowseAll2";
 import { useEffect } from 'react';
+import { useAuth } from './AuthProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { createURL } from './helpers';
+import { createRecordGetURL } from './helpers.js'
 import UserDashboard from './UserDashboard';
 const commonRecordPath = new RegExp("^/records/view")
 
-
 const Main = () => {
+  const {token, user } = useAuth()
+  console.log("inside our main app", user)
+
+
     const dispatch = useDispatch();
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
     const records = useSelector(state => state.records)
     const genre = useSelector(state => state.genre)
     const cart = useSelector(state => state.cart)
     useEffect(() => {
+      const updateUser = (user) => {
+        dispatch({type: "UPDATEUSER", payload: user})
+      }
       const getRecords = async() => {
           try {
-            let records = await axios.get(createURL(genre))
+            let records = await axios.get(createRecordGetURL(genre))
             upRecordsInState(records.data)  
           } catch(error) {
             console.log("There was an error fetching records", error)
           } 
       }
+      if(user){
+        updateUser(user)
+      }
       getRecords()
-  },[genre, cart])
+  },[genre, cart, user])
   if(records != null){
 return(
     <>
-    <div className="main grid-item4">  
+    <div className="main grid-item4"> 
+   {user && <h1>Welcome {user.username}</h1>}
+  
     <Routes>
     <Route path='/:genre' element={ <Home/>} />
     <Route path='/' element={ <Home/>} />
@@ -46,6 +59,7 @@ return(
     <Route path ='/records/view/:id' element={<Detailrecord/>}/>
     <Route path ='/addnew' element={<NewRecordForm/>}/>
     <Route path ='/userdashboard' element={<UserDashboard/>}/>
+    <Route path= '/fullcart' element={<CartDetail/>}/>
     </Routes>
       </div>
     </>)

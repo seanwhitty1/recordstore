@@ -22,14 +22,13 @@ router.get('/:username', async function(req, res)  {
 
 router.get("/auth/token/:token", async function(req, res) {
   console.log("running jwt validation")
-  console.log(req.body)
-  console.log("what is the token",token)
-  let payload = await jwt.verify(token, SECRET_KEY); 
-  console.log(payload)
+  const {token }= req.params
+  console.log("what is the token inside the auth route",token) //is an object?
+  let payload = await jwt.decode(token, SECRET_KEY); 
+  console.log("payload item data is", payload)
+  return res.json(payload)
 
 })
-
-
 
 
 router.post("/addnew", async function(req, res){
@@ -44,6 +43,7 @@ router.post("/gettoken", async function(req, res){
   const {username, password} = req.body
   let payload = {username: username, password:password};
   let token = jwt.sign(payload, SECRET_KEY, JWT_OPTIONS);
+  console.log("new jwt", token)
   return res.json(token) // working nicely. 
 })
 

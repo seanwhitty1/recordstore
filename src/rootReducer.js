@@ -34,7 +34,7 @@ function rootReducer(state = INITIAL_STATE, action) {
     case "SELECTGENRE":
       console.log("inside select genre:", action.payload) //
       return {...state, genre: action.payload}
-    case "UPDATETOKEN":
+    case "UPDATEUSER":
       console.log("adding token to the react app store", action.payload)
       return {...state, token:action.payload, user: action.payload}
     default:

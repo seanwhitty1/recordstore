@@ -8,6 +8,7 @@ import './App.css';
 import rootReducer from './rootReducer';
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import AuthProvider from './AuthProvider';
 const store = createStore(rootReducer);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

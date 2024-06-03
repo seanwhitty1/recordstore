@@ -2,17 +2,21 @@ import React, { useState} from 'react';
 import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-
-
+import { useDispatch } from 'react-redux';
+import { createRecordGetURL } from '../helpers';
 
 function UpdateRecordForm(props){
+const dispatch = useDispatch()
 const navigate = useNavigate()
 const {artist, title, genre, price, descr, image_src, id} = props
+const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
 
 const deleteHandler = async(id) => {
-    console.log("running our delete hander on id,", id)
     await axios.delete(`http://localhost:3001/records/delete/${id}`)
+    let records = await axios.get(createRecordGetURL()) //should return array of record instances
+    console.log(records)
+    upRecordsInState(records.data)  
+
     navigate("/")
 
 
@@ -44,9 +48,6 @@ const initalializers =  {
             setFailedValidation(true)
         } else {
             setFailedValidation(false)
-        
-            //send to route
-            console.log("heres our value object compiled with formik", values)
             let record = await axios.put(`http://localhost:3001/records/update/${id}`,
             values)
             console.log("lets now navigate to home /")

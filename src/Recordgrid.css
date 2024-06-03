@@ -5,29 +5,18 @@
     justify-items: Start;
     flex-wrap: wrap;
     padding: 5px;
-
   }
-
-
-
 
   .recordgrid-item:hover {
     opacity: 60%;
-
- 
   }
-
-
-
   .related-recordgrid-container {
 
     display: flex;
     flex-direction: row;
     justify-items: space-evenly;
     flex-wrap: wrap;
-
   }
-
   .related-recordgrid-item{
 
     max-width: 150px;

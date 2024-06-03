@@ -14,17 +14,14 @@
     transition: 2000ms;
   }
 
-.recordItem-artwork {
-    background-color: blue;
-}
 
 .recordItem-Image {
     grid-column: 1/6;
     grid-row: 1/6;
-   width: 100%;
-   height: 100%;
-    object-fit: cover;
-    z-index: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     z-index: 0;
  
 }
 
@@ -32,21 +29,31 @@
 
     max-width: 225px;
     max-height: 225px;
-    border: 1px solid #212529;
+  
     margin: 1px;
     display: grid;
-    height: 250px;
-    width: 250px;
-    margin: 20px;
+    height: 225px;
+    width: 225px;
+    grid-row: 1;
+    grid-column: 1;
+    z-index:1;
+    position: relative;
     grid-template-columns: repeat(5, 45px);
     grid-template-rows: repeat(5, 45px);
-    border: 1px solid black;
+
   }
+.recordgrid-outer {
+    max-width: 225px;
+    max-height: 225px;
+    margin: 20px;
+    grid-template-rows: repeat(2, 225px);
+    grid-template-columns: repeat(6, 1fr);
+ 
+}
 
 .recordAddToCartButton {
     grid-row: 1;
     grid-column: 5;
-
     align-items: end;
     justify-content: end;
     z-index: 1;
