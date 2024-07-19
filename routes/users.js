@@ -1,64 +1,22 @@
-const express = require('express')
-const app = express()
-app.use(express.json());
-const db = require("../db")
-const User = require("../models/user")
-const router = new express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require("jsonwebtoken");
-const SECRET_KEY = "oh-so-secret";
-const JWT_OPTIONS = { expiresIn: 60 * 60 };  // 1 hour
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/userController');
+//we deconstruct Todo from our models folder. 
+//originally tried to do this from '../models/todo which was returning the function but not the class instance
+//this lead to confusion but is now somewhat resolved.
+// Route to get all users
 
-router.get('/:username', async function(req, res)  {
-    //this will return user data by passing in the user_id as a param
-    //middleware required
-    //bcrypt required 
-  const {username} = req.params;
-  const user = await User.get(username)
-  user.greet() //this works as an instance method
-  console.log("the result of calling class method get user is ", user) //instance of user. 
-  return res.json(user)
-})
-
-router.get("/auth/token/:token", async function(req, res) {
-  console.log("running jwt validation")
-  const {token }= req.params
-  console.log("what is the token inside the auth route",token) //is an object?
-  let payload = await jwt.decode(token, SECRET_KEY); 
-  console.log("payload item data is", payload)
-  return res.json(payload)
-
-})
-
-
-router.post("/addnew", async function(req, res){
-  const salt = await bcrypt.genSalt(5);
-  const passkey = await bcrypt.hash(req.body.passkey, salt) //hashing successfully. 
-  const result = await User.addNew({...req.body, passkey, salt})
-  return res.json(result)
-
-})
-
-router.post("/gettoken", async function(req, res){
-  const {username, password} = req.body
-  let payload = {username: username, password:password};
-  let token = jwt.sign(payload, SECRET_KEY, JWT_OPTIONS);
-  console.log("new jwt", token)
-  return res.json(token) // working nicely. 
-})
-
-// delete route
-router.delete("/delete/:id", async function(req, res){
-  const id = req.params['id']
-  const deleted = await User.deleteRecord(id)
-  return res.json(deleted)
-});
-
-router.put("/update/:id", async function(req,res){
-  const id = req.params['id']
-  User.updateRecord(req.body,id)
-
-})
-
+//registration form comes from "http://localhost:3001/users/addnew",
+router.get('/getByName/:username', userController.getUserbyName);
+router.get('/', userController.getAllUsers);
+// Route to create a new user
+router.post('/', userController.createUser);
+// Route to get a user by ID
+router.get('/:id', userController.getUserById);
+router.post('/login/validate', userController.validateUserLogin)
+// Route to update a user by ID
+router.put('/:id', userController.updateUser);
+// Route to delete a user by ID
+router.delete('/:id', userController.deleteUser);
 
 module.exports = router;

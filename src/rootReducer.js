@@ -17,9 +17,6 @@ function rootReducer(state = INITIAL_STATE, action) {
       return {...state, records: [...action.payload]};
     case "ADDTOCART":
       let inCart = state.cart.findIndex(object => object.id == action.payload.id) // is working
-      //if inCart does not equal -1 it already exists
-      //in that case we want to spread a new array with the old items
-      //and rewrite the index
       if(inCart === -1){
         console.log("was not already in the cart")
         action.payload.quantity = 1;

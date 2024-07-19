@@ -9,11 +9,9 @@ function Home(){
     let params = useParams()
     let {genre} = params;
     const token = useSelector(state => state.token)
-    console.log("stored in redux store is", token)
     if(genre){
         records = records.filter((record) => record.genre == genre)
     }
-
     return(
         <>
          <h1 className='main-header'>Latest additions</h1>
@@ -21,5 +19,4 @@ function Home(){
         </>
     )
 }
-
 export default Home;

@@ -15,12 +15,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { createRecordGetURL } from './helpers.js'
 import UserDashboard from './UserDashboard';
-const commonRecordPath = new RegExp("^/records/view")
+
 
 const Main = () => {
   const {token, user } = useAuth()
   console.log("inside our main app", user)
-
 
     const dispatch = useDispatch();
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
@@ -49,7 +48,6 @@ return(
     <>
     <div className="main grid-item4"> 
    {user && <h1>Welcome {user.username}</h1>}
-  
     <Routes>
     <Route path='/:genre' element={ <Home/>} />
     <Route path='/' element={ <Home/>} />

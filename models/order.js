@@ -3,23 +3,19 @@ const Sequelize = require("sequelize")
 const {hasMany, belongsTo} = require("sequelize")
 
 module.exports = (sequelize, DataTypes) => {
-    const artist = sequelize.define('artist' , {
+    const order = sequelize.define('order' , {
         //an order is a one to many relationship
         //one user can have many orders
-    id:{ 
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-          },
-          
-    artist_name: {
+    order_status: {
         type: DataTypes.STRING,
         defaultValue: "active" 
-       }
+       },
+    order_type: {
+        type: DataTypes.STRING
+    }
     }
     )
 
-    return artist
+    return order
     }
     

@@ -12,7 +12,6 @@ return(
 <>
 <div className="container grid-item-navbar">
     <nav>
-
       <div class="logo"><p className='siteTitle'>Seans Record Shack</p></div>
       <div class="nav-menu">
       <NavLink className="nav-link" to="/" id="homeButton" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
@@ -24,9 +23,6 @@ return(
         <NavLink to="userdashboard"><a href=""><img className='userIcon'src={userIcon}></img></a></NavLink><NavLink to="/fullcart"><img className='cartIcon' src={cartIcon}></img></NavLink>
         </div>
       </div>
-
-
-
     </nav>
     </div>
 

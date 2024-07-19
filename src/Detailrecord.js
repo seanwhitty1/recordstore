@@ -61,6 +61,7 @@ function Detailrecord(){
             </ul>
             </div>
            </div>
+           <hr></hr>
        
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1>}  
             <RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>

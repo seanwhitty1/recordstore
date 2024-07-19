@@ -21,12 +21,8 @@ console.log("what is our token", token)
   useEffect(() => {
    // validateToken()
    console.log("run this everytime token is updated in the context of the app component",token)
-    
-  }, [token]);
 
-  return (
-    <>
-    <AuthProvider>
+   /**    <AuthProvider>
     <div id='app' className='grid-container'>
     <h1>{token}</h1>
     <Router>
@@ -39,7 +35,15 @@ console.log("what is our token", token)
     </div>
     <Footer/>
     </AuthProvider>
+    </> */
+    
+  }, [token]);
+
+  return (
+    <>
+    <h1>This is the homepage</h1>
     </>
+
   );
 };
 

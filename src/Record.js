@@ -12,9 +12,6 @@ const dispatch = useDispatch();
 const cart = useSelector(store => store.cart)
 const inFocus = useSelector(store => store.focus);
 const inCart = cart.filter(cartItem => cartItem.id == id)
-// need to create a variable that returns true if item is in cart
-//once returned true we can replace cart icon with tick to symbolize item is in cart. 
-//tick can be clicked to remove item from cart.. .. 
 const clickHandler = (e) => {
     e.preventDefault()
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src}})
@@ -26,10 +23,9 @@ return(
     <NavLink to={"http://127.0.0.1:3000/records/view/" + id} className='recordItem-Image' >
         <img src={image_src}></img> 
     </NavLink>
-
     <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>
     </div>
-    {id == inFocus && <DetailBubble  className='detail-bubble' artist={artist} title={title} genre={genre} price={price} id={id}/>}
+    {id == inFocus && <DetailBubble className='detail-bubble' artist={artist} title={title} genre={genre} price={price} id={id}/>}
     </div>
     </>
 )
