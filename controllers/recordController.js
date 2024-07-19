@@ -26,6 +26,13 @@ exports.createRecord = async (req, res) => {
          })  
          newRecord.addGenre(newGenre[0])
      }
+
+     for(tag_name of req.body.tags.split(" ")){
+      let newTag =  await tag.findOrCreate({
+        where: { tag_name: tag_name }
+        })  
+        newRecord.addTag(newTag[0])
+    }
   
      res.status(201).json(newRecord);
       }
