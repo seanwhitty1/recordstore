@@ -3,15 +3,12 @@ import { useParams } from 'react-router-dom';
 import './App.css'
 import './Detailrecord.css'
 import React, { useEffect} from "react";
-
-
 import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
 import { useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
 import 'react-flash-message'
 import axios from 'axios';
-
 
 function Detailrecord(){
     const dispatch = useDispatch()
@@ -28,14 +25,12 @@ function Detailrecord(){
    
     useEffect(() => {
         const getGenreAndArtist = async() => {
-            console.log("running get genre and artist")
             let allFromGenre =  await axios.get(`http://127.0.0.1:3001/genres/getname/${r.genres[0].genre_name}`)
             let allFromArtist =  await axios.get(`http://127.0.0.1:3001/artists/name/${r.artists[0].artist_name}`)
-            console.log("all from genre in our use effect hook", allFromGenre)
-            console.log("all from artist in our useEffect hook", allFromArtist)
             setGenreRecords(allFromGenre.data.records)
             setAllFromArtist(allFromArtist.data.records)
         }
+
         const getDiscogsID = async()  => {
 
             try {
@@ -56,14 +51,13 @@ function Detailrecord(){
         return(
             <>
             <div className='detail-record-grid-container'>
-            <div className='detail-record-grid-item-artist-description'>
-            <h1>{r.artist} <br></br>
-             {r.title}</h1>
+         
+            <h1 className='detail-record-grid-item-title'>{r.artists[0].artist_name} - {r.title}</h1>
             <p className='detail-record-grid-item-description'>{r.descr}</p>
             <button  className='rounded-full' onClick={() => setShowEdit(!showEdit)}>Edit</button>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.descr} genre={r.genre} id={r.id}/>
           }
-            </div>
+         
             <img className='detail-record-grid-item-image' src={r.image_src}></img>
             <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}>add to cart</button>
             <div className='detail-record-tracklist'>
@@ -75,12 +69,10 @@ function Detailrecord(){
             </div>
            </div>
            <hr></hr>
-       
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1>}  
             <RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>
             <h1 className='detail-record-grid-related-header2'>You may also like:</h1>
             {genreRecords.length > 1 && <RelatedRecords className='detail-record-grid-related-records2' collection={genreRecords.filter((record) => record.artists[0].id != r.artists[0].id).slice(0,4)}/>}
-           
             </>     
         )
        } else {

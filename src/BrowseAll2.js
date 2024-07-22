@@ -29,7 +29,7 @@ function BrowseAll(){
     }
 
     const alphabetize = async(letter) => {
-        setRecordsByLetter(records.filter((record) => record.artist[0] === letter))
+        setRecordsByLetter(records.filter((record) => record.artists[0].artist_name[0] === letter))
     }
         let toRender
         recordsByLetter.length > 0? toRender = recordsByLetter: toRender = records

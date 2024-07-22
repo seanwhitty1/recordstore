@@ -42,19 +42,22 @@ console.log("what is our token", token)
   return (
     <>
     <AuthProvider>
+    <Router>
     <div id='app' className='grid-container'>
     <h1>{token}</h1>
-    <Router>
+   
     <img className="vinylImage offBlack" src={vinyl} /> 
-    <GenreSideBar className='grid-item3' />
+    <GenreSideBar className='grid-item-genreBar' />
     <Navigation />
     <div className="main grid-item-main"> 
     <Main/>
     </div>
-    </Router>
+  
     <Cart/>
     </div>
+    </Router>
     <Footer/>
+    
     </AuthProvider>
     
     </>

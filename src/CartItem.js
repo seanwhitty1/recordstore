@@ -12,5 +12,4 @@ function CartItem({title, price, image, quantity}){
         </>)
 }
 
-
 export default CartItem;

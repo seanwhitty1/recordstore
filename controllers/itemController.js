@@ -16,7 +16,6 @@ exports.getAllSoldItems = async (req, res) => {
   const items = await item.findAll({where: {quantity: 0}});
   res.json(items);
   } catch (error) {
-   console.log(error)
   res.status(500).json({ error })
   }
  };
@@ -24,8 +23,6 @@ exports.getAllSoldItems = async (req, res) => {
  exports.getAllLonger10 = async (req, res) => {
   try {
   const items = await item.findAll({where:
-    //here we used char_length as a SQL function to determine the char length of the column 
-    //column is specified with sequize.col("coln_name")
     sequelize.where(sequelize.fn('char_length', sequelize.col("item_name")), 9)
     });
   res.json(items);
@@ -58,11 +55,7 @@ exports.createItem = async (req, res) => {
  for(tag_name of req.body.tags.split(" ")){
   let newTag =  await tag.findOrCreate({
     where: { tag_name: tag_name }
-
-
     }) 
-    console.log("hi", newTag[0].tag)
-   
     newItem.addTag(newTag[0])
 }
 res.status(201).json(newItem);
@@ -72,7 +65,7 @@ res.status(201).json(newItem);
  res.status(500).json({ error});
  }
 };
-// Controller method to get a todo by ID
+// Controller method to get item by id 
 exports.getItemById = async (req, res) => {
  const id = req.params.id;
  try {

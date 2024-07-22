@@ -18,14 +18,10 @@ import UserDashboard from './UserDashboard';
 
 const createRecordGetURL = (genre) => 
   genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
-//both arrays
-
-
 
 const Main = () => {
   const {token, user } = useAuth()
   console.log("inside our main app", user)
-
     const dispatch = useDispatch();
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
     const records = useSelector(state => state.records)
@@ -40,7 +36,6 @@ const Main = () => {
             let records = await axios.get(createRecordGetURL(genre))
             upRecordsInState(records.data)  
           } catch(error) {
-            console.log("There was an error fetching records", error)
           } 
       }
       if(user){
@@ -54,8 +49,10 @@ return(
     <>
   
     <Routes>
-    <Route path='/:genre' element={ <Home/>} />
+
     <Route path='/' element={ <Home/>} />
+    <Route path='/:genre' element={ <Home/>} />
+
     <Route path='/browseall' element={ <BrowseAll/>} />
     <Route path ='/about' element={<About/>}/>
     <Route path ='/contactus' element={<Contact/>}/>

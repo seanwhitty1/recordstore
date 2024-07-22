@@ -1,13 +1,17 @@
 .alphabet-letter {
     display: inline;
     list-style: none;
+ 
     margin: 0  10px;
     width: 30px;
 }
 
 .alphabet-list {
-    margin-left: 25px;
+  
     margin-right:25px;
+    display: flex;
+    justify-content: space-evenly;
+
 }
 
 .no-results {
@@ -16,7 +20,7 @@
 
 .searchBar {
     margin-top: 15px;
-    margin-left: 25px;
+   
 }
 
 #searchQuery {
