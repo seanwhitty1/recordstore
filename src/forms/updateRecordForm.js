@@ -3,7 +3,7 @@ import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createRecordGetURL } from '../helpers';
+
 
 function UpdateRecordForm(props){
 const dispatch = useDispatch()
@@ -11,17 +11,17 @@ const navigate = useNavigate()
 const {artist, title, genre, price, descr, image_src, id} = props
 const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
 
+const createRecordGetURL = (genre) => 
+    genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
+//both arrays
+
+
 const deleteHandler = async(id) => {
-    await axios.delete(`http://localhost:3001/records/delete/${id}`)
+    await axios.delete(`http://localhost:3001/records/${id}`)
     let records = await axios.get(createRecordGetURL()) //should return array of record instances
     console.log(records)
     upRecordsInState(records.data)  
-
     navigate("/")
-
-
-
-
 }
 console.log("inside our updated record form what are our props", artist)
 

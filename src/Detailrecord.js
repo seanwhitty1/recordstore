@@ -3,32 +3,43 @@ import { useParams } from 'react-router-dom';
 import './App.css'
 import './Detailrecord.css'
 import React, { useEffect} from "react";
+
+
 import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
 import 'react-flash-message'
 import axios from 'axios';
 
+
 function Detailrecord(){
     const dispatch = useDispatch()
+    const addToCart = (item) => {
+        dispatch({type:"ADDTOCART", payload:item, quantity:1})
+    }
     const [showEdit, setShowEdit] = useState(false)
+    const [genreRecords, setGenreRecords] = useState(["one"])
+    const [allFromArtist, setAllFromArtist] = useState(["1"])
     const records = useSelector(state => state.records)
     const params = useParams()
     const {id} = params;
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
-    const addToCart = () => {
-        dispatch({type:"ADDTOCART", payload:r, quantity:1})
-    }
-    let allFromArtist =  records.filter((record) => record.artist == r.artist);
-    let allFromGenre = records.filter((record) => record.genre == r.genre);
+   
     useEffect(() => {
+        const getGenreAndArtist = async() => {
+            console.log("running get genre and artist")
+            let allFromGenre =  await axios.get(`http://127.0.0.1:3001/genres/getname/${r.genres[0].genre_name}`)
+            let allFromArtist =  await axios.get(`http://127.0.0.1:3001/artists/name/${r.artists[0].artist_name}`)
+            console.log("all from genre in our use effect hook", allFromGenre)
+            console.log("all from artist in our useEffect hook", allFromArtist)
+            setGenreRecords(allFromGenre.data.records)
+            setAllFromArtist(allFromArtist.data.records)
+        }
         const getDiscogsID = async()  => {
 
             try {
             const id = await axios.get(`https://api.discogs.com/database/search?title=${r.title}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
-            console.log(id.data.results[0].id) // gets the id
-            console.log("attempting id search")
                 const searchById = 'https://api.discogs.com/releases/' + id.data.results[0].id
                 const record = await axios.get(searchById)
                 setR({...r, tracklist: record.data.tracklist})
@@ -36,10 +47,12 @@ function Detailrecord(){
                 console.log("heres our error", err)
             }
         }
-        getDiscogsID()
+       // getDiscogsID()
+        getGenreAndArtist()
     },[])
 
        if(r.id !== 'placeholder'){
+        console.log(r)
         return(
             <>
             <div className='detail-record-grid-container'>
@@ -66,7 +79,8 @@ function Detailrecord(){
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1>}  
             <RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>
             <h1 className='detail-record-grid-related-header2'>You may also like:</h1>
-            {allFromGenre.length < 2?  <RelatedRecords className='detail-record-grid-related-records2' collection={records.filter((record) => record.id != id).slice(0,4)}/> : <RelatedRecords className='detail-record-grid-related-records2' collection={allFromGenre.filter((record) => record.artist != r.artist)}/> }
+            {genreRecords.length > 1 && <RelatedRecords className='detail-record-grid-related-records2' collection={genreRecords.filter((record) => record.artists[0].id != r.artists[0].id).slice(0,4)}/>}
+           
             </>     
         )
        } else {

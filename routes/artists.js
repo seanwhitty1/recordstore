@@ -1,25 +1,21 @@
-const express = require('express')
-const app = express()
-app.use(express.json());
-const Artist = require("../models/artist.js")
-const router = new express.Router();
 
 
-router.get('/', async function(req, res)  {
-  const results = await Artist.getAll()
-  console.log("inside our route", results)
-  return res.json(results)
-  
-})
+const express = require('express');
+const router = express.Router();
+const artistController = require('../controllers/artistController');
+//we deconstruct Todo from our models folder. 
+//originally tried to do this from '../models/todo which was returning the function but not the class instance
+//this lead to confusion but is now somewhat resolved.
+// Route to get all users
 
-router.get('/:artist_name', async function(req, res)  {
-    const {artist_name} = req.params
-    const results = await Artist.getAllReleasesFromArtist(artist_name);
-    console.log("inside our route", results)
-    return res.json(results)
-    
-  })
+//registration form comes from "http://localhost:3001/users/addnew",
+router.get('/name/:artist_name', artistController.getByName);
+router.get('/', artistController.getAll);
+// Route to create a new user
 
-  module.exports = router;
+// Route to get a user by ID
+router.get('/:id', artistController.getByID);
+// Route to update a user by ID
 
 
+module.exports = router;

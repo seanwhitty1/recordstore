@@ -13,8 +13,13 @@ import { useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { createRecordGetURL } from './helpers.js'
+
 import UserDashboard from './UserDashboard';
+
+const createRecordGetURL = (genre) => 
+  genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
+//both arrays
+
 
 
 const Main = () => {
@@ -44,10 +49,10 @@ const Main = () => {
       getRecords()
   },[genre, cart, user])
   if(records != null){
+    //  {user && <h1>Welcome {user.username}</h1>}
 return(
     <>
-    <div className="main grid-item4"> 
-   {user && <h1>Welcome {user.username}</h1>}
+  
     <Routes>
     <Route path='/:genre' element={ <Home/>} />
     <Route path='/' element={ <Home/>} />
@@ -59,7 +64,6 @@ return(
     <Route path ='/userdashboard' element={<UserDashboard/>}/>
     <Route path= '/fullcart' element={<CartDetail/>}/>
     </Routes>
-      </div>
     </>)
 } else {
   return(

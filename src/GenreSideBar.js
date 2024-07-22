@@ -15,6 +15,7 @@ function GenreSideBar(){
         let getGenres = async() => {
             console.log("fetching genres")
             let genres = await axios.get(`http://127.0.0.1:3001/genres/`)  
+            console.log("genres are", genres)
                 setCount(genres.data);
         }
         getGenres()

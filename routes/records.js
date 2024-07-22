@@ -7,7 +7,7 @@ const recordController = require('../controllers/recordController');
 // Route to get all users
 
 //registration form comes from "http://localhost:3001/users/addnew",
-router.get('/getByName/:recordname', recordController.getByTitle);
+router.get('/:id', recordController.getByID);
 router.get('/', recordController.getAllRecords);
 // Route to create a new record
 router.post('/', recordController.createRecord);

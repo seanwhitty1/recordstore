@@ -29,4 +29,9 @@ db.artist.belongsToMany(db.record, {through: 'record_artist'})
 db.record.belongsToMany(db.tag, {through: 'record_tag'})
 db.tag.belongsToMany(db.record, {through: 'record_tag'})
 
+db.record
+
+db.artist.belongsToMany(db.label, {through: 'artist_label'})
+db.label.belongsToMany(db.artist, {through: 'artist_label'})
+
 exports.db = db;

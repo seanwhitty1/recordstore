@@ -2,9 +2,8 @@ import './Cart.css'
 import './App.css'
 import { useSelector } from 'react-redux'
 import CartItem from './CartItem'
-import { total } from './helpers' 
-import { NavLink } from 'react-router-dom'
 
+const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price * curr.quantity; },0); 
 
 
 function Cart(){

@@ -8,9 +8,6 @@ app.use(express.json());
 const port = 3001;
 const {db} = require('./config/dbrelationconfig')
 
-//{ force: true } was previously passed into sync as an argument
-//this was dropping db and re-creating db each time npm start ran
-//this would be useful in a testing context. 
 db.sequelize.sync({alter:true}).then(() => {
   // Database synchronisation is complete
   app.listen(port, () => {

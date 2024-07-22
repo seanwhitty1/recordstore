@@ -17,5 +17,4 @@ app.use("/artists", artistRoutes)
 app.use("/users", userRoutes)
 app.use("/authorization", authRoutes)
 
-
 module.exports = app;

@@ -3,17 +3,17 @@ import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
-let timestamp = new Date()
 
-const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
+const inputs = ["artist_name", "title", "genres", "price", "description", "image_src", "tags"]
 const initalializers =  {
-    artist: "",
+    artist_name: "",
     title: "",
-    genre: "",
+    genres: "",
     price: 0,
     description: "",
     image_src: "",
-    date_added: timestamp
+    tags: "",
+
 }
 
 function NewRecordForm(){
@@ -22,15 +22,13 @@ function NewRecordForm(){
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log("running hansdlesubmit")
         if (Object.keys(errors).length > 0){
             alert("please fill out all fields")
             setFailedValidation(true)
         } else {
             setFailedValidation(false)
-            //send to route
             console.log(values)
-            await axios.post("http://localhost:3001/records/addnew",
+            await axios.post("http://localhost:3001/records/",
             values)
             navigate("/")
         }    

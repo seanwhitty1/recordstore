@@ -6,7 +6,6 @@ exports.getAllTags = async (req, res) => {
  const tags = await tag.findAll();
  res.json(tags);
  } catch (error) {
-  console.log(error)
  res.status(500).json({ error });
  }
 };
@@ -19,7 +18,6 @@ exports.createTag = async (req, res) => {
  const newTag = await tag.create({tag_name, description});
  res.status(201).json(newTag);
  } catch (error) {
-  console.log(error)
  res.status(500).json({ error});
  }
 };

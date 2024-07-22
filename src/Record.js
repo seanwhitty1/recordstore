@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import cartIcon  from './svg/shopping-cart.svg'
 import tickIcon from './svg/tick-svgrepo-com.svg'
 
+
+
 function Record({id, artist, title, genre, price, image_src}){
 const dispatch = useDispatch();
 const cart = useSelector(store => store.cart)
