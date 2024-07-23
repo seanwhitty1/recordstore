@@ -47,11 +47,9 @@ function Detailrecord(){
     },[])
 
        if(r.id !== 'placeholder'){
-        console.log(r)
         return(
             <>
             <div className='detail-record-grid-container'>
-         
             <h1 className='detail-record-grid-item-title'>{r.artists[0].artist_name} - {r.title}</h1>
             <p className='detail-record-grid-item-description'>{r.descr}</p>
             <button  className='rounded-full' onClick={() => setShowEdit(!showEdit)}>Edit</button>

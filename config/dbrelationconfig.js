@@ -4,6 +4,7 @@ db.user.hasMany(db.order, {foreignKey : 'userId', onDelete: 'cascade'});
 //this foreign key will add onto the order table.
 //they are linked, deletion of user cascaded and deleted the order linked with 'userId
 db.order.belongsTo(db.user)
+
 db.user.hasOne(db.cart, {foreignKey: 'userId', onDelete: 'cascade'})
 db.user.hasOne(db.wishlist, {foreignKey: 'userId', onDelete: 'cascade'})
 

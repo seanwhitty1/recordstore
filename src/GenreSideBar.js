@@ -5,8 +5,6 @@ import "./App.css"
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-
-
 function GenreSideBar(){
     let genre = useSelector(state => state.genre)
     const dispatch = useDispatch()
@@ -16,16 +14,12 @@ function GenreSideBar(){
     useEffect(() => {
         let getGenres = async() => {
             let genres = await axios.get(`http://127.0.0.1:3001/genres/`)  
-
                 setCount(genres.data);
         }
         getGenres()
 
     },[genre])
-    //<li </li>
-    //we need to change genre sider bars to nav items
-    //we then extract the genre name from the param passed
-    //and use that to update the state... 
+
 return(
 <>
 <div id="genreSide" className='grid-item-genreBar'>

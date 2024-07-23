@@ -7,10 +7,8 @@ const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price 
 function Cart(){
      
 let cartItems = useSelector(state => state.cart)
-let cartTotal = 0;
-if(cartItems.length > 0){cartTotal = total(cartItems)};
-//todo - make row 2 responsive to the height needed to store cartItems 
-//to do if cart item = 2 and beyond, no top margin
+let cartTotal;
+cartItems.length > 0? cartTotal = total(cartItems): cartTotal = 0
 
      return(  
      <>
@@ -18,7 +16,7 @@ if(cartItems.length > 0){cartTotal = total(cartItems)};
        {cartTotal > 0 &&<div className='grid-item-cart-header'>Items in cart: {cartItems.length}</div>}
         <div className='grid-item-cart-itembox'>
         {cartItems.map(cItem => 
-           <CartItem title={cItem.title}  artist={cItem.artist} price={cItem.price * cItem.quantity} image={cItem.image_src}
+           <CartItem title={cItem.title} id={cItem.id} artist={cItem.artist} price={cItem.price * cItem.quantity} image={cItem.image_src}
             quantity={cItem.quantity}/>
         )}
         </div>
