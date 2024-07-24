@@ -1,11 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import App from './App'
 
 const AuthContext = createContext();
-
 const AuthProvider = ({ children }) => {
-  console.log("rendering the auth provider wrapper")
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem("token"));
   const [user, setUser_] = useState(localStorage.getItem("user"))
@@ -19,32 +16,31 @@ const AuthProvider = ({ children }) => {
     setUser_(newUser);
   };
 
+  const getAndSetUserFromToken = async(token) => {
+    let decoded = await axios.get(`http://localhost:3001/users/auth/decodeJWT/${token}`)
+    let foundUserObject = await axios.get(`http://localhost:3001/users/getByName/${decoded.data.payload.username}`)
+    setUser(foundUserObject)
+    return decoded
+  }
   useEffect(() => {
     //anytime we update the token in the local storage 
-    //we set our axios default headers
-
     if (token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-      console.log("setting the token via the auth provider in local storage")
-  
-      localStorage.setItem('token',token);
-      setToken(token)
+      getAndSetUserFromToken(token)
+
     } else {
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem('token')
     }
 
-
     if (user) {
-
-  
-      localStorage.setItem('user',user);
-      setUser(user)
+      console.log("user was found")
+   
     } else {
     
       localStorage.removeItem('user')
     }
-  }, [token,user]);
+  }, [token]);
 
   // Memoized value of the authentication context
   const contextValue = useMemo(
@@ -62,7 +58,6 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
-
 export const useAuth = () => {
   return useContext(AuthContext);
 };

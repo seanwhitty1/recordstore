@@ -7,6 +7,8 @@ function rootReducer(state = INITIAL_STATE, action) {
     case "GETALLRECORDS":
       return {...state, records: [...action.payload]};
     case "ADDTOCART":
+      //if user is present, we want to find the user object in the database.. then we can add to the cart 
+      //of that user object!
       let inCart = state.cart.findIndex(object => object.id == action.payload.id) // is working
       if(inCart === -1){
         action.payload.quantity = 1;

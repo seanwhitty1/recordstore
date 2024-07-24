@@ -14,9 +14,13 @@ root.render(
  
   <React.StrictMode>
      <Provider store={store}>
+    <div id="background">
     <App/>
+    </div>
     </Provider>
+   
   </React.StrictMode>
+  
 );
 
 reportWebVitals();

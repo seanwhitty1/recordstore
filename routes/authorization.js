@@ -14,7 +14,4 @@ const jwt = require("jsonwebtoken");
 const SECRET_KEY = "oh-so-secret";
 const JWT_OPTIONS = { expiresIn: 60 * 60 };  // 1 hour
 
-
-
-
   module.exports = router;

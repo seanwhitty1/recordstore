@@ -4,13 +4,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
 
-const inputs = ["username", "fullname", "shipping_address", "email", "passkey"]
+const inputs = ["username", "fullname", "shipping_address", "email", "password"]
 const initalializers =  {
     username: "",
     fullname: "",
     shipping_address: "",
     email: "",
-    passkey: ""
+    password: ""
 
 }
 
@@ -28,8 +28,10 @@ function RegisterForm(){
             setFailedValidation(false)
             //send to route
             console.log(values) //object
-            await axios.post("http://localhost:3001/users/addnew",
+            let newUser = await axios.post("http://localhost:3001/users/",
             values)
+            console.log("created new user is ", newUser)
+            localStorage.setItem("user",newUser)
             navigate("/")
         }    
     }         

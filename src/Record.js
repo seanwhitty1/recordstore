@@ -6,15 +6,21 @@ import DetailBubble from './DetailBubble';
 import { useSelector, useDispatch } from 'react-redux';
 import cartIcon  from './svg/shopping-cart.svg'
 import tickIcon from './svg/tick-svgrepo-com.svg'
+import axios from 'axios';
 
 function Record({id, artist, title, genre, price, image_src}){
 const dispatch = useDispatch();
 const cart = useSelector(store => store.cart)
+const user = useSelector(store => store.user)
 const inFocus = useSelector(store => store.focus);
 const inCart = cart.filter(cartItem => cartItem.id == id)
 const clickHandler = (e) => {
     e.preventDefault()
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src}})
+    if(user){
+        console.log("user was present, adding to users cart in db", user)
+        let addedToUsersCart = axios.post(`http://localhost:3001/users/addItemToCart`, {user_id: user.data.id, id:id})
+    }
 }
 return(
     <>

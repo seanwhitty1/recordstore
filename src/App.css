@@ -72,14 +72,17 @@
 .grid-item-genreBar{
   grid-row: 3/6;
   grid-column: 1/7;
+  z-index: -1;
 
 }
 
 .grid-item-main {
+  z-index: 2;
   justify-content: center;
   grid-row: 3/8;
   grid-column: 3/20;
   padding: 5px;
+  margin-left: 10px;
   padding-top: 50px;
 
 
@@ -124,7 +127,7 @@
 
 .map {
   grid-column: 2;
-  border: 1px solid black;
+
 }
 
 .margin-right-10 {
@@ -142,5 +145,14 @@
 .margin-top-60 {
   margin-top: 60px;
 }
+
+#appWrapper {
+  width: 80%;
+  margin-left:10%;
+  margin-right: 10%;
+  z-index: 1;
+}
+
+
 
 

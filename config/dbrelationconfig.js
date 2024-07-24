@@ -30,6 +30,8 @@ db.artist.belongsToMany(db.record, {through: 'record_artist'})
 db.record.belongsToMany(db.tag, {through: 'record_tag'})
 db.tag.belongsToMany(db.record, {through: 'record_tag'})
 
+db.record.belongsToMany(db.cart, {through: 'record_cart'})
+db.cart.belongsToMany(db.record, {through: 'record_cart'})
 db.record
 
 db.artist.belongsToMany(db.label, {through: 'artist_label'})

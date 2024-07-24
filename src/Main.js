@@ -27,6 +27,7 @@ const Main = () => {
     const records = useSelector(state => state.records)
     const genre = useSelector(state => state.genre)
     const cart = useSelector(state => state.cart)
+    console.log("inside our maiin component, what is our user", user)
     useEffect(() => {
       const updateUser = (user) => {
         dispatch({type: "UPDATEUSER", payload: user})
@@ -47,12 +48,10 @@ const Main = () => {
     //  {user && <h1>Welcome {user.username}</h1>}
 return(
     <>
-  
+    {user && <h1>hello {user.data.username}</h1>}
     <Routes>
-
     <Route path='/' element={ <Home/>} />
     <Route path='/:genre' element={ <Home/>} />
-
     <Route path='/browseall' element={ <BrowseAll/>} />
     <Route path ='/about' element={<About/>}/>
     <Route path ='/contactus' element={<Contact/>}/>

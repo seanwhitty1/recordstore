@@ -41,11 +41,10 @@ console.log("what is our token", token)
 
   return (
     <>
+    <div id="appWrapper">
     <AuthProvider>
     <Router>
     <div id='app' className='grid-container'>
-    <h1>{token}</h1>
-   
     <img className="vinylImage offBlack" src={vinyl} /> 
     <GenreSideBar className='grid-item-genreBar' />
     <Navigation />
@@ -59,6 +58,7 @@ console.log("what is our token", token)
     <Footer/>
     
     </AuthProvider>
+    </div>
     
     </>
 

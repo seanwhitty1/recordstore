@@ -1,4 +1,4 @@
-const {user} = require('../models')
+const {user, record} = require('../models')
 
 // Controller method to get all todos
 exports.getAllUsers = async (req, res) => {
@@ -13,13 +13,29 @@ exports.getAllUsers = async (req, res) => {
 // Controller method to create a new todo
 exports.createUser = async (req, res) => {
  try {
+   console.log(req.body)
  const newUser = await user.create({...req.body}); 
+
  res.status(201).json(newUser);
  } catch (error) {
   console.log(error)
  res.status(500).json({ error});
  }
 };
+
+//Controller method for decoding a JWT in local storage and returning user object 
+exports.decodeAndReturnUserFromJWT = async (req, res) => {
+   try {
+      let {token} = req.params
+      console.log("running decode in user controller") // prints
+      let decodedUser = await user.decodeJWT(token) //is not a function
+      return res.json(decodedUser);
+
+   } catch(err){
+      console.log(err)
+      return err
+   }
+}
 // Controller method to get a todo by ID
 exports.getUserById = async (req, res) => {
  try {
@@ -36,6 +52,7 @@ exports.getUserById = async (req, res) => {
 
 exports.validateUserLogin = async (req, res) => {
    try {
+      console.log("running our validate user login controllelr function", req.body) // functioninfg
       let {username, password} = req.body
       const foundUser = await user.findOne({where: {username}}, {include: { all: true, nested: true }});
       if(foundUser){
@@ -64,6 +81,23 @@ exports.getUserbyName = async (req, res) => {
       console.log("inside getuserby name what isname", username)
       const foundUser = await user.findOne({where: {username}}, {include: { all: true, nested: true }});
       console.log("inside getUserbyName", foundUser)
+      return res.json(foundUser)
+      
+   } catch(err){
+      console.log(err)
+   }
+}
+
+exports.addItemToUserCart = async (req, res) => {
+   try{
+
+      let {user_id, id} = req.body
+      console.log("inside getuserby name what isname", user_id)
+      const foundUser = await user.findByPk(user_id, { include: { all: true, nested: true }});
+      const foundRecord = await record.findOne({where: {id}});
+      foundUser.cart.addRecord(foundRecord)
+      console.log("UPDATED FOUND USER?", foundUser)
+  
       return res.json(foundUser)
       
    } catch(err){

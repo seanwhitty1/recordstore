@@ -58,8 +58,19 @@ module.exports = (sequelize, DataTypes) => {
    },
 
   });
+
+  user.test = function(){
+    console.log('from class')
+  }
+  user.test = function(){
+    console.log('from instance')
+    console.log(' I have access to this: ', this); 
+  }
   user.prototype.validatePassword = async (password, hash) => {
     return await bcrypt.compareSync(password, hash);
+  }
+  user.prototype.test = function(password, hash){
+    console.log("this is a test method on class instance")
   }
 
   user.prototype.writeJWT = async ({username, isAdmin}) => {
@@ -68,12 +79,18 @@ module.exports = (sequelize, DataTypes) => {
     console.log("within write JWT what is our username, isadmin", username, isAdmin)
     var payload = {username, isAdmin}
     const token = await jwt.sign({payload: payload}, 'secret')
-    
-
-
      return token
-    
+  
+   }
+   user.decodeJWT = async (token) => {
+    console.log("running the instance method of decodeJWT")
+    let userObject = await jwt.decode(token)
+    console.log("what is our user Object decoded from the JWT", userObject)
+    return userObject
+
+
+  
    }
    return user;
-  }
+  };
 

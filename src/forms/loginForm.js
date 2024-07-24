@@ -32,51 +32,37 @@ function LoginForm(){
         } else {
             setFailedValidation(false)
             const {username, password} = values;
-            let storedUser = await axios.get(`http://localhost:3001/users/${username}`)
-            bcrypt.compare(password, storedUser.data.passkey, async function(err, res) {
-
-            /**To verify an existing password you don't compute the hash and then compare, 
-             * instead you use the compare function with the unhashed user-provided password
-             *  together with the hashed password from the database. 
-             * The "hashed" password in the database actually is stored
-             *  in a format that includes the algorithm parameters and the salt 
-             * in addition to the hash, so it as easy and foolproof as possible. */
-                if (err){
-                  // handle error
-                  console.log(err)
-                }
-                if (res) {
+        
+            let validPassword = await axios.post(`http://localhost:3001/users/login/validate`, {username, password})
+            //console.log("validation method", await storedUser.validatePassword(password, storedUser.data.password)) //is not a function//undefined
+            console.log("what is returned from our validation route", validPassword)
+  
+                
+                if (validPassword) {
                   // Send JWT
-                  console.log("its a match")
                   //the we send a post requist for GET JWT in user ROute. 
                   try {
-                    let token = await axios.post("http://localhost:3001/users/gettoken", {username:username, password:password})
-                    console.log("inside the form submit", token) 
-                    let user = await axios.get(`http://localhost:3001/users/auth/token/${token.data}`)
-                    console.log("decoded user is", user.data)
-                    setToken(token.data)
-                    setUser(user.data)
-                  
-                    
+                    console.log("comparing did not return error, and res was true", validPassword.data) // functioning
+                  //  let token = await storedUser.writeJWT(username, storedUser.data.isAdmin )
+                   
+             
+                    setToken(validPassword.data)
+                    localStorage.setItem("token", validPassword.data)
+                    //setUser(user.data)
                     navigate("/")
-
                   } catch(err) {
                     console.log(err)
                   }
-
                 } else {
                 console.log("did not match")
                 }
-              });
-        }    
-    }         
+              };
+        }           
     let {errors, touched, values, handleChange, handleBlur} = useFormik({
         initialValues: initalializers,
     });
-
     return(
         <>
-   
         <h1 className='main-header'>Please login</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
@@ -98,12 +84,7 @@ function LoginForm(){
             <button type="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
   Login!
 </button>
-        
-
         </form>
-
-
-
         </>
     )
 } 

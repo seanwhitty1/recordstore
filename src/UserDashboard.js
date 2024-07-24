@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const UserDashboard = () => {
     let user = useSelector(store => store.user)
     if(user){
-        console.log("inside user dashboard", user)
+        console.log("inside user dashboard", Object.entries(user))
 
     }
 

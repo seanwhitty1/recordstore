@@ -1,14 +1,28 @@
 const {user, cart, item} = require('../models')
 
 // Controller method to get all carts
+exports.getAll = async (req, res) => {
+   try {
+   const carts = await cart.findAll({ include: { all: true, nested: true }});
+   res.json(carts);
+   } catch (error) {
+    console.log(error)
+   res.status(500).json({ error });
+   }
+  };
+  
 
 
-// Controller method to get a cart by ID
+// Controller method to get a cart by userName
+exports.addItemToUsersCart = async (req, res) => {
+let foundCart = cart.findOne({where: {user: req.params.genre}, include: { all: true, nested: true }});
+}
 
 
 // Controller method to update a cart by ID
 exports.addItemToCart = async (req, res) => {
  const id = req.params.id;
+
  
  try {
 
