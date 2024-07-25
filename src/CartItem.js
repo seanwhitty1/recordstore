@@ -2,12 +2,23 @@ import './Cart.css'
 import './App.css'
 import removeItem from './svg/garbage-svgrepo-com.svg'
 import { useDispatch } from 'react-redux'
+import { useAuth } from './AuthProvider';
+import { baseURL } from './helpers'
+import axios from 'axios'
 function CartItem({title, price, image, quantity, id}){
+    const {token, user } = useAuth()
     const dispatch = useDispatch()
-    console.log("inside cart item", title, price, image, id)
+
 
     function removeItemFromCart(id){
-        console.log("running remove function")
+        console.log("running remove function", user)
+        if(user){
+            console.log("user logged in, will remove also from db", user.data.id, id)
+            axios.post(`${baseURL}users/removeRecordFromCart`, {user_id: user.data.id, id})
+
+        }
+   
+      
         dispatch({type:"REMOVEFROMCART", payload:{id}})
       
     }

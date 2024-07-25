@@ -27,6 +27,10 @@ function rootReducer(state = INITIAL_STATE, action) {
       const {id} = action.payload
       let updatedCart = state.cart.filter(cartItem => cartItem.id != id)
       return {...state,  cart:[...updatedCart]}
+    case "INITUSERCART":
+      console.log("initializing logged in users cart", action.payload)
+      return {...state,  cart:[...action.payload]}
+
     default:
       return state;
   }

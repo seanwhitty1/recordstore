@@ -22,20 +22,6 @@ console.log("what is our token", token)
    // validateToken()
    console.log("run this everytime token is updated in the context of the app component",token)
 
-   /*   <AuthProvider>
-    <div id='app' className='grid-container'>
-    <h1>{token}</h1>
-    <Router>
-    <img className="vinylImage offBlack" src={vinyl} /> 
-    <GenreSideBar className='grid-item3' />
-    <Navigation />
-    <Main className='grid-item4'/>
-    </Router>
-    <Cart/>
-    </div>
-    <Footer/>
-    </AuthProvider>
-    </> */
     
   }, [token]);
 

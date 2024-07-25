@@ -41,9 +41,20 @@ const Main = () => {
       }
       if(user){
         updateUser(user)
+        let getUserCart = async (id) => {
+          console.log("running our get user cart func as user is present")
+          let cart = await axios.get(`http://localhost:3001/users/getUserCart/${id}`)
+          console.log("what is our user cart", cart) // not yet printing
+        dispatch({type: "INITUSERCART", payload: cart.data})
+
+
+        }
+        getUserCart(user.data.id)
+
+        
       }
       getRecords()
-  },[genre, cart, user])
+  },[genre, user])
   if(records != null){
     //  {user && <h1>Welcome {user.username}</h1>}
 return(

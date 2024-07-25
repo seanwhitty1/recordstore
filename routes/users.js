@@ -9,6 +9,10 @@ const userController = require('../controllers/userController');
 //registration form comes from "http://localhost:3001/users/addnew",
 router.get('/getByName/:username', userController.getUserbyName);
 router.post('/addItemToCart', userController.addItemToUserCart)
+router.get('/getUserCart/:user_id', userController.getUserCart)
+//Route to remove item from users cart in db. 
+router.post('/removeRecordFromCart', userController.removeRecordFromUserCart)
+//router.post('/getUserCart/:user_id', userController.getUserCart)
 router.get('/', userController.getAllUsers);
 router.get("/getToken")
 // Route to create a new user

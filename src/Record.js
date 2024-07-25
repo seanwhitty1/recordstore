@@ -19,7 +19,7 @@ const clickHandler = (e) => {
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src}})
     if(user){
         console.log("user was present, adding to users cart in db", user)
-        let addedToUsersCart = axios.post(`http://localhost:3001/users/addItemToCart`, {user_id: user.data.id, id:id})
+        axios.post(`http://localhost:3001/users/addItemToCart`, {user_id: user.data.id, id:id})
     }
 }
 return(

@@ -33,11 +33,8 @@ exports.getAllSoldItems = async (req, res) => {
  };
 
  exports.udateAllCharLength = async (req, res) => {
-  //
   try {
   const items = await item.update({item_name: "tank top"}, {where:
-    //here we used char_length as a SQL function to determine the char length of the column 
-    //column is specified with sequize.col("coln_name")
     sequelize.where(sequelize.fn('char_length', sequelize.col("item_name")), 9)
     });
   res.json(items);
@@ -49,7 +46,6 @@ exports.getAllSoldItems = async (req, res) => {
 
 // Controller method to create a new todo
 exports.createItem = async (req, res) => {
-
  try {
  const newItem = await item.create({...req.body});
  for(tag_name of req.body.tags.split(" ")){
@@ -60,7 +56,6 @@ exports.createItem = async (req, res) => {
 }
 res.status(201).json(newItem);
  }
-
  catch (error) {
  res.status(500).json({ error});
  }
