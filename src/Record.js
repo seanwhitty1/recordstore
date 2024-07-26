@@ -6,6 +6,7 @@ import DetailBubble from './DetailBubble';
 import { useSelector, useDispatch } from 'react-redux';
 import cartIcon  from './svg/shopping-cart.svg'
 import tickIcon from './svg/tick-svgrepo-com.svg'
+import { baseURL } from './helpers';
 import axios from 'axios';
 
 function Record({id, artist, title, genre, price, image_src}){
@@ -18,15 +19,14 @@ const clickHandler = (e) => {
     e.preventDefault()
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src}})
     if(user){
-        console.log("user was present, adding to users cart in db", user)
-        axios.post(`http://localhost:3001/users/addItemToCart`, {user_id: user.data.id, id:id})
+        axios.post(`${baseURL}users/addItemToCart`, {user_id: user.data.id, id:id})
     }
 }
 return(
     <>
     <div className='recordgrid-outer'>
     <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
-    <NavLink to={"http://127.0.0.1:3000/records/view/" + id} className='recordItem-Image' >
+    <NavLink to={`${baseURL}records/view/` + id} className='recordItem-Image' >
         <img src={image_src}></img> 
     </NavLink>
     <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>

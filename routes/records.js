@@ -12,6 +12,8 @@ router.get('/', recordController.getAllRecords);
 // Route to create a new record
 router.post('/', recordController.createRecord);
 
+router.get('/genre/:genre_name', recordController.getAllFromGenre)
+
 // Route to update a record by ID
 router.put('/:id', recordController.updateRecord);
 // Route to delete a record by ID

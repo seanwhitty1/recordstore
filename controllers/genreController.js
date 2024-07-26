@@ -36,7 +36,10 @@ exports.getAll = async (req, res) => {
       }
    }
 
-   
- 
-   // Controller method to delete a todo by ID
-  
+   exports.getByGenreName = async (req, res) => {
+      try {
+
+      } catch(err){
+         console.log(err)
+      }
+   }

@@ -71,21 +71,18 @@
 
 .grid-item-genreBar{
   grid-row: 3/6;
-  grid-column: 1/7;
+  grid-column: 0/7;
   z-index: -1;
-
 }
 
 .grid-item-main {
   z-index: 2;
   justify-content: center;
   grid-row: 3/8;
-  grid-column: 3/20;
+  grid-column: 4/20;
   padding: 5px;
   margin-left: 10px;
   padding-top: 50px;
-
-
 }
 
 .grid-item-cart {
@@ -94,7 +91,6 @@
   grid-column: 20;
   padding: 20px;
 }
-
 
 .removeButton {
   max-width: 10px;
@@ -106,12 +102,10 @@
   max-width: 180px;
   max-height: 180px;
   z-index:1;
-
   transform: rotate(35);
 }
 
 .vinylImage:hover {
-
   transform: rotate(360deg);
   transition: 10s;
 }
@@ -119,10 +113,8 @@
 .map-embedding {
   margin: 0 auto;
   justify: center;
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr
-
 }
 
 .map {

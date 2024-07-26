@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
 
   const getAndSetUserFromToken = async(token) => {
     let decoded = await axios.get(`http://localhost:3001/users/auth/decodeJWT/${token}`)
+    console.log("decoded is", decoded)
     let foundUserObject = await axios.get(`http://localhost:3001/users/getByName/${decoded.data.payload.username}`)
     setUser(foundUserObject)
     return decoded
@@ -26,6 +27,7 @@ const AuthProvider = ({ children }) => {
     //anytime we update the token in the local storage 
     if (token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      console.log("token is:", token)
       getAndSetUserFromToken(token)
 
     } else {

@@ -13,50 +13,41 @@ import { useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-
 import UserDashboard from './UserDashboard';
-
-const createRecordGetURL = (genre) => 
-  genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
+import { baseURL } from './helpers.js';
 
 const Main = () => {
-  const {token, user } = useAuth()
-  console.log("inside our main app", user)
+  const {user } = useAuth()
     const dispatch = useDispatch();
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
     const records = useSelector(state => state.records)
     const genre = useSelector(state => state.genre)
-    const cart = useSelector(state => state.cart)
-    console.log("inside our maiin component, what is our user", user)
+    const getUserCart = async (id) => {
+      let cart = await axios.get(`${baseURL}users/getUserCart/${id}`)
+    dispatch({type: "INITUSERCART", payload: cart.data})}
+    const getRecords = async(g) => {
+      try {
+        let records = await axios.get(`${baseURL}records/`)
+        if(g){
+         upRecordsInState(records.data.filter(record  => record.genres.some(gen => gen.genre_name == g)))
+        } else {
+          upRecordsInState(records.data)
+        }
+      } catch(error) {
+        console.log(error)
+      } 
+  }
     useEffect(() => {
       const updateUser = (user) => {
         dispatch({type: "UPDATEUSER", payload: user})
       }
-      const getRecords = async() => {
-          try {
-            let records = await axios.get(createRecordGetURL(genre))
-            upRecordsInState(records.data)  
-          } catch(error) {
-          } 
-      }
       if(user){
         updateUser(user)
-        let getUserCart = async (id) => {
-          console.log("running our get user cart func as user is present")
-          let cart = await axios.get(`http://localhost:3001/users/getUserCart/${id}`)
-          console.log("what is our user cart", cart) // not yet printing
-        dispatch({type: "INITUSERCART", payload: cart.data})
-
-
-        }
-        getUserCart(user.data.id)
-
-        
+        getUserCart(user.data.id)  
       }
-      getRecords()
-  },[genre, user])
-  if(records != null){
-    //  {user && <h1>Welcome {user.username}</h1>}
+      getRecords(genre)
+  },[user, genre])
+  if(records){
 return(
     <>
     {user && <h1>hello {user.data.username}</h1>}

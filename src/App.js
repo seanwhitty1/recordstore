@@ -13,16 +13,9 @@ import { useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 import  AuthProvider from './AuthProvider';
 
-
 const App = () => {
 const { token } = useAuth;
-console.log("what is our token", token)
-
   useEffect(() => {
-   // validateToken()
-   console.log("run this everytime token is updated in the context of the app component",token)
-
-    
   }, [token]);
 
   return (

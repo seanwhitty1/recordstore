@@ -16,7 +16,7 @@ exports.createRecord = async (req, res) => {
       let newRecord = await record.create(req.body)
       let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
       newRecord.addArtist(newArtist[0]) // is not a founctionm
-      for(genre_name of req.body.genres.split(" ")){
+      for(genre_name of req.body.genres.split(",")){
        let newGenre =  await genre.findOrCreate({
          where: { genre_name: genre_name }
          })  
@@ -43,9 +43,17 @@ exports.createRecord = async (req, res) => {
 
    exports.getByID = async (req, res) => {
       try{
-         const foundRecord = await record.findByPk(req.params.id, {include: { all: true, nested: true }});
-         return res.json(foundRecord)
-         
+         return res.json(await record.findByPk(req.params.id, {include: { all: true, nested: true }}))
+      } catch(err){
+         console.log(err)
+      }
+   }
+
+   exports.getAllFromGenre = async (req, res) => {
+      console.log("running get all from genre from record controller", req.params.genre_name)
+      try {
+         return res.json(await record.findAll({where: { genre_name: req.params.genre_name}}))
+
       } catch(err){
          console.log(err)
       }
