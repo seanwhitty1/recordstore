@@ -30,19 +30,16 @@ function Detailrecord(){
             setGenreRecords(allFromGenre.data.records)
             setAllFromArtist(allFromArtist.data.records)
         }
-
         const getDiscogsID = async()  => {
-
             try {
             const id = await axios.get(`https://api.discogs.com/database/search?title=${r.title}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
                 const searchById = 'https://api.discogs.com/releases/' + id.data.results[0].id
                 const record = await axios.get(searchById)
                 setR({...r, tracklist: record.data.tracklist})
             } catch(err){
-                console.log("heres our error", err)
             }
         }
-       // getDiscogsID()
+      getDiscogsID()
         getGenreAndArtist()
     },[])
 

@@ -6,7 +6,7 @@ import { baseURL } from './helpers'
 import axios from 'axios'
 import { useAuth } from './AuthProvider';
 
-function CartItem({title, price, image, quantity, id}){
+function CartItem({title, price, image_src, quantity, id}){
     const {user } = useAuth()
     const dispatch = useDispatch()
 
@@ -18,7 +18,7 @@ function CartItem({title, price, image, quantity, id}){
      return(  <>
         <div className="grid-item-cartItem">
             <button className='grid-item-cartItem-button'><img src={removeItem} className='removeButton' onClick={() => removeItemFromCart(id)}></img></button>
-            <img className='grid-item-cartItem-img' src={image}></img>
+            <img className='grid-item-cartItem-img' src={image_src}></img>
             <div className='grid-item-cartItem-title'>{title} x{quantity}</div>
             <div className='grid-item-cartItem-info'><p>${price}</p></div>  
         </div>

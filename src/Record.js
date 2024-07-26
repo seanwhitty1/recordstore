@@ -6,7 +6,7 @@ import DetailBubble from './DetailBubble';
 import { useSelector, useDispatch } from 'react-redux';
 import cartIcon  from './svg/shopping-cart.svg'
 import tickIcon from './svg/tick-svgrepo-com.svg'
-import { baseURL } from './helpers';
+import { baseURL, baseURLFront } from './helpers';
 import axios from 'axios';
 
 function Record({id, artist, title, genre, price, image_src}){
@@ -26,7 +26,7 @@ return(
     <>
     <div className='recordgrid-outer'>
     <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
-    <NavLink to={`${baseURL}records/view/` + id} className='recordItem-Image' >
+    <NavLink to={`${baseURLFront}records/view/` + id} className='recordItem-Image' >
         <img src={image_src}></img> 
     </NavLink>
     <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>

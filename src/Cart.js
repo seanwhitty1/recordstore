@@ -13,7 +13,7 @@ let cartItems = useSelector(state => state.cart)
        {total(cartItems) > 0 &&<div className='grid-item-cart-header'>Items in cart: {cartItems.length}</div>}
         <div className='grid-item-cart-itembox'>
         {cartItems.map(cItem => 
-           <CartItem title={cItem.title} id={cItem.id} artist={cItem.artist} price={cItem.price * cItem.quantity} image={cItem.image_src}
+           <CartItem {...cItem}
             quantity={cItem.quantity}/>)}
         </div>
         {total(cartItems) > 0 &&<div><p className='grid-item-cart-total'>Total: ${cartItems.length > 0? total(cartItems): 0}</p><br></br>

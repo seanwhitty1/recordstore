@@ -22,9 +22,6 @@ const Main = () => {
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
     const records = useSelector(state => state.records)
     const genre = useSelector(state => state.genre)
-    const getUserCart = async (id) => {
-      let cart = await axios.get(`${baseURL}users/getUserCart/${id}`)
-    dispatch({type: "INITUSERCART", payload: cart.data})}
     const getRecords = async(g) => {
       try {
         let records = await axios.get(`${baseURL}records/`)
@@ -37,6 +34,11 @@ const Main = () => {
         console.log(error)
       } 
   }
+    const getUserCart = async (id) => {
+      let cart = await axios.get(`${baseURL}users/getUserCart/${id}`)
+    
+    dispatch({type: "INITUSERCART", payload: cart.data})}
+
     useEffect(() => {
       const updateUser = (user) => {
         dispatch({type: "UPDATEUSER", payload: user})

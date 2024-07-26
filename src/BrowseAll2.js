@@ -20,7 +20,6 @@ function BrowseAll(){
 
         if (records.filter((record) => regex.test(record.title) == true)){
             console.log("found", records.filter((record) => regex.test(record[inputQuery])))
-           
           setRecordsByLetter(records.filter((record) => regex.test(record[inputQuery])))
   
         } else {
@@ -50,7 +49,6 @@ function BrowseAll(){
           <input
           type="text"
           value={searchItem}
-
           onChange={handleInputChange}
           placeholder='Search by Title'
         />
@@ -58,7 +56,7 @@ function BrowseAll(){
       </div>
             <div className="recordgrid-container">
             {recordsByLetter.length > 0? toRender.map     
-            (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image_src={r.image_src} />
+            (r => <Record className='recordgrid-item' {...r} />
             ): <h1 className="no-results">No results found</h1>
             } 
             </div>

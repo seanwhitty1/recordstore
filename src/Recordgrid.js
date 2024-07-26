@@ -7,7 +7,7 @@ function Recordgrid({records}){
             <>
             <div className='recordgrid-container'>
             {records && records.slice(0,8).map     
-            (r => <Record className='recordgrid-item' id={r.id} artist={r.artist} title={r.title} price={r.price} descr={r.descr} genre={r.genre} image_src={r.image_src}/>
+            (r => <Record className='recordgrid-item' {...r}/>
             ) 
             }
             </div>
