@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
     },
 
+    tracklist: {
+        type: DataTypes.ARRAY(Sequelize.TEXT),
+        defaultValue: [],
+    }
+
   
 
 }, { hooks: {

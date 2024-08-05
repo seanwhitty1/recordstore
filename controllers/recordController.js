@@ -1,4 +1,5 @@
 const {item, tag, sequelize, record, genre, artist} = require('../models')
+const axios = require('axios')
 
 // Controller method to get all todos
 exports.getAllRecords = async (req, res) => {
@@ -12,7 +13,22 @@ exports.getAllRecords = async (req, res) => {
 
 exports.createRecord = async (req, res) => {
       try {
-         console.log("in side recordController.createRecord", req.body) // this is fine. 
+         let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
+         const discogsRecord = await axios.get('https://api.discogs.com/releases/' + discogsID.data.results[0].id)
+         req.body.tracklist = []
+         for (trackObject of discogsRecord.data.tracklist){
+            let trackItem = {...trackObject}
+           req.body.tracklist.push(trackItem)
+            /**tracklistItem: [
+[1]   [ 'position', 'D3' ],
+[1]   [ 'type_', 'track' ],
+[1]   [ 'artists', [ [Object] ] ],
+[1]   [ 'title', '97-Drop-Outtro' ],
+[1]   [ 'extraartists', [ [Object] ] ],
+[1]   [ 'duration', '1:58' ]
+[1] ] */
+         }
+    
       let newRecord = await record.create(req.body)
       let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
       newRecord.addArtist(newArtist[0]) // is not a founctionm
@@ -32,7 +48,6 @@ exports.createRecord = async (req, res) => {
   
      res.status(201).json(newRecord);
       }
-     
       catch (error) {
       console.log(error)
       res.status(500).json({error});
@@ -40,7 +55,6 @@ exports.createRecord = async (req, res) => {
      };
   
    // Controller method to get a Record by ID
-
    exports.getByID = async (req, res) => {
       try{
          return res.json(await record.findByPk(req.params.id, {include: { all: true, nested: true }}))

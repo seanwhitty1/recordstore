@@ -36,15 +36,12 @@ function BrowseAll(){
             <>
             <h1 className="main-header">Browse by Artist</h1>
             <ul className="alphabet-list">
-       
             {alphabet.map(a =>
             <li className="alphabet-letter"><button onClick={() => {alphabetize(a)}}>{a}</button></li>)}
             </ul>
-
 <div className="searchBar">     
 <select id="filterQuery" name="filterQuery" className="margin-right-10">
   {inputs.map(input => <option value={input}>{input}</option>)}
-
 </select>
           <input
           type="text"

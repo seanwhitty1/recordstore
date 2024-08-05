@@ -7,13 +7,11 @@ import axios from 'axios'
 import { useAuth } from './AuthProvider';
 
 function CartItem({title, price, image_src, quantity, id}){
-    const {user } = useAuth()
+    const {user} = useAuth()
     const dispatch = useDispatch()
-
     function removeItemFromCart(id){
         if(user){axios.post(`${baseURL}users/removeRecordFromCart`, {user_id: user.data.id, id})}
         dispatch({type:"REMOVEFROMCART", payload:{id}})
-       
     }
      return(  <>
         <div className="grid-item-cartItem">

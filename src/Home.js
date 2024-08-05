@@ -6,9 +6,6 @@ import { useSelector} from 'react-redux';
 function Home(){
   
     let records = useSelector(state => state.records)
-
-
-
     return(
         <>
          <h1 className='main-header'>Latest additions</h1>

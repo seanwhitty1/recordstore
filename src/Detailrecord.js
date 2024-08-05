@@ -15,6 +15,8 @@ function Detailrecord(){
     const addToCart = (item) => {
         dispatch({type:"ADDTOCART", payload:item, quantity:1})
     }
+
+
     const [showEdit, setShowEdit] = useState(false)
     const [genreRecords, setGenreRecords] = useState(["one"])
     const [allFromArtist, setAllFromArtist] = useState(["1"])
@@ -22,6 +24,13 @@ function Detailrecord(){
     const params = useParams()
     const {id} = params;
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
+    //const parsed = JSON.parse(r.tracklist)
+    console.log(" type of record object tracklist = : ",typeof r.tracklist, r.tracklist) // OBJECT
+    console.log(r.tracklist[0]) //jsonified object
+    //console.log("parsed json tracklist:,", parsed)
+    const parsedTracklist = r.tracklist.map(track => JSON.parse(track))
+    
+
    
     useEffect(() => {
         const getGenreAndArtist = async() => {
@@ -30,16 +39,6 @@ function Detailrecord(){
             setGenreRecords(allFromGenre.data.records)
             setAllFromArtist(allFromArtist.data.records)
         }
-        const getDiscogsID = async()  => {
-            try {
-            const id = await axios.get(`https://api.discogs.com/database/search?title=${r.title}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
-                const searchById = 'https://api.discogs.com/releases/' + id.data.results[0].id
-                const record = await axios.get(searchById)
-                setR({...r, tracklist: record.data.tracklist})
-            } catch(err){
-            }
-        }
-      getDiscogsID()
         getGenreAndArtist()
     },[])
 
@@ -58,7 +57,7 @@ function Detailrecord(){
             <div className='detail-record-tracklist'>
             <h1>Tracklist</h1>
             <ul id="tracklist">
-            {r.tracklist && r.tracklist.map(track  => 
+            {parsedTracklist && parsedTracklist.map(track  => 
             <li className='trackDetail'><b>{track.position}</b><p>{track.title}  {track.duration}</p></li>)}
             </ul>
             </div>
