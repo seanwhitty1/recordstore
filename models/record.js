@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     description: { 
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     price: {
@@ -31,9 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       
 
     },
-    image_src: { 
-        type: DataTypes.STRING,
-        allowNull: false
+    images: { 
+        type: DataTypes.ARRAY(Sequelize.TEXT),
+        defaultValue: [],
+       
     },
 
     tracklist: {

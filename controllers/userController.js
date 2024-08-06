@@ -13,7 +13,6 @@ exports.getAllUsers = async (req, res) => {
 // Controller method to create a new todo
 exports.createUser = async (req, res) => {
  try {
-   console.log(req.body)
  const newUser = await user.create({...req.body}); 
  res.status(201).json(newUser);
  } catch (error) {
@@ -24,11 +23,8 @@ exports.createUser = async (req, res) => {
 
 exports.getUserCart = async (req, res) => {
    try{
-      console.log("running get UserCart controller function")
       let {user_id} = req.params
-      console.log("+++ user_id", user_id) 
       const foundUser = await user.findByPk(user_id, { include: { all: true, nested: true }});
-      console.log("found user and found the cart", foundUser.cart)
       res.status(201).json(foundUser.cart.records);
 
    } catch(error){
@@ -38,15 +34,11 @@ exports.getUserCart = async (req, res) => {
 
 exports.removeRecordFromUserCart = async (req, res) => {
    try{
-
       let {user_id, id} = req.body
-      console.log("inside remove cart controller, user:id", user_id, "rec id ", id) //undefined // undefined
       const foundUser = await user.findByPk(user_id, { include: { all: true, nested: true }});
-      console.log("inside remove item from cart", foundUser) //TypeError: Cannot read properties of null (reading 'cart')
       const foundRecord = await record.findOne({where: {id}});
       foundUser.cart.removeRecord(foundRecord)
       return res.json(foundUser)
-
    } catch(error){
       console.log(error)
    }
@@ -55,7 +47,6 @@ exports.removeRecordFromUserCart = async (req, res) => {
 exports.decodeAndReturnUserFromJWT = async (req, res) => {
    try {
       let {token} = req.params
-      console.log("running decode in user controller") // prints
       let decodedUser = await user.decodeJWT(token) //is not a function
       return res.json(decodedUser);
 
@@ -80,19 +71,13 @@ exports.getUserById = async (req, res) => {
 
 exports.validateUserLogin = async (req, res) => {
    try {
-      console.log("running our validate user login controllelr function", req.body) // functioninfg
       let {username, password} = req.body
       const foundUser = await user.findOne({where: {username}}, {include: { all: true, nested: true }});
       if(foundUser){
          let validPW = await foundUser.validatePassword(password, foundUser.password)
          if(validPW){
-            console.log("its a valid password")
-            //here we need to generate our token... we could make it an instance method maybe?
-            let userToken = await foundUser.writeJWT(foundUser)
-            console.log("returned usertoken wthin validateUserLogin", userToken)
-            return res.json(userToken);     
+            return res.json(await foundUser.writeJWT(foundUser));     
          } else {
-            console.log("non valid")
             res.status(500).json({ error: 'Internal Server Error' });
          }
       } else {
@@ -106,9 +91,7 @@ exports.validateUserLogin = async (req, res) => {
 exports.getUserbyName = async (req, res) => {
    try{
       let {username} = req.params
-      console.log("inside getuserby name what isname", username)
       const foundUser = await user.findOne({where: {username}}, {include: { all: true, nested: true }});
-      console.log("inside getUserbyName", foundUser)
       return res.json(foundUser)
       
    } catch(err){
@@ -118,7 +101,6 @@ exports.getUserbyName = async (req, res) => {
 
 exports.addItemToUserCart = async (req, res) => {
    try{
-
       let {user_id, id} = req.body
       const foundUser = await user.findByPk(user_id, { include: { all: true, nested: true }});
       const foundRecord = await record.findOne({where: {id}});

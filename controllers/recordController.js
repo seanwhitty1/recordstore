@@ -1,4 +1,4 @@
-const {item, tag, sequelize, record, genre, artist} = require('../models')
+const {tag, record, genre, artist} = require('../models')
 const axios = require('axios')
 
 // Controller method to get all todos
@@ -13,27 +13,30 @@ exports.getAllRecords = async (req, res) => {
 
 exports.createRecord = async (req, res) => {
       try {
-         let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
-         const discogsRecord = await axios.get('https://api.discogs.com/releases/' + discogsID.data.results[0].id)
-         req.body.tracklist = []
-         for (trackObject of discogsRecord.data.tracklist){
-            let trackItem = {...trackObject}
-           req.body.tracklist.push(trackItem)
-            /**tracklistItem: [
-[1]   [ 'position', 'D3' ],
-[1]   [ 'type_', 'track' ],
-[1]   [ 'artists', [ [Object] ] ],
-[1]   [ 'title', '97-Drop-Outtro' ],
-[1]   [ 'extraartists', [ [Object] ] ],
-[1]   [ 'duration', '1:58' ]
-[1] ] */
+         console.log("+artist name is:", req.body.artist_name) // works
+         console.log(req.body.title.replace(/\s/g, '+'), req.body.artist_name.replace(/\s/g, '+'))
+         let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title.replace(/\s/g, '+')}&artist=${req.body.artist_name.replace(/\s/g, '+')}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
+         console.log("++*", discogsID.data.results)
+         const discogsRecord = await axios.get('https://api.discogs.com/releases/' + discogsID.data.results[0].id + '?key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr') 
+      
+         console.log("+discogsRecordis:", discogsRecord)
+         //discogsRecord.data.artists[0] -f
+
+
+         //discogsRecord.data.community. have/want/rating
+         //discogsRecord.data.styles (array)
+         //discogsRecord.data.images /array
+         for(image of discogsRecord.data.images){
+            console.log("+entries", Object.entries(image))
          }
-    
-      let newRecord = await record.create(req.body)
-      let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
-      newRecord.addArtist(newArtist[0]) // is not a founctionm
-      for(genre_name of req.body.genres.split(",")){
-       let newGenre =  await genre.findOrCreate({
+         req.body.images = discogsRecord.data.images
+         req.body.tracklist = []
+         discogsRecord.data.tracklist.map(trackObject =>  req.body.tracklist.push({...trackObject}))
+         let newRecord = await record.create(req.body)
+         let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
+         newRecord.addArtist(newArtist[0]) 
+         for(genre_name of req.body.genres.split(",")){
+         let newGenre =  await genre.findOrCreate({
          where: { genre_name: genre_name }
          })  
          newRecord.addGenre(newGenre[0])
@@ -45,7 +48,6 @@ exports.createRecord = async (req, res) => {
         })  
         newRecord.addTag(newTag[0])
     }
-  
      res.status(201).json(newRecord);
       }
       catch (error) {
@@ -64,7 +66,6 @@ exports.createRecord = async (req, res) => {
    }
 
    exports.getAllFromGenre = async (req, res) => {
-      console.log("running get all from genre from record controller", req.params.genre_name)
       try {
          return res.json(await record.findAll({where: { genre_name: req.params.genre_name}}))
 

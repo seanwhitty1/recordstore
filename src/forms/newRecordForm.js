@@ -4,14 +4,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
 
-const inputs = ["artist_name", "title", "genres", "price", "description", "image_src", "tags"]
+const inputs = ["artist_name", "title", "genres", "price", "description", "tags"]
 const initalializers =  {
     artist_name: "",
     title: "",
     genres: "",
     price: 0,
     description: "",
-    image_src: "",
     tags: "",
 
 }
