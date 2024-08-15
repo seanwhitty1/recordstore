@@ -13,36 +13,23 @@ exports.getAllRecords = async (req, res) => {
 
 exports.createRecord = async (req, res) => {
       try {
-         console.log("+artist name is:", req.body.artist_name) // works
          console.log(req.body.title.replace(/\s/g, '+'), req.body.artist_name.replace(/\s/g, '+'))
          let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title.replace(/\s/g, '+')}&artist=${req.body.artist_name.replace(/\s/g, '+')}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
-         console.log("++*", discogsID.data.results)
-         const discogsRecord = await axios.get('https://api.discogs.com/releases/' + discogsID.data.results[0].id + '?key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr') 
-      
-         console.log("+discogsRecordis:", discogsRecord)
-         //discogsRecord.data.artists[0] -f
-
-
-         //discogsRecord.data.community. have/want/rating
-         //discogsRecord.data.styles (array)
-         //discogsRecord.data.images /array
-         for(image of discogsRecord.data.images){
-            console.log("+entries", Object.entries(image))
-         }
+         const discogsRecord = await axios.get(`https://api.discogs.com/${discogsID.data.results[0].type}s/` + discogsID.data.results[0].id + '?key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr') 
          req.body.images = discogsRecord.data.images
          req.body.tracklist = []
          discogsRecord.data.tracklist.map(trackObject =>  req.body.tracklist.push({...trackObject}))
          let newRecord = await record.create(req.body)
          let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
          newRecord.addArtist(newArtist[0]) 
-         for(genre_name of req.body.genres.split(",")){
+         for(genre_name of  discogsRecord.data.styles){
          let newGenre =  await genre.findOrCreate({
          where: { genre_name: genre_name }
          })  
          newRecord.addGenre(newGenre[0])
      }
 
-     for(tag_name of req.body.tags.split(" ")){
+     for(tag_name of discogsRecord.data.styles){
       let newTag =  await tag.findOrCreate({
         where: { tag_name: tag_name }
         })  

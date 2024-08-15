@@ -25,13 +25,39 @@ function Detailrecord(){
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
     const parsedTracklist = r.tracklist.map(track => JSON.parse(track))
     const parsedImages = r.images.map(image => JSON.parse(image))
-    console.log("parsed images:", parsedImages)
+    console.log("All from genre ", genreRecords)
+    /**    */
     
     useEffect(() => {
         const getGenreAndArtist = async() => {
-            let allFromGenre =  await axios.get(`http://127.0.0.1:3001/genres/getname/${r.genres[0].genre_name}`)
+
+            //we need to get all genres from r.genres (an array of objects)
+            let allFromGenres = async() => {
+                let genreCache = []
+                let recordsCache = []
+                for(let genre of r.genres){
+                    let genreResult = await axios.get(`http://127.0.0.1:3001/genres/getname/${genre.genre_name}`)
+                    genreCache.push(genreResult.data)
+                    //we currently have duplicates
+                    genreCache.map(genre => recordsCache.push(...genre.records))
+                }
+                console.log(recordsCache)
+                let uniqueArr = [];
+                let map = new Map();
+                recordsCache.forEach((obj) => {
+                const key = obj.id;
+                 if (!map.has(key)) {
+                         map.set(key, true);
+                         uniqueArr.push(obj);
+    }
+});
+             
+                console.log("unique array", uniqueArr)
+                return  [...new Set(recordsCache.map(JSON.stringify))].map(JSON.parse);
+    
+            }
             let allFromArtist =  await axios.get(`http://127.0.0.1:3001/artists/name/${r.artists[0].artist_name}`)
-            setGenreRecords(allFromGenre.data.records)
+            setGenreRecords(await allFromGenres())
             setAllFromArtist(allFromArtist.data.records)
         }
         getGenreAndArtist()
@@ -47,19 +73,18 @@ function Detailrecord(){
             <img className='detail-record-grid-item-image' src={parsedImages[0].uri}></img>
             <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}>add to cart</button>
             <div className='detail-record-tracklist'>
-            
             <div id="tracklist">
             <h1>Tracklist</h1>
-            {parsedTracklist && parsedTracklist.map(track  => 
+            {parsedTracklist.map(track  => 
             <div className='trackDetail'><b>{track.position}</b><p>{track.title}  {track.duration}</p></div>)}
             </div>
             </div>
            </div>
            <hr></hr>
-            {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1>}  
-            <RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>
+            {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-header'>More from this artist:</h1>}
+            {allFromArtist.length > 1 &&<RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>}
             <h1 className='detail-record-grid-related-header2'>You may also like:</h1>
-            {genreRecords.length > 1 && <RelatedRecords className='detail-record-grid-related-records2' collection={genreRecords.filter((record) => record.artists[0].id != r.artists[0].id).slice(0,4)}/>}
+            {genreRecords.length > 1 && <RelatedRecords className='detail-record-grid-related-records2' collection={genreRecords.filter((genre) => genre.artists[0].id != r.artists[0].id).slice(0,4)}/>}
             <button  className='rounded-full' onClick={() => setShowEdit(!showEdit)}>Edit</button>
             </>     
 

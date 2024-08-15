@@ -4,7 +4,6 @@ import Recordgrid from "./Recordgrid";
 import { useSelector} from 'react-redux';
 
 function Home(){
-  
     let records = useSelector(state => state.records)
     return(
         <>

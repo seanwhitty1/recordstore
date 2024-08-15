@@ -9,15 +9,18 @@ import tickIcon from './svg/tick-svgrepo-com.svg'
 import { baseURL, baseURLFront } from './helpers';
 import axios from 'axios';
 
-function Record({id, artist, title, genre, price, image_src}){
+function Record({id, artist, title, genre, price, images}){
 const dispatch = useDispatch();
 const cart = useSelector(store => store.cart)
 const user = useSelector(store => store.user)
 const inFocus = useSelector(store => store.focus);
 const inCart = cart.filter(cartItem => cartItem.id == id)
+const parsedImages = images.map(image => JSON.parse(image))
+
+console.log("inside record compoennt ,", parsedImages)
 const clickHandler = (e) => {
     e.preventDefault()
-    dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src}})
+    dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src:parsedImages[0].uri}})
     if(user){
         axios.post(`${baseURL}users/addItemToCart`, {user_id: user.data.id, id:id})
     }
@@ -27,7 +30,7 @@ return(
     <div className='recordgrid-outer'>
     <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
     <NavLink to={`${baseURLFront}records/view/` + id} className='recordItem-Image' >
-        <img src={image_src}></img> 
+        <img src={parsedImages[0].uri}></img> 
     </NavLink>
     <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>
     </div>

@@ -37,8 +37,6 @@ function PaypalApp() {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                // use the "body" param to optionally pass additional order information
-                // like product ids and quantities
                 body: JSON.stringify({
                   cart: [
                     {
