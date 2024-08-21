@@ -1,6 +1,7 @@
 .record-div {
     overflow: hidden;
     display: inline-flex;
+    object-fit: fill;
 }
 
 .link_class {
@@ -20,20 +21,21 @@
     grid-row: 1/6;
      width: 100%;
      height: 100%;
-     object-fit: cover;
+     object-fit: fill;
+     overflow: hidden;
      z-index: 0;
  
 }
 
 .recordgrid-item{
 
-    max-width: 225px;
-    max-height: 225px;
-  
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: fill;
     margin: 1px;
     display: grid;
-    height: 225px;
-    width: 225px;
+    height: 200px;
+    width: 200px;
     grid-row: 1;
     grid-column: 1;
     z-index:1;
@@ -43,8 +45,8 @@
 
   }
 .recordgrid-outer {
-    max-width: 225px;
-    max-height: 225px;
+    max-width: 200px;
+    max-height: 200px;
     margin: 20px;
     grid-template-rows: repeat(2, 225px);
     grid-template-columns: repeat(6, 1fr);

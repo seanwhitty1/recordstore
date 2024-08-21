@@ -13,7 +13,6 @@ exports.getAllRecords = async (req, res) => {
 
 exports.createRecord = async (req, res) => {
       try {
-         console.log(req.body.title.replace(/\s/g, '+'), req.body.artist_name.replace(/\s/g, '+'))
          let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title.replace(/\s/g, '+')}&artist=${req.body.artist_name.replace(/\s/g, '+')}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
          const discogsRecord = await axios.get(`https://api.discogs.com/${discogsID.data.results[0].type}s/` + discogsID.data.results[0].id + '?key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr') 
          req.body.images = discogsRecord.data.images
@@ -28,11 +27,9 @@ exports.createRecord = async (req, res) => {
          })  
          newRecord.addGenre(newGenre[0])
      }
-
      for(tag_name of discogsRecord.data.styles){
       let newTag =  await tag.findOrCreate({
-        where: { tag_name: tag_name }
-        })  
+        where: { tag_name: tag_name }})  
         newRecord.addTag(newTag[0])
     }
      res.status(201).json(newRecord);

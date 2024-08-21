@@ -2,12 +2,14 @@ import './Record.css'
 import { useParams } from 'react-router-dom';
 import './App.css'
 import './Detailrecord.css'
+import $ from "jquery";
 import React, { useEffect} from "react";
 import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
 import { useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
 import 'react-flash-message'
+import { uniqueSetOfObjects } from './helpers';
 import axios from 'axios';
 
 function Detailrecord(){
@@ -25,43 +27,30 @@ function Detailrecord(){
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
     const parsedTracklist = r.tracklist.map(track => JSON.parse(track))
     const parsedImages = r.images.map(image => JSON.parse(image))
-    console.log("All from genre ", genreRecords)
-    /**    */
-    
     useEffect(() => {
+        setR(records.filter((r) => r.id == id)[0])
         const getGenreAndArtist = async() => {
-
-            //we need to get all genres from r.genres (an array of objects)
             let allFromGenres = async() => {
                 let genreCache = []
                 let recordsCache = []
                 for(let genre of r.genres){
                     let genreResult = await axios.get(`http://127.0.0.1:3001/genres/getname/${genre.genre_name}`)
                     genreCache.push(genreResult.data)
-                    //we currently have duplicates
                     genreCache.map(genre => recordsCache.push(...genre.records))
                 }
-                console.log(recordsCache)
-                let uniqueArr = [];
-                let map = new Map();
-                recordsCache.forEach((obj) => {
-                const key = obj.id;
-                 if (!map.has(key)) {
-                         map.set(key, true);
-                         uniqueArr.push(obj);
-    }
-});
-             
-                console.log("unique array", uniqueArr)
-                return  [...new Set(recordsCache.map(JSON.stringify))].map(JSON.parse);
-    
+                return uniqueSetOfObjects(recordsCache)
             }
             let allFromArtist =  await axios.get(`http://127.0.0.1:3001/artists/name/${r.artists[0].artist_name}`)
             setGenreRecords(await allFromGenres())
             setAllFromArtist(allFromArtist.data.records)
         }
         getGenreAndArtist()
-    },[])
+
+
+        $(window).scrollTop(0);
+   
+        
+    },[id])
 
        if(r.id !== 'placeholder'){
         return(

@@ -32,7 +32,6 @@ db.tag.belongsToMany(db.record, {through: 'record_tag'})
 
 db.record.belongsToMany(db.cart, {through: 'record_cart'})
 db.cart.belongsToMany(db.record, {through: 'record_cart'})
-db.record
 
 db.artist.belongsToMany(db.label, {through: 'artist_label'})
 db.label.belongsToMany(db.artist, {through: 'artist_label'})

@@ -4,6 +4,7 @@ import "./GenreSideBar.css"
 import "./App.css"
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { compareRecords } from "./helpers";
 
 function GenreSideBar(){
     let genre = useSelector(state => state.genre)
@@ -14,7 +15,11 @@ function GenreSideBar(){
     useEffect(() => {
         let getGenres = async() => {
             let genres = await axios.get(`http://127.0.0.1:3001/genres/`)  
-                setCount(genres.data);
+            console.log("genres are:", genres.data)
+            let sorted = genres.data.sort(compareRecords)
+         
+
+                setCount(sorted);
         }
         getGenres()
 

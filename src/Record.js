@@ -17,7 +17,6 @@ const inFocus = useSelector(store => store.focus);
 const inCart = cart.filter(cartItem => cartItem.id == id)
 const parsedImages = images.map(image => JSON.parse(image))
 
-console.log("inside record compoennt ,", parsedImages)
 const clickHandler = (e) => {
     e.preventDefault()
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src:parsedImages[0].uri}})
@@ -29,7 +28,7 @@ return(
     <>
     <div className='recordgrid-outer'>
     <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
-    <NavLink to={`${baseURLFront}records/view/` + id} className='recordItem-Image' >
+    <NavLink to={`${baseURLFront}records/view/` + id} className='recordItem-Image'>
         <img src={parsedImages[0].uri}></img> 
     </NavLink>
     <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>

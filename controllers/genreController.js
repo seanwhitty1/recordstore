@@ -1,15 +1,29 @@
-const {genre} = require('../models')
+const {genre, record} = require('../models')
+const sequelize = require("sequelize")
+
+
 
 // Controller method to get all genres
 exports.getAll = async (req, res) => {
     try {
-    return res.json(await genre.findAll( { include: { all: true, nested: true }}));
+   //what we want to do here is limit to the top 10 genres in a descending fashion, depending on how many records each genre has
+    let genres = await genre.findAll({
+   //,
+
+   
+   limit: 10, include: { all: true, nested: true }
+
+   })
+    return res.json(genres);
     } catch (error) {
      console.log(error)
     res.status(500).json({ error });
     }
    };
 
+   exports.getAllTop10 = async (req, res) => {}
+ 
+        
 
    // Controller method to get a Record by ID
 
