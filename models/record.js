@@ -11,13 +11,11 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
-      },
-      
+      },  
     title: {
         type: DataTypes.STRING,
         allowNull: false
     },
-
     description: { 
         type: DataTypes.TEXT,
         allowNull: false
@@ -28,22 +26,15 @@ module.exports = (sequelize, DataTypes) => {
     quantity: {
         type: DataTypes.INTEGER,
         defaultValue: 1
-      
-
     },
     images: { 
         type: DataTypes.ARRAY(Sequelize.TEXT),
-        defaultValue: [],
-       
+        defaultValue: [],    
     },
-
     tracklist: {
         type: DataTypes.ARRAY(Sequelize.TEXT),
         defaultValue: [],
     }
-
-  
-
 }, { hooks: {
     beforeCreate: async (user) => {
  

@@ -26,6 +26,9 @@ db.genre.belongsToMany(db.record, {through: 'record_genre'})
 db.record.belongsToMany(db.artist, {through: 'record_artist'})
 db.artist.belongsToMany(db.record, {through: 'record_artist'})
 
+db.record.belongsToMany(db.label, {through: 'record_label'})
+db.label.belongsToMany(db.record, {through: 'record_label'})
+
 
 db.record.belongsToMany(db.tag, {through: 'record_tag'})
 db.tag.belongsToMany(db.record, {through: 'record_tag'})

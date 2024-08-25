@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+#description{
+  height: 500px;
+  width: 500px;
+}
+
+textarea { height: auto; }
+
 .offBlack {
   filter: invert(12%) sepia(9%) saturate(1325%) hue-rotate(182deg) brightness(94%) contrast(86%);
 }
@@ -78,7 +85,6 @@
 .grid-item-main {
   z-index: 2;
   justify-content: center;
-
   grid-row: 3/8;
   grid-column: 2/26;
   padding: 5px;
@@ -87,10 +93,12 @@
 }
 
 .grid-item-cart {
-  margin-top:58px;
-  grid-row: 3/6;
-  grid-column: 20;
+
+  margin-top:5px;
+  grid-row: 4;
+  grid-column: 0/1;
   padding: 20px;
+  background-color: pink;
 }
 
 .removeButton {

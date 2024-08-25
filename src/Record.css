@@ -21,6 +21,8 @@
     grid-row: 1/6;
      width: 100%;
      height: 100%;
+     width: minmax(200px);
+     height: minmax(200px);
      object-fit: fill;
      overflow: hidden;
      z-index: 0;
@@ -28,17 +30,13 @@
 }
 
 .recordgrid-item{
-
-    max-width: 200px;
-    max-height: 200px;
-    object-fit: fill;
-    margin: 1px;
     display: grid;
-    height: 200px;
-    width: 200px;
+    height: minmax(200px);
+    width: minmax(200px);
+    border: none;
     grid-row: 1;
     grid-column: 1;
-    z-index:1;
+    z-index: 1;
     position: relative;
     grid-template-columns: repeat(5, 45px);
     grid-template-rows: repeat(5, 45px);

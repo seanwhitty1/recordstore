@@ -11,7 +11,7 @@ exports.getAll = async (req, res) => {
    //,
 
    
-   limit: 10, include: { all: true, nested: true }
+   include: { all: true, nested: true }
 
    })
     return res.json(genres);

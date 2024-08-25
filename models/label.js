@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     label_name: {
         type: DataTypes.STRING,
         defaultValue: "active" 
-       }
+       },
+      thumbnail_url: {
+        type: DataTypes.STRING,
+        defaultValue: "active" 
+
+      }
     }
     )
     return label

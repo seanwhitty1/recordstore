@@ -2,9 +2,11 @@ import React, { useState} from 'react';
 import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 import '../App.css'
 
-const inputs = ["artist_name", "title", "genres", "price", "description", "tags"]
+const inputs = ["artist_name", "title", "genres", "price", "tags"]
+let description = "description"
 const initalializers =  {
     artist_name: "",
     title: "",
@@ -56,6 +58,21 @@ function NewRecordForm(){
             </label>
             </div>  
             )} 
+            <div className='form-group'>
+            <label htmlFor={description}>description
+            <textarea type="textarea" 
+             id={description} 
+             value={values.description}
+             onChange={handleChange}
+             onBlur={handleBlur}
+             placeholder={description}
+             className={errors.description? 'input-error form-control': "form-control"}
+            ></textarea>
+            {failedValidation? <p className='text-danger'>{errors[description]}</p>: null}   
+            {touched[description] && errors[description] && (<p className='invalid-feedback'>{errors[description]}</p>)}
+            </label>
+            </div>  
+         
         <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"'>Submit!</button>
         </form>
         </>

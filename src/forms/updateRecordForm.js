@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 
 function UpdateRecordForm(props){
+    let description = "description"
 const dispatch = useDispatch()
 const navigate = useNavigate()
 const {artist, title, genre, price, descr, image_src, id} = props
@@ -25,7 +26,7 @@ const deleteHandler = async(id) => {
 }
 console.log("inside our updated record form what are our props", artist)
 
-const inputs = ["artist", "title", "genre", "price", "description", "image_src"]
+const inputs = ["artist", "title", "genre", "price", "image_src"]
 const initalializers =  {
     artist: artist,
     title: title,
@@ -80,6 +81,21 @@ const initalializers =  {
             </label>
             </div>  
             )}
+            <div className='form-group'>
+            <label htmlFor={description}>description
+            <textarea type="textarea" 
+             id={description} 
+             value={values.description}
+             onChange={handleChange}
+             onBlur={handleBlur}
+             placeholder={description}
+             className={errors.description? 'input-error form-control': "form-control"}
+            ></textarea>
+            {failedValidation? <p className='text-danger'>{errors[description]}</p>: null}   
+            {touched[description] && errors[description] && (<p className='invalid-feedback'>{errors[description]}</p>)}
+            </label>
+            </div>  
+         
       
         <button type='submit'>Submit!</button>
         </form>

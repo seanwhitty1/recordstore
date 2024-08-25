@@ -2,7 +2,6 @@
 /** Database setup for jobly. */
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
-//here we are going to declare our db
 let db;
 /*
 function getDatabaseUri() {
@@ -27,5 +26,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 db.connect();
-
 module.exports = db;

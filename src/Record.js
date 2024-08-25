@@ -28,9 +28,7 @@ return(
     <>
     <div className='recordgrid-outer'>
     <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
-    <NavLink to={`${baseURLFront}records/view/` + id} className='recordItem-Image'>
-        <img src={parsedImages[0].uri}></img> 
-    </NavLink>
+    <NavLink to={`${baseURLFront}records/view/` + id} className='recordItem-Image'><img src={parsedImages[0].uri}></img> </NavLink>
     <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>
     </div>
     {id == inFocus && <DetailBubble className='detail-bubble' artist={artist} title={title} genre={genre} price={price} id={id}/>}

@@ -36,7 +36,6 @@ const Main = () => {
   }
     const getUserCart = async (id) => {
       let cart = await axios.get(`${baseURL}users/getUserCart/${id}`)
-    
     dispatch({type: "INITUSERCART", payload: cart.data})}
 
     useEffect(() => {

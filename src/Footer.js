@@ -4,6 +4,7 @@ const Footer = () => {
 
     return(
         <>
+        <div className='footerDiv'>
         <footer className='margin-top-60'>
     <div className="content ">
       <div class="top">
@@ -57,7 +58,7 @@ const Footer = () => {
     </div>
     <div class="bottom-details">
       <div class="bottom_text">
-        <span class="copyright_text">Copyright © 2021 <a href="#">CodingLab.</a>All rights reserved</span>
+        <span class="copyright_text">Copyright © 2024 <a href="#">Sean Whitty.</a>All rights reserved</span>
         <span class="policy_terms">
           <a href="#">Privacy policy</a>
           <a href="#">Terms & condition</a>
@@ -65,6 +66,7 @@ const Footer = () => {
       </div>
     </div>
   </footer>
+  </div>
         </>
     )
 

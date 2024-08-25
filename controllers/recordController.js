@@ -1,4 +1,4 @@
-const {tag, record, genre, artist} = require('../models')
+const {tag, record, genre, artist, label} = require('../models')
 const axios = require('axios')
 
 // Controller method to get all todos
@@ -15,8 +15,10 @@ exports.createRecord = async (req, res) => {
       try {
          let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title.replace(/\s/g, '+')}&artist=${req.body.artist_name.replace(/\s/g, '+')}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
          const discogsRecord = await axios.get(`https://api.discogs.com/${discogsID.data.results[0].type}s/` + discogsID.data.results[0].id + '?key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr') 
+         console.log(discogsRecord.data)
          req.body.images = discogsRecord.data.images
          req.body.tracklist = []
+         console.log("+desc", req.body.description)
          discogsRecord.data.tracklist.map(trackObject =>  req.body.tracklist.push({...trackObject}))
          let newRecord = await record.create(req.body)
          let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
@@ -32,8 +34,33 @@ exports.createRecord = async (req, res) => {
         where: { tag_name: tag_name }})  
         newRecord.addTag(newTag[0])
     }
-     res.status(201).json(newRecord);
-      }
+    if(discogsRecord.data.labels){
+    
+      console.log("+label was present")
+      let labelID = discogsRecord.data.labels[0].id
+      let labelDiscogsData = axios.get(`https://api.discogs.com/labels/${labelID}`)
+      console.log("+labeldata", labelDiscogsData)
+      //where will we get the label ID from? 
+      let newLabel =  await label.findOrCreate({
+         where: { label_name: discogsRecord.data.labels[0].name},
+         defaults: {
+            label_name: discogsRecord.data.labels[0].name,
+            thumbnail_url: discogsRecord.data.labels[0].thumbnail_url
+
+         }
+         
+      
+      })  
+        
+         console.log("what is new label", newLabel)
+      
+         newRecord.addLabel(newLabel[0])
+    }
+    res.status(201).json(newRecord);
+ 
+  }
+
+      
       catch (error) {
       console.log(error)
       res.status(500).json({error});

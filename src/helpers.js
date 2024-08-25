@@ -12,11 +12,9 @@ const uniqueSetOfObjects = function(arr){
      if (!map.has(key)) {
              map.set(key, true);
              uniqueArr.push(obj)
-}
+}}); return uniqueArr }
 
-}); return uniqueArr }
-
-const compareRecords = function( a, b){
+const compareRecords = function(a, b){
   if ( a.records > b.records){
     return -1;
   }
