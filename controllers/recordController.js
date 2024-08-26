@@ -18,7 +18,6 @@ exports.createRecord = async (req, res) => {
          console.log(discogsRecord.data)
          req.body.images = discogsRecord.data.images
          req.body.tracklist = []
-         console.log("+desc", req.body.description)
          discogsRecord.data.tracklist.map(trackObject =>  req.body.tracklist.push({...trackObject}))
          let newRecord = await record.create(req.body)
          let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
@@ -35,32 +34,18 @@ exports.createRecord = async (req, res) => {
         newRecord.addTag(newTag[0])
     }
     if(discogsRecord.data.labels){
-    
-      console.log("+label was present")
-      let labelID = discogsRecord.data.labels[0].id
-      let labelDiscogsData = axios.get(`https://api.discogs.com/labels/${labelID}`)
-      console.log("+labeldata", labelDiscogsData)
-      //where will we get the label ID from? 
       let newLabel =  await label.findOrCreate({
          where: { label_name: discogsRecord.data.labels[0].name},
          defaults: {
             label_name: discogsRecord.data.labels[0].name,
             thumbnail_url: discogsRecord.data.labels[0].thumbnail_url
-
          }
-         
-      
       })  
-        
          console.log("what is new label", newLabel)
-      
          newRecord.addLabel(newLabel[0])
     }
     res.status(201).json(newRecord);
- 
   }
-
-      
       catch (error) {
       console.log(error)
       res.status(500).json({error});

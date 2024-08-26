@@ -5,15 +5,18 @@
   }
 
 .detail-record-grid-item-artist-description {
-  padding: 15px;
+    padding: 15px;
     grid-row: 1;
     grid-column: 5/10; 
   }
   
-  .detail-record-grid-item-title {
+  .detail-record-grid-item-title-artist-label {
     grid-row: 1;
     grid-column: 10/20;
-    display: inline;
+    display: grid;
+ 
+    grid-template-columns: auto;
+    grid-auto-rows: 2;
   }
   
   .detail-record-grid-item-image {
@@ -24,8 +27,8 @@
    
   }
   .detail-record-grid.titleAndDescription {
-  grid-column: 10/20;
-  grid-row: 1
+    grid-column: 10/20;
+    grid-row: 1
   }
   
   .detail-record-grid-item-description {
@@ -42,7 +45,6 @@
 
   .preserveLineBreaks {
     white-space: pre-wrap;
-   
 overflow-wrap: break-word;
   }
   
@@ -78,13 +80,49 @@ overflow-wrap: break-word;
  
   }
 
-  .detail-record-label-img{
-    max-height: 150px;
-    max-width: 250px;
-    border: 1px solid grey;
-    position: relative;
-    float-right: 100px;
+  .label-image-hover {
+    opacity: 50%
   }
+
+  .inline-header {
+    display:inline;
+    
+ 
+  }
+
+  #discover-more {
+    margin-top: 10px;
+    margin-left: 300px;
+  }
+
+  #title-artist {
+    grid-row: 1;
+    grid-column: 1;
+  
+  }
+
+  .detail-record-label-img-container {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .detail-record-img{
+ 
+    max-width: 200px;
+    max-height: 200px;
+    grid-row: 1;
+    grid-column: 2;
+   
+    min-width: 200px;
+    min-height: 200px;
+    float-right: 200px;
+    display: inline;
+    margin-top: 0;
+    margin-bottom: 10px;
+    object-fit: fill;
+
+  }
+
 
   .detail-record-grid-related-records2 {
     grid-row: 15;
@@ -122,14 +160,21 @@ overflow-wrap: break-word;
     display: flex;
   }
 
-  .detail-record-tracklist {
+  #tracklist {
  
-    grid-column: 2/5;
+    grid-column: 2/4;
+    padding-top:10px;
     grid-row: 4;
+
   }
 
   .trackDetail {
     font-size: 10px;
-    margin: 2px;
+    margin: 1px;
 
+  }
+
+  #discover-more {
+    position: absolute;
+    float-left: 100px;
   }

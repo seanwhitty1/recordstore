@@ -93,12 +93,11 @@ textarea { height: auto; }
 }
 
 .grid-item-cart {
-
   margin-top:5px;
   grid-row: 4;
   grid-column: 0/1;
   padding: 20px;
-  background-color: pink;
+
 }
 
 .removeButton {
@@ -128,7 +127,6 @@ textarea { height: auto; }
 
 .map {
   grid-column: 2;
-
 }
 
 .margin-right-10 {

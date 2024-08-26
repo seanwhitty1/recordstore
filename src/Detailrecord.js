@@ -7,7 +7,11 @@ import React, { useEffect} from "react";
 import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
 import { useSelector, useDispatch} from 'react-redux';
+import add from './svg/addtocart.svg'
 import { useState } from 'react';
+import soundWave from './svg/soundwave.svg';
+
+
 import 'react-flash-message'
 import { uniqueSetOfObjects } from './helpers';
 import axios from 'axios';
@@ -18,6 +22,8 @@ function Detailrecord(){
         dispatch({type:"ADDTOCART", payload:item, quantity:1})
     }
     const [showEdit, setShowEdit] = useState(false)
+    const [labelHover, setLabelHover] = useState(false)
+    const [imageFocus, setImageFocus] = useState(false)
     const [genreRecords, setGenreRecords] = useState(["one"])
     const [allFromArtist, setAllFromArtist] = useState(["1"])
     const records = useSelector(state => state.records)
@@ -51,34 +57,41 @@ function Detailrecord(){
        if(r.id !== 'placeholder'){
         return(
             <>
-            <div className='detail-record-grid-container'>
-            <div className='detail-record-grid-item-title'>
-            <h1>{r.title}</h1>
-            <h1>{r.artists[0].artist_name}</h1>
-            </div >
+            <div className='detail-record-grid-container'>   
+              <div className='detail-record-grid-item-title-artist-label'>
+            <img className={`${labelHover == true? 'label-image-hover detail-record-img': 'detail-record-img'}`}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
+              <div id="title-artist">
+                <h3 className='inline-header'>{r.title}</h3><br></br>
+                <h3 className='inline-header'>{r.artists[0].artist_name}</h3>
+                <p>{r.format}</p>
+                <img src={soundWave}></img>
+                
+                <br></br>    
+               </div>
+            </div>
             <div className='detail-record-grid-item-description'>
-            <p className='preserveLineBreaks'>{r.description}</p>
-            <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}>add to cart</button>
+               <p className='preserveLineBreaks'>{r.description}</p>
+          
             <div className='genresListDiv'>
             <ul className='genresList' > 
             {r.genres.map(genre => <li className='inlineList'><button type="button" class="btn btn-light">{genre.genre_name}</button></li>)}</ul>
             </div>
+            <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}><img src={add}></img></button>
+
             </div>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.description} genre={r.genre} id={r.id}/>}
-           <div className='detail-record-grid-item-image' ><img src={parsedImages[0].uri}></img>
+           <div className='detail-record-grid-item-image' ><img  onMouseOver={() => setImageFocus(true)} onMouseOut={() => setImageFocus(false)} src={imageFocus && parsedImages.length > 1? parsedImages[1].uri: parsedImages[0].uri }></img>
            <div id="tracklist">
             {parsedTracklist.map(track  => 
             <div className='trackDetail'><b>{track.position}</b><p>{track.title}  {track.duration}</p></div>)} 
-            <img className='detail-record-label-img' src={r.labels[0].thumbnail_url}></img> 
+            </div>
             </div>
            </div>
-            <div className='detail-record-linebreak'>
             <hr></hr>
-            </div>
-           </div>
+       
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-artist'>More from {r.artists[0].artist_name}</h1>}
             {allFromArtist.length > 1 &&<RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>}
-            <h1 className='detail-record-grid-related-header2'>If you dig {r.artists[0].artist_name}, You may also like:</h1>
+            <h1 className='detail-record-grid-related-header2'>If you like {r.artists[0].artist_name}, You may also like:</h1>
             {genreRecords.length > 1 && <RelatedRecords className='detail-record-grid-related-records2' collection={genreRecords.filter((genre) => genre.artists[0].id != r.artists[0].id).slice(0,4)}/>}
             <button  className='rounded-full' onClick={() => setShowEdit(!showEdit)}>Edit</button>
             </>     

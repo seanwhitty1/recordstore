@@ -11,7 +11,16 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
-      },  
+      },
+    
+    format: {
+        allowNull: true,
+      
+        primaryKey: true,
+        type: DataTypes.STRING,
+        defaultValue: `12" Vinyl`
+
+    },
     title: {
         type: DataTypes.STRING,
         allowNull: false
