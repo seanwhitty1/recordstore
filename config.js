@@ -10,6 +10,7 @@ function getDatabaseUri() {
   return (process.env.NODE_ENV === "test")
       ? "postgresql:///recordstore_test"
       : process.env.DATABASE_URL || "postgresql:///recordstore";
+//getDatabaseUril() returns conditionally our db or our test db depending on the process.env value
 }
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
 //

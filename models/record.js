@@ -12,14 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-    
     format: {
         allowNull: true,
-      
-        primaryKey: true,
         type: DataTypes.STRING,
         defaultValue: `12" Vinyl`
-
     },
     title: {
         type: DataTypes.STRING,
@@ -32,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     price: {
         type: DataTypes.INTEGER
     },
+ 
+
+
     quantity: {
         type: DataTypes.INTEGER,
         defaultValue: 1
