@@ -31,7 +31,8 @@ exports.getAllSoldItems = async (req, res) => {
   res.status(500).json({ error })
   }
  };
-
+//demonstration of item controller method, updated item_name property with inputted word, in all cases
+//using the where clause, sequelize.where the sequelize function of charlength of item_name is 9. 
  exports.udateAllCharLength = async (req, res) => {
   try {
   const items = await item.update({item_name: "tank top"}, {where:
@@ -43,7 +44,6 @@ exports.getAllSoldItems = async (req, res) => {
   res.status(500).json({ error })
   }
  };
-
 // Controller method to create a new todo
 exports.createItem = async (req, res) => {
  try {

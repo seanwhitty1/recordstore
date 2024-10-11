@@ -5,7 +5,7 @@ const genreController = require('../controllers/genreController');
 const router = new express.Router();
 
 router.get('/', genreController.getAll);
-router.get('/top', genreController.getAllTop10)
+//router.get('/top', genreController.getAllTop10)
 router.get('/:id', genreController.getByID)
 router.get('/getname/:genre', genreController.getByName)
 

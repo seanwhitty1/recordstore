@@ -29,6 +29,18 @@
  
 }
 
+@keyframes fadein {
+    from {
+      opacity: 0%;
+    }
+  
+    to {
+      opacity: 100px;
+    }
+  }
+
+
+
 .recordgrid-item{
     display: grid;
     height: minmax(200px);
@@ -40,6 +52,7 @@
     position: relative;
     grid-template-columns: repeat(5, 45px);
     grid-template-rows: repeat(5, 45px);
+    animation: fadein 0.5s linear 0s 1 alternate;
 
   }
 .recordgrid-outer {

@@ -55,37 +55,39 @@ function Detailrecord(){
        if(r.id !== 'placeholder'){
         return(
             <>
-            <div className='detail-record-grid-container'>   
+         <div className='detail-record-grid-container'>   
               <div className='detail-record-grid-item-title-artist-label'>
-            <img className={`${labelHover == true? 'label-image-hover detail-record-img': 'detail-record-img'}`}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
+            {r.labels[0].thumbnail_url != "active" &&
+             <img className={`${labelHover == true? 'label-image-hover detail-record-img': 'detail-record-img'}`}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
+            
+            }
+           
               <div id="title-artist">
                 <h3 className='inline-header'>{r.title}</h3><br></br>
                 <h3 className='inline-header'>{r.artists[0].artist_name}</h3>
                 <p>{r.format}</p>
                 <img src={soundWave}></img>
-            
-                
                 <br></br>    
                </div>
             </div>
             <div className='detail-record-grid-item-description'>
                <p className='preserveLineBreaks'>{r.description}</p>
-            <div className='genresListDiv'>
-            <ul className='genresList' > 
-            {r.genres.map(genre => <li className='inlineList'><button type="button" class="btn btn-light">{genre.genre_name}</button></li>)}</ul>
-            </div>
-            <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}><img src={add}></img></button>
+               <div className='genresListDiv'>
+                  <ul className='genresList' > 
+                  {r.genres.map(genre => <li className='inlineList'><button type="button" class="btn btn-light">{genre.genre_name}</button></li>)}</ul>
+               </div>
+               <button className='detail-record-buttonToCart bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}><img src={add}></img></button>
             </div>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.description} genre={r.genre} id={r.id}/>}
            <div className='detail-record-grid-item-image' ><img  onMouseOver={() => setImageFocus(true)} onMouseOut={() => setImageFocus(false)} src={imageFocus && parsedImages.length > 1? parsedImages[1].uri: parsedImages[0].uri }></img>
-           <div id="tracklist">
-            {parsedTracklist.map(track  => 
-            <div className='trackDetail'><b>{track.position}</b><p>{track.title}  {track.duration}</p></div>)} 
-               
+               <div id="tracklist">
+               {parsedTracklist.map(track  => 
+               <div className='trackDetail'><b>{track.position}</b><p>{track.title}  {track.duration}</p></div>)}  
+               {r.quantity > 0? <p>In stock</p>: <p>Out of stock</p>}   
+               </div>
             </div>
-            </div>
-           </div>
-            <hr></hr>
+        </div>
+        <hr></hr>
        
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-artist'>More from {r.artists[0].artist_name}</h1>}
             {allFromArtist.length > 1 &&<RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>}

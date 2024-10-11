@@ -12,8 +12,10 @@ body{
 }
 footer{
   position: static;
-  background: #282c34;
-  width: 100%;
+  background: white;
+  width: 90%;
+  margin-left: 10%;
+  margin-right: 5%;
   bottom: 0;
   left: 0;
 }
@@ -38,7 +40,7 @@ footer .content .top{
   margin-bottom: 50px;
 }
 .content .top .logo-details{
-  color: #fff;
+  color: #black;
   font-size: 30px;
 }
 .content .top .media-icons{
@@ -51,7 +53,7 @@ footer .content .top{
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
-  color: #fff;
+  color: #black;
   font-size: 17px;
   text-decoration: none;
   transition: all 0.4s ease;
@@ -60,35 +62,36 @@ footer .content .top{
   background: #4267B2;
 }
 .top .media-icons a:nth-child(1):hover{
-  color: #4267B2;
+  color: #black;
   background: #fff;
 }
 .top .media-icons a:nth-child(2){
   background: #1DA1F2;
 }
 .top .media-icons a:nth-child(2):hover{
-  color: #1DA1F2;
+  color: #black;
   background: #fff;
 }
 .top .media-icons a:nth-child(3){
   background: #E1306C;
 }
 .top .media-icons a:nth-child(3):hover{
-  color: #E1306C;
+  color: #black;
   background: #fff;
 }
 .top .media-icons a:nth-child(4){
   background: #0077B5;
 }
 .top .media-icons a:nth-child(4):hover{
-  color: #0077B5;
+  color: #black;
   background: #fff;
 }
 .top .media-icons a:nth-child(5){
   background: #FF0000;
 }
 .top .media-icons a:nth-child(5):hover{
-  color: #FF0000;
+  color: #black;
+  
   background: #fff;
 }
 footer .content .link-boxes{
@@ -100,7 +103,8 @@ footer .content .link-boxes .box{
   width: calc(100% / 5 - 10px);
 }
 .content .link-boxes .box .link_name{
-  color: #fff;
+  color: #black;
+  
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 10px;
@@ -120,7 +124,8 @@ footer .content .link-boxes .box{
   list-style: none;
 }
 .content .link-boxes .box li a{
-  color: #fff;
+  color: #black;
+  
   font-size: 14px;
   font-weight: 400;
   text-decoration: none;
@@ -166,7 +171,7 @@ footer .content .link-boxes .box{
 }
 footer .bottom-details{
   width: 100%;
-  background: #0F0844;
+  background: black;
 }
 footer .bottom-details .bottom_text{
   max-width: 1250px;
@@ -242,8 +247,6 @@ footer .bottom-details .bottom_text{
 }
 
 .footerDiv {
-  max-width: 93%;
-
   margin-left: 3%;
   margin-right: 3%;
   text-align: center;

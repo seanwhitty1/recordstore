@@ -48,8 +48,7 @@ module.exports = (sequelize, DataTypes) => {
 units_sold: {
   type: DataTypes.INTEGER,
   defaultValue: 0
-},
-
+}
 })
 return Item;
 

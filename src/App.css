@@ -30,9 +30,10 @@ textarea { height: auto; }
 }
 
 .main-header {
-  margin-left: 57px;
-  margin-top: 30px;
+  margin-left: 73px;
+  margin-top: 50px;
   color: #212529;
+  font-size: 22px;
 }
 
 .App-header {
@@ -51,7 +52,7 @@ textarea { height: auto; }
 }
 
 .grid-container {
-
+  margin-top:200px;
   display: grid;
   grid-template-columns: repeat(25, 1fr);
 }
@@ -113,6 +114,17 @@ textarea { height: auto; }
   transform: rotate(35);
 }
 
+.logo {
+  position: absolute;
+ margin-left:170px;
+ margin-top:60px;
+  width: 500px;
+  height:100px;
+  z-index:2;
+
+  transform: rotate(35);
+}
+
 .vinylImage:hover {
   transform: rotate(360deg);
   transition: 10s;
@@ -149,7 +161,7 @@ textarea { height: auto; }
   width: 80%;
   margin-left:10%;
   margin-right: 10%;
-  z-index: 1;
+  z-index: 0;
 }
 
 

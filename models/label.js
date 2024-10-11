@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
-          },
-          
+          }, 
     label_name: {
         type: DataTypes.STRING,
         defaultValue: "active" 
@@ -18,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       thumbnail_url: {
         type: DataTypes.STRING,
         defaultValue: "active" 
-
       }
     }
     )

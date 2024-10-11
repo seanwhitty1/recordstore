@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import Detailrecord from "./Detailrecord";
 import CartDetail from './CartDetail.js';
 import NewRecordForm from "./forms/newRecordForm";
+import Magazine from './Magazine.js';
 import BrowseAll from "./BrowseAll2";
 import { useEffect } from 'react';
 import { useAuth } from './AuthProvider';
@@ -58,11 +59,13 @@ return(
     <Route path='/browseall' element={ <BrowseAll/>} />
     <Route path ='/about' element={<About/>}/>
     <Route path ='/contactus' element={<Contact/>}/>
+    <Route path ='/magazine' element={<Magazine/>}/>
     <Route path ='/records/view/:id' element={<Detailrecord/>}/>
     <Route path ='/addnew' element={<NewRecordForm/>}/>
     <Route path ='/userdashboard' element={<UserDashboard/>}/>
     <Route path= '/fullcart' element={<CartDetail/>}/>
     </Routes>
+    <hr></hr>
     </>)
 } else {
   return(

@@ -1,6 +1,7 @@
 import './Main.css'
 import './App.css'
 import Recordgrid from "./Recordgrid";
+import Featuregrid from './Featuregrid';
 import { useSelector} from 'react-redux';
 
 function Home(){
@@ -9,6 +10,9 @@ function Home(){
         <>
          <h1 className='main-header'>Latest additions</h1>
          <Recordgrid records={records}/>
+         <hr></hr>
+         <h1 className='main-header'>Latest from the Magaize</h1>
+         <Featuregrid/>
         </>
     )
 }

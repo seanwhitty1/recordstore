@@ -21,12 +21,6 @@ let cartItems = useSelector(state => state.cart)
         </div>
 </div>}
         </div>
- 
-        
-     
-       
-      
-     
         </>)
 }
 

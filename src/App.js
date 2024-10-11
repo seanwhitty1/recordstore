@@ -6,6 +6,7 @@ import Main from './Main';
 import Navigation from './Nav';
 import Cart from './Cart';
 import vinyl  from './svg/vinyl-record-svgrepo-com.svg'
+import logo from './svg/logo3.svg'
 import Footer from './Footer';
 import  AuthProvider from './AuthProvider';
 
@@ -18,6 +19,7 @@ const App = () => {
     <Router>
     <div id='app' className='grid-container'>
     <img className="vinylImage offBlack" src={vinyl} /> 
+    <img className="logo" src={logo} /> 
     <GenreSideBar className='grid-item-genreBar' />
     <Navigation />
     <div className="main grid-item-main"> 

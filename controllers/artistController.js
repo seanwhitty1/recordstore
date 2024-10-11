@@ -10,14 +10,11 @@ exports.getAll = async (req, res) => {
     }
    };
 
-
    // Controller method to get a artist by ID
-
    exports.getByName = async (req, res) => {
       try{
          const foundArtist = await artist.findOne({where: {artist_name: req.params.artist_name}, include: { all: true, nested: true }});
          return res.json(foundArtist)
-         
       } catch(err){
          console.log(err)
       }
@@ -33,8 +30,3 @@ exports.getAll = async (req, res) => {
          console.log(err)
       }
    }
-
-   
- 
-   // Controller method to delete a todo by ID
-  
