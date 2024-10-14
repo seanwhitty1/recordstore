@@ -3,6 +3,7 @@ import React from "react";
 import Record from './Record'
 
 function Recordgrid({records}){
+    console.log("inside record grid", records)
         return(
             <>
             <div className='recordgrid-container'>

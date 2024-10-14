@@ -10,6 +10,7 @@ import CartDetail from './CartDetail.js';
 import NewRecordForm from "./forms/newRecordForm";
 import Magazine from './Magazine.js';
 import BrowseAll from "./BrowseAll2";
+import Artwork from './Artwork.js';
 import { useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,6 +53,7 @@ const Main = () => {
   if(records){
 return(
     <>
+    <div className='main-div'>
     {user && <h1>hello {user.data.username}</h1>}
     <Routes>
     <Route path='/' element={ <Home/>} />
@@ -60,11 +62,13 @@ return(
     <Route path ='/about' element={<About/>}/>
     <Route path ='/contactus' element={<Contact/>}/>
     <Route path ='/magazine' element={<Magazine/>}/>
+    <Route path ='/artwork' element={<Artwork/>}/>
     <Route path ='/records/view/:id' element={<Detailrecord/>}/>
     <Route path ='/addnew' element={<NewRecordForm/>}/>
     <Route path ='/userdashboard' element={<UserDashboard/>}/>
     <Route path= '/fullcart' element={<CartDetail/>}/>
     </Routes>
+    </div>
     <hr></hr>
     </>)
 } else {

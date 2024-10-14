@@ -2,7 +2,7 @@ const {tag, record, genre, artist, label, feature} = require('../models')
 const axios = require('axios')
 
 // Controller method to get all Feature
-exports.getAllOrders = async (req, res) => {
+exports.getAll = async (req, res) => {
     console.log("running getAll Features")
  try {
  const features = await feature.findAll();

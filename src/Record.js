@@ -9,7 +9,7 @@ import tickIcon from './svg/tick-svgrepo-com.svg'
 import { baseURL, baseURLFront } from './helpers';
 import axios from 'axios';
 
-function Record({id, artist, title, genre, price, images}){
+function Record({id, artists, title, genre, price, images}){
 const dispatch = useDispatch();
 const cart = useSelector(store => store.cart)
 const user = useSelector(store => store.user)
@@ -17,6 +17,9 @@ const inFocus = useSelector(store => store.focus);
 const inCart = cart.filter(cartItem => cartItem.id == id)
 const parsedImages = images.map(image => JSON.parse(image))
 
+let artist = artists[0].artist_name
+
+console.log("in our record,", title, price, genre) // artist and genre are undefined 
 const clickHandler = (e) => {
     e.preventDefault()
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src:parsedImages[0].uri}})

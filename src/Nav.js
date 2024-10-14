@@ -14,12 +14,9 @@ return(
     <nav>
       <div class="nav-menu">
       <NavLink className="nav-link" to="/" id="homeButton" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
-        <NavLink className="nav-link" to="/addnew">Add</NavLink>
-        
         <NavLink className="nav-link" to="/browseall">Browse</NavLink>
         <NavLink className="nav-link" to="/magazine">Magazine</NavLink>
-       
-        <NavLink className="nav-link" to="/about">Artwork</NavLink>
+        <NavLink className="nav-link" to="/artwork">Artwork</NavLink>
         <NavLink className="nav-link" to="/contactus">Contact</NavLink>
         <div id="navbar-icons">
         <NavLink to="userdashboard"><a href=""><img className='userIcon'src={userIcon}></img></a></NavLink><NavLink to="/fullcart"><img className='cartIcon' src={cartIcon}></img></NavLink>

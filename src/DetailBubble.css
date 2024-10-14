@@ -1,19 +1,30 @@
 .detail-bubble {
    
-    background-color: #212529;
-    color: wheat;
+    background-color: magenta;
+    color: white;
     grid-row: 2;
     grid-column: 1/6;
-    border: 2px solid #212529;
+  
     z-index: 2;
     text-decoration: none;
     max-height: 225px;
     max-width: 225px;
     min-width: 225px;
-    border: 5px solid pink;
     position: relative;
     padding:5px;
+    animation: fadein 0.2s;
 }
+
+@keyframes fadein {
+    from {
+      opacity: 24%;
+
+    }
+  
+    to {
+      opacity: 75%;
+    }
+  }
 
 #detail-bubble-list {
     list-style: none;

@@ -20,7 +20,8 @@ function Magazine(){
       
         return(
             <>  
-            <h1>Here will be the magazine</h1>    
+            <h1 className='main-header'>Here will be the magazine</h1>
+        
 
             </>     
         )
