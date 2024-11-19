@@ -30,6 +30,24 @@
     border: 1px solid black;
   }
 
+
+
+@media (max-width: 375px) {
+
+  .recordgrid-container {
+
+    display: flex;
+    flex-direction: row;
+    justify-items: Start;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin-top: -25px;
+  
+  }
+
+}
+
+
   
   
 

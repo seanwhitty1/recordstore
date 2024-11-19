@@ -1,14 +1,14 @@
 import React from "react";
 import './Featuregrid.css'
 
-function FeaturegridItem(f){
+function Featuregriddetail(f){
         return(
             <>
             <div className='featuregriditem-container'>
-            <p>this is a feature grid item</p>
-            <p>{f.title}</p>
+                <p>inside fea</p>
             </div>
            </>
         )
     }
-export default FeaturegridItem;
+
+export default Featuregriddetail;

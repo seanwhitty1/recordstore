@@ -44,10 +44,11 @@ function BrowseAll(){
   {inputs.map(input => <option value={input}>{input}</option>)}
 </select>
           <input
+          className="input-select"
           type="text"
           value={searchItem}
           onChange={handleInputChange}
-          placeholder='Search by Title'
+          placeholder='Search'
         />
         {searchItem && <h1 className="margin-left-15 margin-top-10 text-offBlack">Searching {inputQuery}s for: {searchItem}</h1>}
       </div>

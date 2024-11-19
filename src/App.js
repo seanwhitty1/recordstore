@@ -10,16 +10,16 @@ import logo from './svg/logo3.svg'
 import Footer from './Footer';
 import  AuthProvider from './AuthProvider';
 
-const App = () => {
 
+const App = () => {
   return (
     <>
     <div id="appWrapper">
     <AuthProvider>
     <Router>
     <div id='app' className='grid-container'>
-    <img className="vinylImage offBlack" src={vinyl} /> 
-    <img className="logo" src={logo} /> 
+    <img className="offBlack" id="vinylLogo" src={vinyl} /> 
+    <img id="logo" src={logo} /> 
     <GenreSideBar className='grid-item-genreBar' />
     <Navigation />
     <div className="main grid-item-main"> 

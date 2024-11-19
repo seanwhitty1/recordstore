@@ -6,7 +6,6 @@ return(
     <>
     <h1 className="main-header">About us:</h1>
     <p>We are cule</p>
-
     </>
 )
 

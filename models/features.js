@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
     },
-    description: { 
+    text: { 
         type: DataTypes.TEXT,
         allowNull: false
     },
     images: { 
+        allowNull: true,
         type: DataTypes.ARRAY(Sequelize.TEXT),
         defaultValue: [],    
     },

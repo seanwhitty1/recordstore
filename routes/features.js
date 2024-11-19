@@ -5,8 +5,8 @@ const featureController = require('../controllers/featureController');
 const router = new express.Router();
 
 router.get('/', featureController.getAll);
-//router.get('/top', genreController.getAllTop10)
-router.get('/:id', featureController.getByID)
-router.get('/getname/:genre', featureController.getByName)
+
+router.post('/', featureController.createFeature);
+
 
 module.exports = router;

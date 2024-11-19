@@ -11,11 +11,8 @@ const dispatch = useDispatch()
 const navigate = useNavigate()
 const {artist, title, genre, price, descr, image_src, id} = props
 const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
-
 const createRecordGetURL = (genre) => 
     genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
-//both arrays
-
 
 const deleteHandler = async(id) => {
     await axios.delete(`http://localhost:3001/records/${id}`)

@@ -1,6 +1,6 @@
 
 
-.App {
+#App {
   max-width: 80%;
   margin-left: 5%;
   margin-right: 5%;
@@ -31,7 +31,6 @@ textarea { height: auto; }
 
 .main-header {
   margin-left: 73px;
-  margin-top: 50px;
   color: #212529;
   font-size: 22px;
 }
@@ -52,7 +51,7 @@ textarea { height: auto; }
 }
 
 .grid-container {
-  margin-top:200px;
+  margin-top:50px;
   display: grid;
   grid-template-columns: repeat(25, 1fr);
 }
@@ -106,26 +105,18 @@ textarea { height: auto; }
   max-height: 10px;
 }
 
-.vinylImage {
-  position: absolute;
-  max-width: 180px;
-  max-height: 180px;
-  z-index:1;
-  transform: rotate(35);
-}
 
-.logo {
+#logo {
   position: absolute;
  margin-left:170px;
  margin-top:60px;
   width: 500px;
   height:100px;
   z-index:2;
-
   transform: rotate(35);
 }
 
-.vinylImage:hover {
+#vinylLogo:hover {
   transform: rotate(360deg);
   transition: 10s;
 }
@@ -162,8 +153,59 @@ textarea { height: auto; }
   margin-left:10%;
   margin-right: 10%;
   z-index: 0;
+
 }
 
+#vinylLogo {
+  position: absolute;
+  max-width: 180px;
+  max-height: 180px;
+  z-index:1;
+  transform: rotate(35);
+}
 
+@media (max-width: 375px) {
 
+  #vinylLogo {
+    height: 80px;
+    width: 80px;
+    margin-right:200px;
+    margin-top: -25px;
+    margin-left: -25px;
+  }
 
+  #logo {
+  position: absolute;
+   margin-left:20px;
+   margin-top:50px;
+    width: 200px;
+    height:80px;
+    z-index:2;
+    transform: rotate(35);
+  }
+
+  .main-header {
+    margin-left: 22px;
+    color: #212529;
+    font-size: 22px;
+  }
+
+  .form-group {
+    background-colour: blue;
+  }
+
+  .form-button-class {
+    font-size: 500px;
+  }
+
+  .grid-item-main {
+    z-index: 2;
+    justify-content: center;
+    grid-row: 3/8;
+    grid-column: 2/26;
+    padding: 5px;
+    margin-left: 10px;
+    padding-top: 10px;
+  }
+
+}

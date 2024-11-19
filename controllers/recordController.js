@@ -15,7 +15,6 @@ exports.createRecord = async (req, res) => {
       try {
          let discogsID = await axios.get(`https://api.discogs.com/database/search?title=${req.body.title.replace(/\s/g, '+')}&artist=${req.body.artist_name.replace(/\s/g, '+')}&key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr`)
          const discogsRecord = await axios.get(`https://api.discogs.com/${discogsID.data.results[0].type}s/` + discogsID.data.results[0].id + '?key=TOowIbaZcuVVCOslftjB&secret=ZHxMSFhhcAJNmasBMrBsvOXakNIcgGxr') 
-         console.log(discogsRecord.data)
          req.body.images = discogsRecord.data.images
          req.body.tracklist = []
          discogsRecord.data.tracklist.map(trackObject =>  req.body.tracklist.push({...trackObject}))

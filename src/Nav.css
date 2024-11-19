@@ -87,6 +87,18 @@
       margin-left: 0px;
     }
   }
+
+  @keyframes hamburgerin {
+    from {
+      margin-left: 400px;
+    }
+  
+    to {
+      margin-left: 120px;
+    }
+  }
+
+
   
   .nav-menu .nav-link:hover {
     animation: rotate 3s linear 0s 2 alternate;
@@ -218,6 +230,24 @@
     margin: 3.5vw;
     margin-left: -5vw;
   }
+
+  .hamburger-react {
+ 
+    size: 12em;
+    margin-left: auto;
+    position: absolute;
+  }
+
+  .hamburger-menu {
+    padding:20px;
+    margin-top: 120px;
+    
+    animation: hamburgerin 1s forwards;
+  }
+
+  .hamburger-list-item {
+    font-size: 3.2vw;
+  }
   
   .rotate-border {
     position: relative;
@@ -237,6 +267,17 @@
     height: calc(100% + 10px);
     animation: rotateBorder 5s linear infinite;
   }
+
+  @keyframes fadeIn {
+    0% {
+      transform: opacity(0)
+    }
+    100% {
+      transform: opacity(1)
+    }
+   
+  }
+  
   
   @keyframes rotateBorder {
     0% {
@@ -263,11 +304,26 @@
       background-size: cover;
     }
   }
+
+  @keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+  @media only screen and (min-width: 450px) {
+    .hamburger-react {
+      display: none;
+    }
+  }
+
+
   
   @media only screen and (max-width: 450px) {
     nav .nav-menu {
       display: none;
     }
+
+  
   
     /* Start Navbar */
     nav .logo {

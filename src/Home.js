@@ -11,7 +11,7 @@ function Home(){
          <h1 className='main-header'>Latest additions</h1>
          <Recordgrid records={records}/>
          <hr></hr>
-         <h1 className='main-header'>Latest from the Magaize</h1>
+         <h1 className='main-header'>Magaize</h1>
          <Featuregrid/>
         </>
     )

@@ -7,7 +7,7 @@ const app = require("./app")
 app.use(express.json());
 const port = 3001;
 const {db} = require('./config/dbrelationconfig')
-db.sequelize.sync({alter:true}).then(() => {
+db.sequelize.sync({force:true}).then(() => {
   // Database synchronisation is complete
   app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`)

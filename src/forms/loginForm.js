@@ -4,10 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {useAuth} from '../AuthProvider'
 
-
 import '../App.css'
 const bcrypt = require('bcryptjs');
-
 const inputs = ["username", "password"]
 const validateToken = async(token) => {
     let user = await axios.get(`http://127.0.0.1:3001/users/auth/token/${token}`)

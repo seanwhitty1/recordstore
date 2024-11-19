@@ -6,6 +6,7 @@ exports.getAll = async (req, res) => {
     console.log("running getAll Features")
  try {
  const features = await feature.findAll();
+  console.log("inside getALL", features)
  res.json(features);
  } catch (error) {
   console.log(error)
@@ -18,7 +19,7 @@ exports.createFeature = async (req, res) => {
   console.log("runningo ur create feature route")
   console.log(req.body)
  try {
- const newFeature = await feature.create();
+ const newFeature = await feature.create(req.body);
  res.status(201).json(newFeature);
  } catch (error) {
   console.log(error)

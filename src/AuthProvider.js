@@ -6,7 +6,6 @@ const AuthProvider = ({ children }) => {
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem("token"));
   const [user, setUser_] = useState(localStorage.getItem("user"))
-
   // Function to set the authentication token
   const setToken = (newToken) => {
     setToken_(newToken);
@@ -38,8 +37,7 @@ const AuthProvider = ({ children }) => {
     if (user) {
       console.log("user was found")
    
-    } else {
-    
+    } else { 
       localStorage.removeItem('user')
     }
   }, [token]);

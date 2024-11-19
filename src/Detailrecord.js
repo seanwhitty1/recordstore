@@ -9,7 +9,7 @@ import UpdateRecordForm from './forms/updateRecordForm';
 import { useSelector, useDispatch} from 'react-redux';
 import add from './svg/addtocart.svg'
 import { useState } from 'react';
-import soundWave from './svg/soundwave.svg';
+
 import 'react-flash-message'
 import { uniqueSetOfObjects } from './helpers';
 import axios from 'axios';
@@ -57,16 +57,13 @@ function Detailrecord(){
             <>
          <div className='detail-record-grid-container'>   
               <div className='detail-record-grid-item-title-artist-label'>
-            {r.labels[0].thumbnail_url != "active" &&
+            {r.labels[0].thumbnail_url &&
              <img className={`${labelHover == true? 'label-image-hover detail-record-img': 'detail-record-img'}`}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
-            
             }
-           
               <div id="title-artist">
                 <h3 className='inline-header'>{r.title}</h3><br></br>
                 <h3 className='inline-header'>{r.artists[0].artist_name}</h3>
                 <p>{r.format}</p>
-                <img src={soundWave}></img>
                 <br></br>    
                </div>
             </div>
