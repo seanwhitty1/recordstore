@@ -18,7 +18,7 @@ return(
 <div className="container grid-item-navbar">
     <nav>
     <Hamburger className="hamburger" toggled={isOpen} toggle={setOpen} />
-    {isOpen && <HamburgerMenu/>}
+    {isOpen && <HamburgerMenu className="hamburger-menu"/>}
    
       <div class="nav-menu">
       <NavLink className="nav-link" to="/" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>

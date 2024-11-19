@@ -41,6 +41,7 @@ function RegisterForm(){
 
     return(
         <>
+         <div className='form-div'>
         <h1 className='main-header'>If you do not have an account please register</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
@@ -63,6 +64,7 @@ function RegisterForm(){
   Register
 </button>
         </form>
+        </div>
 
         </>
     )

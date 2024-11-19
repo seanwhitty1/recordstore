@@ -58,17 +58,17 @@ function Detailrecord(){
          <div className='detail-record-grid-container'>   
               <div className='detail-record-grid-item-title-artist-label'>
             {r.labels[0].thumbnail_url &&
-             <img className={`${labelHover == true? 'label-image-hover detail-record-img': 'detail-record-img'}`}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
+             <img className={'detail-record-label-img'}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
             }
               <div id="title-artist">
                 <h3 className='inline-header'>{r.title}</h3><br></br>
-                <h3 className='inline-header'>{r.artists[0].artist_name}</h3>
-                <p>{r.format}</p>
+                <h3 id="detail-record-artist" className='inline-header'>{r.artists[0].artist_name}</h3>
+                <p id="release-format"> {r.format}</p>
                 <br></br>    
                </div>
             </div>
             <div className='detail-record-grid-item-description'>
-               <p className='preserveLineBreaks'>{r.description}</p>
+               <p id="release-description" className='preserveLineBreaks'>{r.description}</p>
                <div className='genresListDiv'>
                   <ul className='genresList' > 
                   {r.genres.map(genre => <li className='inlineList'><button type="button" class="btn btn-light">{genre.genre_name}</button></li>)}</ul>
@@ -79,7 +79,7 @@ function Detailrecord(){
            <div className='detail-record-grid-item-image' ><img  onMouseOver={() => setImageFocus(true)} onMouseOut={() => setImageFocus(false)} src={imageFocus && parsedImages.length > 1? parsedImages[1].uri: parsedImages[0].uri }></img>
                <div id="tracklist">
                {parsedTracklist.map(track  => 
-               <div className='trackDetail'><b>{track.position}</b><p>{track.title}  {track.duration}</p></div>)}  
+               <div><b>{track.position}</b><p className='trackDetail'>{track.title} {track.duration}</p></div>)}  
                {r.quantity > 0? <p>In stock</p>: <p>Out of stock</p>}   
                </div>
             </div>

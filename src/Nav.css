@@ -234,7 +234,7 @@
   .hamburger-react {
  
     size: 12em;
-    margin-left: auto;
+    margin-left: 20px;
     position: absolute;
   }
 
@@ -314,6 +314,10 @@
     .hamburger-react {
       display: none;
     }
+
+    .hamburger-menu {
+      display:none;
+    }
   }
 
 
@@ -322,6 +326,7 @@
     nav .nav-menu {
       display: none;
     }
+ 
 
   
   

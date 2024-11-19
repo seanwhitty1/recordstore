@@ -3,8 +3,9 @@ import {useFormik} from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {useAuth} from '../AuthProvider'
-
 import '../App.css'
+import './Forms.css';
+
 const bcrypt = require('bcryptjs');
 const inputs = ["username", "password"]
 const validateToken = async(token) => {
@@ -34,16 +35,12 @@ function LoginForm(){
             let validPassword = await axios.post(`http://localhost:3001/users/login/validate`, {username, password})
             //console.log("validation method", await storedUser.validatePassword(password, storedUser.data.password)) //is not a function//undefined
             console.log("what is returned from our validation route", validPassword)
-  
-                
                 if (validPassword) {
                   // Send JWT
                   //the we send a post requist for GET JWT in user ROute. 
                   try {
                     console.log("comparing did not return error, and res was true", validPassword.data) // functioning
                   //  let token = await storedUser.writeJWT(username, storedUser.data.isAdmin )
-                   
-             
                     setToken(validPassword.data)
                     localStorage.setItem("token", validPassword.data)
                     //setUser(user.data)
@@ -61,6 +58,7 @@ function LoginForm(){
     });
     return(
         <>
+        <div className='form-div'>
         <h1 className='main-header'>Please login</h1>
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
@@ -83,6 +81,7 @@ function LoginForm(){
   Login!
 </button>
         </form>
+        </div>
         </>
     )
 } 

@@ -32,7 +32,9 @@ function NewFeatureForm(){
     });
     return(
         <>
+         <div className='form-div'>
         <h1 className='main-header'>Here we can add a new record Admin use only</h1>
+        
         <form autoComplete='off' onSubmit={handleSubmit}>
         {inputs.map(word => 
         <div className='form-group'>
@@ -61,6 +63,7 @@ function NewFeatureForm(){
         <button type="submit" class="btn btn-primary">Submit!</button>
 
         </form>
+        </div>
         </>
     )
 } 

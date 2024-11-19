@@ -5,6 +5,10 @@
     grid-auto-rows: auto;
   }
 
+  #addToCart {
+    margin-top: 15px;
+  }
+
 .detail-record-grid-item-artist-description {
     padding: 15px;
     grid-row: 1;
@@ -66,8 +70,6 @@ overflow-wrap: break-word;
     float-left:20px;
     clear: right;
     display: inline;
- 
-
   }
 
   .detail-record-grid-related-header2 {
@@ -78,18 +80,9 @@ overflow-wrap: break-word;
     float-left:20px;
     clear: right;
     display: inline;
- 
   }
 
-  .label-image-hover {
-    opacity: 50%
-  }
 
-  .inline-header {
-    display:inline;
-    
- 
-  }
 
   #discover-more {
     margin-top: 10px;
@@ -99,6 +92,7 @@ overflow-wrap: break-word;
   #title-artist {
     grid-row: 1;
     grid-column: 1;
+
   
   }
 
@@ -107,15 +101,14 @@ overflow-wrap: break-word;
     grid-column: 2;
   }
 
-  .detail-record-img{
+  .detail-record-label-img{
  
-    max-width: 200px;
-    max-height: 200px;
+    height: 200px;
+    width: 300px;
     grid-row: 1;
+    margin-left: 20px;
     grid-column: 2;
-   
-    min-width: 200px;
-    min-height: 200px;
+
     float-right: 200px;
     display: inline;
     margin-top: 0;
@@ -179,3 +172,62 @@ overflow-wrap: break-word;
     position: absolute;
     float-left: 100px;
   }
+
+  .trackDetail {
+    fontsize: 50px;
+  }
+
+  @media only screen and (max-width: 450px) {
+
+    #tracklist {
+      display:none;
+    }
+
+    .trackDetail {
+      fontsize: 5px;
+    }
+
+    #release-description {
+      font-size: 8px;
+    }
+
+    .detail-record-grid-item-description {
+      grid-row: 2;
+      margin-left: 35px;
+      margin-top: -30px;
+      grid-column: 3/30;
+       
+    }
+    
+    #title-artist {
+      grid-row: 1;
+      grid-column: 1;
+
+    }
+
+    #release-format {
+      size: 2px;
+    }
+
+    #detail-record-artist {
+
+      margin-top: -25px;
+    }
+  
+    .detail-record-label-img{
+      height: 100px;
+      width: 150px;
+      grid-row: 1;
+      grid-column: 2;
+      display: none;
+
+      margin-top: 0;
+      margin-bottom: 10px;
+      object-fit: fill;
+  
+    }
+
+
+  }
+   
+ 

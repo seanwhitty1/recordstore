@@ -6,11 +6,38 @@
     margin: 0 auto;
     justify: center;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   
   }
   
   .map {
     grid-column: 2;
     border: 1px solid black;
+  }
+
+  #map {
+    width:600px;
+    height: 450px;
+  }
+
+ 
+
+  @media only screen and (max-width: 450px) {
+
+    #map {
+      width:50x;
+      height:50px;
+    }
+
+    .map {
+      grid-column: 1;
+      border: 1px solid black;
+    }
+
+    #how-to-contact {
+      grid-row: 2;
+      grid-column: 1;
+      }
+
   }
