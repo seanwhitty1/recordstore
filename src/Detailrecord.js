@@ -28,7 +28,7 @@ function Detailrecord(){
     const params = useParams()
     const {id} = params;
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
-    console.log("record is:", r)
+    console.log("record is:", r) //working
     const parsedTracklist = r.tracklist.map(track => JSON.parse(track))
     const parsedImages = r.images.map(image => JSON.parse(image))
     useEffect(() => {
@@ -44,13 +44,14 @@ function Detailrecord(){
                 }
                 return uniqueSetOfObjects(recordsCache)
             }
-            let allFromArtist =  await axios.get(`http://127.0.0.1:3001/artists/name/${r.artists[0].artist_name}`)
             setGenreRecords(await allFromGenres())
-            setAllFromArtist(allFromArtist.data.records)
+            setAllFromArtist(records.filter(rec =>  rec.artists[0].artist_name == r.artists[0].artist_name))
         }
         getGenreAndArtist()
         $(window).scrollTop(0);
     },[id])
+
+    console.log("all from artist", allFromArtist)
 
        if(r.id !== 'placeholder'){
         return(
@@ -61,7 +62,7 @@ function Detailrecord(){
              <img className={'detail-record-label-img'}  src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
             }
               <div id="title-artist">
-                <h3 className='inline-header'>{r.title}</h3><br></br>
+                <h3 id="detail-record-title" className='inline-header'>{r.title}</h3><br></br>
                 <h3 id="detail-record-artist" className='inline-header'>{r.artists[0].artist_name}</h3>
                 <p id="release-format"> {r.format}</p>
                 <br></br>    

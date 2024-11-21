@@ -15,17 +15,21 @@ const cart = useSelector(store => store.cart)
 const user = useSelector(store => store.user)
 const inFocus = useSelector(store => store.focus);
 const inCart = cart.filter(cartItem => cartItem.id == id)
+
+console.log("imagessss",)
 const parsedImages = images.map(image => JSON.parse(image))
+console.log("inside the record comp", artists)
 
 let artist = artists[0].artist_name
 
-console.log("in our record,", title, price, genre) // artist and genre are undefined 
+console.log("in our record,", title, price, genre, artist) // artist and genre are undefined 
+console.log("parsherdddd", images)
+console.log("after")
+
 const clickHandler = (e) => {
     e.preventDefault()
     dispatch({type:"ADDTOCART", payload:{id, artist,title,genre, price, image_src:parsedImages[0].uri}})
-    if(user){
-        axios.post(`${baseURL}users/addItemToCart`, {user_id: user.data.id, id:id})
-    }
+    if(user){axios.post(`${baseURL}users/addItemToCart`, {user_id: user.data.id, id:id})}
 }
 return(
     <>

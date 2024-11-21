@@ -14,6 +14,7 @@ exports.getAll = async (req, res) => {
    exports.getByName = async (req, res) => {
       try{
          const foundArtist = await artist.findOne({where: {artist_name: req.params.artist_name}, include: { all: true, nested: true }});
+         console.log("test", foundArtist)
          return res.json(foundArtist)
       } catch(err){
          console.log(err)

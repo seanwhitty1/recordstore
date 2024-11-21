@@ -10,7 +10,7 @@ const Contact = () => (
         </div>
         <br></br>
         <hr></hr>
-        <p>We are centrally located in Berlin's Neukolln district, on Weserstrasse, accessible by bus and train</p>
+        <p id="how-to-contact">We are centrally located in Berlin's Neukolln district, on Weserstrasse, accessible by bus and train</p>
         </div>
         </div>
         </>
