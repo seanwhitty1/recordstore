@@ -2,9 +2,3 @@
     margin-top: 30px;
 }
 
-@media (max-width: 375px) {
-    .main-div {
-        margin-top: 50px;
-    }
-}
-

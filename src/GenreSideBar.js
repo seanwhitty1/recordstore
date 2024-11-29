@@ -1,11 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./GenreSideBar.css"
+
 import "./App.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { compareRecords } from "./helpers";
+import styles from "./index.css"
 
 function GenreSideBar(){
     const navigate = useNavigate()
@@ -30,9 +32,9 @@ return(
 <>
 <div id="genreSide" className='grid-item-genreBar'>
 <p>Browse by Genre</p>
-<ul>
-{count.map((c) => <li><p className="genre-title" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</p></li>)}
-</ul>
+
+{count.map((c) => <p className="text-xs mb-20px sm:text-sm md:text-md lg-text-lg xl-text-xl" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</p>)}
+
 </div> 
 </>
 )

@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import UserDashboard from './UserDashboard';
 import { baseURL } from './helpers.js';
+import styles from "./index.css"
 
 const Main = () => {
   const {user } = useAuth()
@@ -54,7 +55,7 @@ const Main = () => {
   if(records){
 return(
     <>
-    <div className='main-div'>
+
     {user && <h1>hello {user.data.username}</h1>}
     <Routes>
     <Route path='/' element={ <Home/>} />
@@ -69,8 +70,9 @@ return(
     <Route path ='/userdashboard' element={<UserDashboard/>}/>
     <Route path= '/fullcart' element={<CartDetail/>}/>
     </Routes>
-    </div>
+ 
     <hr></hr>
+
     </>)
 } else {
   return(

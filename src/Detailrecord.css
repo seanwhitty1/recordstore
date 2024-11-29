@@ -1,47 +1,43 @@
 .detail-record-grid-container {
     display: grid;
-    margin-top: 50px;
-    grid-template-columns: repeat(20, 1fr);
-    grid-auto-rows: auto;
+  
+    grid-template-columns: repeat(20, 50px);
+    grid-template-rows: repeat(20, 50px);
+    grid-row-gaps: 10px;
+    column-gap: 3px;
+    margin-left: 20px;
   }
 
   #addToCart {
     margin-top: 15px;
   }
 
-.detail-record-grid-item-artist-description {
-    padding: 15px;
-    grid-row: 1;
-    grid-column: 5/10; 
-  }
   
-  .detail-record-grid-item-title-artist-label {
-    grid-row: 1;
-    grid-column: 10/20;
-    display: grid;
- 
-    grid-template-columns: auto;
-    grid-auto-rows: 2;
-  }
+
   
   .detail-record-grid-item-image {
-    grid-row: 1/4;
-    grid-column: 2/9;
-    height: minmax(300px);
-    width: minmax(300px);
+    grid-row: 1/5;
+    grid-column: 1/5;
+    background-colour: red;
    
   }
-  .detail-record-grid.titleAndDescription {
-    grid-column: 10/20;
-    grid-row: 1
+
+  .related-records-div {
+    grid-row: 19/25;
+    grid-column: 1/5;
+
   }
+
   
   .detail-record-grid-item-description {
-    grid-row: 2;
-    margin-left: 35px;
-    grid-column: 9/20;
-    padding: 0 10px;  
+    grid-row: 7/15;
+   
+    grid-column: 1/5;
+ 
+    padding-top:15px;
+    padding-bottom: 10px;
   }
+
 
   .detail-record-linebreak {
     grid-column: 2/20;
@@ -72,18 +68,14 @@ overflow-wrap: break-word;
     display: inline;
   }
 
-  .detail-record-grid-related-header2 {
+  .related-header2 {
     grid-row: 14;
     grid-column: 2/14;
-    margin-left: 25px;
+  
     margin-top: 60px;
-    float-left:20px;
     clear: right;
     display: inline;
   }
-
-
-
   #discover-more {
     margin-top: 10px;
     margin-left: 300px;
@@ -93,34 +85,19 @@ overflow-wrap: break-word;
     margin-top: -20px;
   }
 
-  #title-artist {
-    grid-row: 1;
-    grid-column: 1;
+  .title-artist {
+    grid-row: 5/7;
+    grid-column: 1/5;
+    padding-top: 10px;
+ 
 
-  
   }
 
   .detail-record-label-img-container {
-    grid-row: 1;
-    grid-column: 2;
+    grid-row: 6/7;
+    grid-column:4;
+    margin-left:3px
   }
-
-  .detail-record-label-img{
- 
-    height: 200px;
-    width: 300px;
-    grid-row: 1;
-    margin-left: 15px;
-    grid-column: 2;
-
-    float-right: 200px;
-    display: inline;
-    margin-top: 0;
-    margin-bottom: 30px;
-    object-fit: fill;
-
-  }
-
 
   .detail-record-grid-related-records2 {
     grid-row: 15;
@@ -154,17 +131,17 @@ overflow-wrap: break-word;
     aligh-content: left;
     justify-content: left;
     margin: 0; padding: 0;
-
     display: flex;
   }
 
   #tracklist {
- 
     grid-column: 2/4;
     padding-top:10px;
-    grid-row: 4;
+    gid-row: 4;
 
   }
+
+
 
   .trackDetail {
     font-size: 15px;
@@ -181,68 +158,35 @@ overflow-wrap: break-word;
     fontsize: 50px;
   }
 
-  @media only screen and (max-width: 450px) {
-
-    #tracklist {
-      display:none;
-    }
-
-    .trackDetail {
-      fontsize: 5px;
-    }
-
-    #release-description {
-      font-size: 8px;
-    }
-
-    .detail-record-grid-item-description {
-      grid-row: 2;
-      margin-left: 35px;
-      margin-top: -30px;
-      grid-column: 3/30;
-       
-    }
-    
-    #title-artist {
-      grid-row: 1;
-      grid-column: 1;
-
-    }
-
-    #release-format {
-      size: 2px;
-    }
-
-    #detail-record-artist {
-      margin-top: -25px;
-      font-size: 12px;
-    }
-
-    #detail-record-title {
-      margin-top: -5px;
-      font-weight: bold;
-      font-size: 12px;
-    }
-  
-  
-    .detail-record-label-img{
-      height: 100px;
-      width: 150px;
-      grid-row: 1;
-      grid-column: 2;
-      display: none;
-
-      margin-top: 0;
-      margin-bottom: 10px;
-      object-fit: fill;
-  
-    }
-
-    #release-format {
-      font-size: 12px;
-    } 
-
-
+  #tracklist {
+    display:none;
   }
-   
+
+  .trackDetail {
+    fontsize: 5px;
+  }
+
+  
+
+  #release-format {
+    size: 2px;
+  }
+
+  #detail-record-artist {
+    margin-top: -25px;
+    font-size: 12px;
+  }
+
+  #detail-record-title {
+    margin-top: -5px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  #release-format {
+    font-size: 12px;
+  } 
+
  
+
+

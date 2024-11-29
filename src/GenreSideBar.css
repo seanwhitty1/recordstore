@@ -1,58 +1,17 @@
-
 #genreList {
     list-style-type: none;
 }
 
 #genreSide {
-    padding: 5px;
+  
     overflow: show;
-    font-size:12px;
     height: 500px;
-    margin-top: 130px;
     z-index: 1;
 }
 
-  .genre-title {
-    font-size: 15px;
-
-  }
 
   .genre-title:hover {
-
     font-weight: bold;
   }
 
-  @media (max-width: 375px) {
-    #genreSide {
-      padding: 2px;
-      overflow: show;
-      font-size:6px;
-      height: 500px;
-      margin-top: 130px;
-      margin-left: -10px;
-      z-index: 1;
   
-  }
-
-  .genre-title {
-    font-size: 8px;
-    margin-left: -30px;
-  }
-
-}
-
-
-
-  
-  
-  
-  
-  
-  
-
-
-
- 
-
-
-

@@ -8,6 +8,7 @@ import cartIcon  from './svg/shopping-cart.svg'
 import Hamburger from 'hamburger-react'
 import HamburgerMenu from './Hamburgermenu';
 import { useState } from 'react';
+import styles from "./index.css"
 
 const Navigation = () => {
 const dispatch = useDispatch()
@@ -15,23 +16,26 @@ const [isOpen, setOpen] = useState(false)
 
 return(
 <>
-<div className="container grid-item-navbar">
-    <nav>
-    <Hamburger className="hamburger" toggled={isOpen} toggle={setOpen} />
+<nav>
+<div className="grid-item-navbar">
+     
+    <Hamburger  toggled={isOpen} toggle={setOpen} className='col-span-1' />
+   
     {isOpen && <HamburgerMenu className="hamburger-menu"/>}
    
-      <div class="nav-menu">
-      <NavLink className="nav-link" to="/" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
+      <div className='nav-menu opacity-0'>
+      <NavLink className="nav-link hidden" to="/" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
         <NavLink className="nav-link" to="/browseall">Browse</NavLink>
-        <NavLink className="nav-link" to="/magazine">Magazine</NavLink>
-        <NavLink className="nav-link" to="/artwork">Artwork</NavLink>
+        <NavLink className="nav-link " to="/magazine">Magazine</NavLink>
+        <NavLink className="nav-link " to="/artwork">Artwork</NavLink>
         <NavLink className="nav-link" to="/contactus">Contact</NavLink>
         <div id="navbar-icons">
         <NavLink to="userdashboard"><a href=""><img className='userIcon'src={userIcon}></img></a></NavLink><NavLink to="/fullcart"><img className='cartIcon' src={cartIcon}></img></NavLink>
         </div>
       </div>
-    </nav>
+   
     </div>
+    </nav>
 </>
 )};
 

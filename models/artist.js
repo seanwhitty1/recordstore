@@ -1,6 +1,5 @@
 
 const Sequelize = require("sequelize")
-const {hasMany, belongsTo} = require("sequelize")
 
 module.exports = (sequelize, DataTypes) => {
     const artist = sequelize.define('artist' , {

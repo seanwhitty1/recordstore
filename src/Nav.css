@@ -3,22 +3,16 @@
     padding: 0;
     box-sizing: border-box;
   }
-  .container {
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-color: white;
-    max-height: 75px;
-    filter: brightness(120%) saturate(150%) drop-shadow(2px 2px 10.5rem #fff);
+
+  .nav-menu {
+    display:none;
+    visibility: invisible;
+    background-color: red;
   }
+
   nav {
-    height: 14%;
-    width: 70%;
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
   
-    margin-left: 25%
   }
   .siteTitle {
     margin-top:15px;
@@ -29,15 +23,14 @@
   }
   .nav-menu {
     width: fit-content;
+    display:flex;
     height: 12vh;
-    display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 10px;
     animation: sidein 2s linear 0s 1 alternate;
   }
   .nav-menu .nav-link {
-    display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 9vw;
@@ -82,7 +75,6 @@
     from {
       margin-left: 100%;
     }
-  
     to {
       margin-left: 0px;
     }
@@ -92,14 +84,11 @@
     from {
       margin-left: 400px;
     }
-  
     to {
-      margin-left: 120px;
+      margin-left: 90px;
     }
   }
 
-
-  
   .nav-menu .nav-link:hover {
     animation: rotate 3s linear 0s 2 alternate;
   }
@@ -239,10 +228,10 @@
   }
 
   .hamburger-menu {
-    padding:20px;
-    margin-top: 120px;
-    
-    animation: hamburgerin 1s forwards;
+    padding:15px;
+    animation: hamburgerin 0.5s forwards;
+    display:flex;
+    position: absolute;
   }
 
   .hamburger-list-item {
@@ -310,110 +299,10 @@
     100% { opacity: 0; }
 }
 
-  @media only screen and (min-width: 450px) {
-    .hamburger-react {
-      display: none;
-    }
-
-    .hamburger-menu {
-      display:none;
-    }
-  }
 
 
-  
-  @media only screen and (max-width: 450px) {
-    nav .nav-menu {
-      display: none;
-    }
- 
 
-  
-  
-    /* Start Navbar */
-    nav .logo {
-      font-size: 2.1rem;
-    }
-  
-    .menubtn {
-      display: block;
-    }
-  
-    nav .nav-menu {
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin-top: 51.8rem;
-      height: 85%;
-      z-index: 999;
-      background-color: gray;
-    }
-  
-    nav .nav-menu a {
-      padding: 3rem;
-      min-width: 100vw;
-      font-size: 2.1rem;
-    }
 
-   nav .nav-menu .nav-link {
-        padding: 3rem;
-        min-width: 100vw;
-        font-size: 2.1rem;
-      }
-    /* End Navbar */
-  
-    /* Start Hero section */
-    .main-container {
-      width: 100%;
-      height: 90%;
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .left {
-      width: 100%;
-      height: 100%;
-    }
-  
-    .left button {
-      padding: 0.6rem 8.5vw;
-      font-size: 7.2vw;
-      font-weight: 900;
-    }
-  
-    .right {
-      width: 100%;
-      height: 100%;
-    }
-  
-    .right h2 {
-      font-size: 9.2vw;
-    }
-  
-    .right form {
-      width: 100%;
-      height: 100%;
-    }
-  
-    .right form label {
-      font-size: 4.4vw;
-      letter-spacing: 0.1vw;
-    }
-  
-    .right form label input {
-      width: 75vw;
-      height: 5vh;
-      font-size: 5vw;
-    }
-  
-    .right form button {
-      padding: 1.2rem 20vw;
-      font-size: 5.2vw;
-      margin-left: -9vw;
-    }
-  
-    /* End Hero section */
-  }
 
   #navbar-icons {
   display: grid;

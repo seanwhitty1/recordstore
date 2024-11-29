@@ -1,55 +1,22 @@
-.recordgrid-container {
-
-    display: flex;
-    flex-direction: row;
-    justify-items: Start;
-    flex-wrap: wrap;
-    padding: 5px;
-  
-  }
-
-  .recordgrid-item:hover {
-    opacity: 60%;
-  }
-  .related-recordgrid-container {
-
-    display: flex;
-    flex-direction: row;
-    justify-items: space-evenly;
-    flex-wrap: wrap;
-  }
-
-  .recordgrid-item {
-    border: 2px solid black;
-  }
-  .related-recordgrid-item{
-
-    max-width: 150px;
-    max-height: 150px;
-    margin: 10px;
-    border: 1px solid black;
-  }
 
 
-
-@media (max-width: 375px) {
-
-  .recordgrid-container {
-
-    display: flex;
-    flex-direction: row;
-    justify-items: Start;
-    flex-wrap: wrap;
-    padding: 5px;
-    margin-top: -25px;
-  
-  }
-
+.recordgrid-item:hover {
+  opacity: 60%;
 }
 
 
-  
-  
+.recordgrid-item {
+  border: 2px solid black;
+  margin-right:10px;
+  margin-top:10px;
+}
+.related-recordgrid-item{
+
+  max-width: 150px;
+  max-height: 150px;
+  margin: 10px;
+  border: 1px solid black;
+}
 
 
-  
+

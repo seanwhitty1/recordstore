@@ -37,7 +37,7 @@ function BrowseAll(){
             <h1 className="main-header">Browse by Artist</h1>
             <ul className="alphabet-list">
             {alphabet.map(a =>
-            <li className="alphabet-letter"><button onClick={() => {alphabetize(a)}}>{a}</button></li>)}
+            <li className="alphabet-letter lg:color-blue;"><button onClick={() => {alphabetize(a)}}>{a}</button></li>)}
             </ul>
 <div className="searchBar">     
 <select id="filterQuery" name="filterQuery" className="margin-right-10">

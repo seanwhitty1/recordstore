@@ -2,6 +2,7 @@
     overflow: hidden;
     display: inline-flex;
     object-fit: fill;
+  
 }
 
 .link_class {
@@ -17,48 +18,31 @@
 
 
 .recordItem-Image {
-    grid-column: 1/6;
-    grid-row: 1/6;
+
      width: 100%;
      height: 100%;
-     width: minmax(200px);
-     height: minmax(200px);
      object-fit: fill;
      overflow: hidden;
      z-index: 0;
  
 }
 
-@keyframes fadein {
-    from {
-      opacity: 0%;
-    }
-  
-    to {
-      opacity: 100px;
-    }
-  }
-
-
 
 .recordgrid-item{
-    display: grid;
-    height: minmax(200px);
-    width: minmax(200px);
+
     border: none;
-    grid-row: 1;
-    grid-column: 1;
+    margin-bottom: 10px;
+ 
     z-index: 1;
     position: relative;
-    grid-template-columns: repeat(5, 45px);
-    grid-template-rows: repeat(5, 45px);
+    height: 200px;
+    width: 200px;
+    
     animation: fadein 0.5s linear 0s 1 alternate;
-
   }
 .recordgrid-outer {
-    max-width: 200px;
-    max-height: 200px;
-    margin: 20px;
+
+    margin: 10px;
     grid-template-rows: repeat(2, 225px);
     grid-template-columns: repeat(6, 1fr);
  
@@ -87,5 +71,16 @@
     float: right 100%;
     z-index:
 }
+
+@keyframes fadein {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100px;
+  }
+}
+
 
 
