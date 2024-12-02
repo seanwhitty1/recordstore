@@ -4,14 +4,12 @@
   opacity: 60%;
 }
 
-
 .recordgrid-item {
   border: 2px solid black;
   margin-right:10px;
   margin-top:10px;
 }
 .related-recordgrid-item{
-
   max-width: 150px;
   max-height: 150px;
   margin: 10px;

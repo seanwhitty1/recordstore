@@ -5,10 +5,11 @@ import './App.css'
 import $ from 'jquery';
 import Record from './Record'
 import { useSelector} from 'react-redux';
+import Recordgrid from "./Recordgrid";
 
 function BrowseAll(){
-    const records = useSelector(state => state.records)
-    let [recordsByLetter, setRecordsByLetter] = useState(records)
+    const recs = useSelector(state => state.records)
+    let [recordsByLetter, setRecordsByLetter] = useState(recs)
     let [searchItem, setSearchItem] = useState("")
     let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
     const inputs = ["artist","title", "genre", "price"]
@@ -18,9 +19,9 @@ function BrowseAll(){
         setSearchItem( e.target.value)
         const regex = new  RegExp(`${e.target.value}`)
 
-        if (records.filter((record) => regex.test(record.title) == true)){
-            console.log("found", records.filter((record) => regex.test(record[inputQuery])))
-          setRecordsByLetter(records.filter((record) => regex.test(record[inputQuery])))
+        if (recs.filter((record) => regex.test(record.title) == true)){
+            console.log("found", recs.filter((record) => regex.test(record[inputQuery])))
+          setRecordsByLetter(recs.filter((record) => regex.test(record[inputQuery])))
   
         } else {
           console.log("nothing found")
@@ -28,10 +29,10 @@ function BrowseAll(){
     }
 
     const alphabetize = async(letter) => {
-        setRecordsByLetter(records.filter((record) => record.artists[0].artist_name[0] === letter))
+        setRecordsByLetter(recs.filter((recs) => recs.artists[0].artist_name[0] === letter))
     }
         let toRender
-        recordsByLetter.length > 0? toRender = recordsByLetter: toRender = records
+        recordsByLetter.length > 0? toRender = recordsByLetter: toRender = recs
         return(
             <>
             <h1 className="main-header">Browse by Artist</h1>
@@ -53,9 +54,10 @@ function BrowseAll(){
         {searchItem && <h1 className="margin-left-15 margin-top-10 text-offBlack">Searching {inputQuery}s for: {searchItem}</h1>}
       </div>
             <div className="recordgrid-container">
-            {recordsByLetter.length > 0? toRender.map     
-            (r => <Record className='recordgrid-item' {...r} />
-            ): <h1 className="no-results">No results found</h1>
+           
+            {recordsByLetter.length > 0? <Recordgrid records={recordsByLetter}/>
+                                        : <h1 className="no-results">No results found</h1>
+
             } 
             </div>
            </>

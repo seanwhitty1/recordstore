@@ -1,6 +1,5 @@
 .detail-record-grid-container {
     display: grid;
-  
     grid-template-columns: repeat(20, 50px);
     grid-template-rows: repeat(20, 50px);
     grid-row-gaps: 10px;
@@ -17,31 +16,19 @@
   
   .detail-record-grid-item-image {
     grid-row: 1/5;
-    grid-column: 1/5;
     background-colour: red;
    
   }
 
   .related-records-div {
-    grid-row: 19/25;
     grid-column: 1/5;
-
   }
 
   
   .detail-record-grid-item-description {
     grid-row: 7/15;
-   
-    grid-column: 1/5;
- 
     padding-top:15px;
     padding-bottom: 10px;
-  }
-
-
-  .detail-record-linebreak {
-    grid-column: 2/20;
-
   }
 
   .preserveLineBreaks {
@@ -93,11 +80,6 @@ overflow-wrap: break-word;
 
   }
 
-  .detail-record-label-img-container {
-    grid-row: 6/7;
-    grid-column:4;
-    margin-left:3px
-  }
 
   .detail-record-grid-related-records2 {
     grid-row: 15;

@@ -2,14 +2,6 @@
     list-style-type: none;
 }
 
-#genreSide {
-  
-    overflow: show;
-    height: 500px;
-    z-index: 1;
-}
-
-
   .genre-title:hover {
     font-weight: bold;
   }

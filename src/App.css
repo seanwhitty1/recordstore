@@ -72,24 +72,26 @@ textarea { height: auto; }
 
 
 .grid-item-navbar {
-  grid-row: 1;
-  grid-column: 2/26;
+ 
   display:grid; 
+  grid-row:0;
   grid-template-columns: repeat(5, 50px);
+
 
 }
 
 .grid-item-genreBar{
   grid-row: 5/6;
-  grid-column: 0/5;
   z-index: -1;
+  overflow: show;
+  height: 500px;
+  z-index: 1;
 }
 
 .grid-item-main {
   z-index: 2;
   justify-content: center;
   grid-row: 4/8;
-  grid-column: 4/30;
   margin-left: -50px;
   padding-top: 30px;
 }
@@ -113,7 +115,7 @@ textarea { height: auto; }
 
 #logodiv {
   grid-row:2/4;
-  grid-column:1/9;
+
   margin-top:25x;
   margin-right:25px;
   margin-botton: -40px;

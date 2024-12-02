@@ -30,10 +30,10 @@ function GenreSideBar(){
 
 return(
 <>
-<div id="genreSide" className='grid-item-genreBar'>
+<div className='grid-item-genreBar col-start-0 lg:col-span-5'>
 <p>Browse by Genre</p>
 
-{count.map((c) => <p className="text-xs mb-20px sm:text-sm md:text-md lg-text-lg xl-text-xl" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</p>)}
+{count.map((c) => <p className="text-xs mb-20px sm:text-md md:text-lg lg-text-2xl lg:tracking-widest xl-text-2xl" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</p>)}
 
 </div> 
 </>

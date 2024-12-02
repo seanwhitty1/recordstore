@@ -4,12 +4,6 @@
     box-sizing: border-box;
   }
 
-  .nav-menu {
-    display:none;
-    visibility: invisible;
-    background-color: red;
-  }
-
   nav {
     width: 100%;
   
@@ -33,7 +27,7 @@
   .nav-menu .nav-link {
     justify-content: space-evenly;
     align-items: center;
-    width: 9vw;
+    width: 14vw;
     height: 6vh;
     text-decoration: none;
     border-radius: 4px;
@@ -49,8 +43,8 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 8vw;
-    height: 6vh;
+    width: 10vw;
+    height: 8vh;
     text-decoration: none;
     border-radius: 4px;
     font-size: 1.3vw;

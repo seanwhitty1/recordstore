@@ -17,14 +17,13 @@ const [isOpen, setOpen] = useState(false)
 return(
 <>
 <nav>
-<div className="grid-item-navbar">
-     
-    <Hamburger  toggled={isOpen} toggle={setOpen} className='col-span-1' />
+<div>  
+    <Hamburger  toggled={isOpen} toggle={setOpen} className='hidden' />
    
-    {isOpen && <HamburgerMenu className="hamburger-menu"/>}
+    {isOpen && <HamburgerMenu className="hamburger-menu "/>}
    
-      <div className='nav-menu opacity-0'>
-      <NavLink className="nav-link hidden" to="/" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
+      <div className='nav-menu hidden max-lg:flex ml-50px'>
+      <NavLink className="nav-link" to="/" onClick={() => dispatch({ type: "SELECTGENRE", payload: null})}>Home</NavLink>
         <NavLink className="nav-link" to="/browseall">Browse</NavLink>
         <NavLink className="nav-link " to="/magazine">Magazine</NavLink>
         <NavLink className="nav-link " to="/artwork">Artwork</NavLink>
