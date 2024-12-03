@@ -6,7 +6,7 @@ function DetailBubble(props){
     console.log("what are our props inside detail bubble", artist, title, genre, price)
     return(
         <>
-        <div className='detail-bubble'>
+        <div className='detail-bubble fixed'>
         <ul id="detail-bubble-list">
         <li className='detail-bubble-list-item'>{artist}</li>
         <li>{title}</li>

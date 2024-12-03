@@ -17,7 +17,7 @@
   }
   .nav-menu {
     width: fit-content;
-    display:flex;
+  
     height: 12vh;
     justify-content: space-evenly;
     align-items: center;
@@ -40,7 +40,6 @@
     box-shadow: 1px 1px 2px 1px gray;
   }
   .nav-menu .nav-link {
-    display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 10vw;
@@ -79,7 +78,7 @@
       margin-left: 400px;
     }
     to {
-      margin-left: 90px;
+      margin-left: 40px;
     }
   }
 

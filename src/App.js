@@ -22,13 +22,12 @@ const App = () => {
     <div className="w-100px" id="vinyldiv" >
     <img className='offBlack size-100px' src={vinyl} /> 
     </div>
-    <div className='mb-70px float-left col-start-1 col-span-9 md:w-100 md:bg-red-200' id="logodiv">
+    <div className='mb-70px float-left col-start-1 col-span-7' id="logodiv">
       <img id="logo" src={logo} className='object-fill'/> 
     </div>
     <GenreSideBar className=''/>
-    <div className="grid-item-navbar col-start-6 col-span-20">
     <Navigation />
-    </div>
+    
     <div className="grid-item-main col-start-4 lg:col-start-7 lg:col-span-20"> 
    
     <Main/>

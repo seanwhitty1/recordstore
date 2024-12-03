@@ -6,6 +6,7 @@
 
 .recordgrid-item {
   border: 2px solid black;
+  display: inline-block;
   margin-right:10px;
   margin-top:10px;
 }

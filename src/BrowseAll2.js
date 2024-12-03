@@ -3,7 +3,6 @@ import './Recordgrid.css'
 import './BrowseAll.css'
 import './App.css'
 import $ from 'jquery';
-import Record from './Record'
 import { useSelector} from 'react-redux';
 import Recordgrid from "./Recordgrid";
 
@@ -18,7 +17,6 @@ function BrowseAll(){
     const handleInputChange = (e) => { 
         setSearchItem( e.target.value)
         const regex = new  RegExp(`${e.target.value}`)
-
         if (recs.filter((record) => regex.test(record.title) == true)){
             console.log("found", recs.filter((record) => regex.test(record[inputQuery])))
           setRecordsByLetter(recs.filter((record) => regex.test(record[inputQuery])))
@@ -36,9 +34,9 @@ function BrowseAll(){
         return(
             <>
             <h1 className="main-header">Browse by Artist</h1>
-            <ul className="alphabet-list">
+            <ul className="alphabet-list w-max ml-0 flex max-md:hidden">
             {alphabet.map(a =>
-            <li className="alphabet-letter lg:color-blue;"><button onClick={() => {alphabetize(a)}}>{a}</button></li>)}
+            <li className="alphabet-letter"><button onClick={() => {alphabetize(a)}}>{a}</button></li>)}
             </ul>
 <div className="searchBar">     
 <select id="filterQuery" name="filterQuery" className="margin-right-10">
@@ -54,11 +52,8 @@ function BrowseAll(){
         {searchItem && <h1 className="margin-left-15 margin-top-10 text-offBlack">Searching {inputQuery}s for: {searchItem}</h1>}
       </div>
             <div className="recordgrid-container">
-           
             {recordsByLetter.length > 0? <Recordgrid records={recordsByLetter}/>
-                                        : <h1 className="no-results">No results found</h1>
-
-            } 
+                                        : <h1 className="no-results">No results found</h1>} 
             </div>
            </>
         )

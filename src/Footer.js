@@ -6,7 +6,7 @@ const Footer = () => {
     return(
         <>
     
-        <footer className='margin-top-60 w-50 hidden md:flex lg:flex'>
+        <footer className='margin-top-60 w-50 hidden'>
     <div class="bottom-details">
       <div class="bottom_text">
         <span class="copyright_text">Copyright © 2024 <a href="#">Sean Whitty.</a>All rights reserved</span>

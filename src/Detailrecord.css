@@ -11,25 +11,15 @@
     margin-top: 15px;
   }
 
-  
-
-  
   .detail-record-grid-item-image {
     grid-row: 1/5;
     background-colour: red;
-   
   }
 
   .related-records-div {
     grid-column: 1/5;
   }
 
-  
-  .detail-record-grid-item-description {
-    grid-row: 7/15;
-    padding-top:15px;
-    padding-bottom: 10px;
-  }
 
   .preserveLineBreaks {
     white-space: pre-wrap;
@@ -39,7 +29,6 @@ overflow-wrap: break-word;
   .detail-record-grid-related-artist {
     grid-row: 8;
     grid-column: 2/14;
-    margin-left: 20px;
     float-left:20px;
     clear: right;
     display: inline;
@@ -73,11 +62,11 @@ overflow-wrap: break-word;
   }
 
   .title-artist {
-    grid-row: 5/7;
-    grid-column: 1/5;
     padding-top: 10px;
- 
+  }
 
+  .description-flexible {
+    grid-auto-flow: row;
   }
 
 
@@ -99,14 +88,11 @@ overflow-wrap: break-word;
     margin-right: 10px;
     float-left: 20px;
     margin: 0; padding: 0;
-  
   }
 
   .genresList {
     float-left: 20px;
     margin: 0; padding: 0;
-    
-
   }
 
   .genresListDiv {
@@ -117,18 +103,15 @@ overflow-wrap: break-word;
   }
 
   #tracklist {
-    grid-column: 2/4;
-    padding-top:10px;
-    gid-row: 4;
+    columns: 4;
 
+    align-content:left;
   }
 
-
-
   .trackDetail {
-    font-size: 15px;
-    margin: 1px;
-
+    font-size: 12px;
+    display: inline;
+  
   }
 
   #discover-more {
@@ -137,18 +120,8 @@ overflow-wrap: break-word;
   }
 
   .trackDetail {
-    fontsize: 50px;
+    fontsize: 30px;
   }
-
-  #tracklist {
-    display:none;
-  }
-
-  .trackDetail {
-    fontsize: 5px;
-  }
-
-  
 
   #release-format {
     size: 2px;
