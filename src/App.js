@@ -25,11 +25,9 @@ const App = () => {
     <div className='mb-70px float-left col-start-1 col-span-7' id="logodiv">
       <img id="logo" src={logo} className='object-fill'/> 
     </div>
-    <GenreSideBar className=''/>
+    <GenreSideBar />
     <Navigation />
-    
-    <div className="grid-item-main col-start-4 lg:col-start-7 lg:col-span-20"> 
-   
+    <div className="grid-item-main col-start-4 lg:col-start-7 lg:col-span-20">  
     <Main/>
     </div>
     <Cart/>

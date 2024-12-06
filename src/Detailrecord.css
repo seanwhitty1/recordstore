@@ -80,7 +80,6 @@ overflow-wrap: break-word;
     grid-row:1;
     max-height:100px;
     margin-right:50px;
-    border: 1px solid black;
   }
 
   .inlineList {
@@ -104,7 +103,6 @@ overflow-wrap: break-word;
 
   #tracklist {
     columns: 4;
-
     align-content:left;
   }
 

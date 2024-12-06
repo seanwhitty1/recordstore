@@ -20,7 +20,6 @@ function Detailrecord(){
         dispatch({type:"ADDTOCART", payload:item, quantity:1})
     }
     const [showEdit, setShowEdit] = useState(false)
-    const [labelHover, setLabelHover] = useState(false)
     const [imageFocus, setImageFocus] = useState(false)
     const [genreRecords, setGenreRecords] = useState(["one"])
     const [allFromArtist, setAllFromArtist] = useState(["1"])
@@ -28,7 +27,7 @@ function Detailrecord(){
     const params = useParams()
     const {id} = params;
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
-    console.log("record is:", r) 
+
     const parsedTracklist = r.tracklist.map(track => JSON.parse(track))
     const parsedImages = r.images.map(image => JSON.parse(image))
     useEffect(() => {
@@ -56,7 +55,7 @@ function Detailrecord(){
          <div className='detail-record-grid-container p-10px'>   
             {r.labels[0].thumbnail_url &&
             <div className='detail-record-label-img-container col-start-4 col-span-1 lg:col-start-8 lg:col-span-3 row-start-6 lg:row-start-3'>
-             <img src={r.labels[0].thumbnail_url} onMouseOver={() => setLabelHover(true)} onMouseOut={() => setLabelHover(false)}></img> 
+             <img src={r.labels[0].thumbnail_url}></img> 
              </div>
             }
             <div className= 'detail-record-grid-item-image pl-10px  col-start-1 col-span-4 lg:col-span-6' ><img className='pl-10px'  onMouseOver={() => setImageFocus(true)} onMouseOut={() => setImageFocus(false)} src={imageFocus && parsedImages.length > 1? parsedImages[1].uri: parsedImages[0].uri }></img> </div>
@@ -70,8 +69,7 @@ function Detailrecord(){
                {r.quantity > 0? <p className='text-green-600'>In stock</p>:<p>Out of stock</p>}  
                <button className='detail-record-buttonToCart bg-blue inline hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}><img src={add}></img></button>
             <div className='detail-record-grid-item-description'>
-               <p className='preserveLineBreaks text-xs'>{r.description}</p>
-              
+               <p className='preserveLineBreaks text-xs'>{r.description}</p> 
             <div id="tracklist" className='hidden lg:flex border-1 items-center p-20px col-span-3'>
                 <ul className='columns-3 items-center'>
                {parsedTracklist.map(track => 
@@ -81,7 +79,6 @@ function Detailrecord(){
                {r.genres.map(genre => <button className="btn btn-light m-10px">{genre.genre_name}</button>)}
             </div>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.description} genre={r.genre} id={r.id}/>}
-              
         <hr></hr>
             <div className='related-records-div col-start-1 col-span-4 lg:col-start-1 lg:col-span-10'>
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-artist sm:text-sm md:text-base lg:text-lg xl:text-2xl'>More from {r.artists[0].artist_name}</h1>}<br></br>

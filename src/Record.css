@@ -1,8 +1,20 @@
+.recordgrid-item{
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
+  height: 200px;
+  width: 200px; 
+  animation: fadein 0.5s linear 0s 1 alternate;
+  margin: 10px;
+  display:grid;
+  grid-template-rows: 200px 200px;
+  grid-template-columns: repeat(6, 1fr);
+}
+
 .record-div {
     overflow: hidden;
     display: inline-flex;
     object-fit: fill;
-  
 }
 
 .link_class {
@@ -16,50 +28,23 @@
     transition: 2000ms;
   }
 
-
 .recordItem-Image {
-
      width: 100%;
      height: 100%;
      object-fit: fill;
      overflow: hidden;
      z-index: 0;
- 
-}
-
-
-.recordgrid-item{
-
-    border: none;
-    margin-bottom: 10px;
- 
-    z-index: 1;
-    position: relative;
-    height: 200px;
-    width: 200px;
-    
-    animation: fadein 0.5s linear 0s 1 alternate;
-  }
-.recordgrid-outer {
-
-    margin: 10px;
-    grid-template-rows: repeat(2, 225px);
-    grid-template-columns: repeat(6, 1fr);
- 
 }
 
 .recordAddToCartButton {
-    grid-row: 1;
-    grid-column: 5;
-    align-items: end;
     justify-content: end;
-    z-index: 1;
- 
+    z-index: 2;
+    padding: 5px;
+    float: right;
 }
 
 .addToCartImage {
     align-self: end;
-    margin-right: 0;
 }
 
 .hidden {
@@ -69,18 +54,44 @@
 .shown {
     opacity: 100%;
     float: right 100%;
-    z-index:
+    z-index:1;
 }
+
+.detail-bubble {
+  color: black;
+  z-index: 3;
+  text-decoration: none;
+  padding:5px;
+  animation: fadein 0.2s forwards;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 24%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+#detail-bubble-list {
+  list-style: none;
+  text-decoration: underline;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration-color: #212529;
+}
+
+.detail-bubble-list-item:hover {
+  text-decoration: none;
+  font-size: 2em;  
+}
+
 
 @keyframes fadein {
   from {
     opacity: 0%;
   }
-
   to {
     opacity: 100px;
   }
 }
-
-
-

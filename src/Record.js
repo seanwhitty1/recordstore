@@ -1,6 +1,6 @@
 import './Record.css'
 import './Recordgrid.css'
-import './DetailBubble.css'
+
 import { NavLink } from 'react-router-dom';
 import DetailBubble from './DetailBubble';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,13 +26,17 @@ const clickHandler = (e) => {
 }
 return(
     <>
+    <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
+    <div className='recordAddToCartButton col-start-6 absolute'><a className={`${id == inFocus? 'flex': 'hidden'} z-1`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>
+      <div className='col-span-6 mb-10px'>
    
-    <div className='recordgrid-item border-1' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
-    <NavLink to={`${baseURLFront}records/view/` + id}><img className='recordItem-Image' src={parsedImages[0].uri}></img> </NavLink>
-    <div className='recordAddToCartButton'><a className={`${id == inFocus? 'shown': 'hidden'}`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>
+    <NavLink to={`${baseURLFront}records/view/` + id}><img className='recordItem-Image hover:opacity-45 absolute z-0' src={parsedImages[0].uri}></img> </NavLink>
     </div>
-    {id == inFocus && <DetailBubble className='detail-bubble' artist={artist} title={title} genre={genre} price={price} id={id}/>}
-   
+
+       <div className='absolute row-start-2 col-span-6 z-1'>
+       {id == inFocus && <DetailBubble artist={artist} title={title} genre={genre} price={price} id={id}/>}
+       </div>
+    </div>
     </>
 )
 }

@@ -5,7 +5,6 @@ const Footer = () => {
 
     return(
         <>
-    
         <footer className='margin-top-60 w-50 hidden'>
     <div class="bottom-details">
       <div class="bottom_text">
@@ -17,7 +16,6 @@ const Footer = () => {
       </div>
     </div>
   </footer>
-
         </>
     )
 
