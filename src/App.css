@@ -103,19 +103,27 @@ textarea { height: auto; }
   grid-template-rows: repeat(10, 50px);
 }
 
+.related-recordgrid-outer-container {
+  grid-column: 4/30;
+  display:grid;
+  grid-template-columns: repeat(10, 100px);
+  grid-template-rows: auto;
+}  
+
 
 
 .grid-item-cart {
-  margin-top:5px;
+  margin:5px;
   grid-row: 4;
-  grid-column: 0/1;
-  padding: 20px;
+  grid-column: 24/30;
+  position: relative;
+  display: inline;
+
 
 }
 
 #logodiv {
   grid-row:2/4;
-
   margin-top:25x;
   margin-right:25px;
   margin-botton: -40px;

@@ -8,7 +8,6 @@ import React, { useEffect} from "react";
 import RelatedRecords from './RelatedRecords';
 import UpdateRecordForm from './forms/updateRecordForm';
 import { useSelector, useDispatch} from 'react-redux';
-import add from './svg/addtocart.svg'
 import { useState } from 'react';
 import 'react-flash-message'
 import { uniqueSetOfObjects } from './helpers';
@@ -27,7 +26,6 @@ function Detailrecord(){
     const params = useParams()
     const {id} = params;
     const [r, setR] = useState(records.filter((r) => r.id == id)[0])
-
     const parsedTracklist = r.tracklist.map(track => JSON.parse(track))
     const parsedImages = r.images.map(image => JSON.parse(image))
     useEffect(() => {
@@ -58,16 +56,16 @@ function Detailrecord(){
              <img src={r.labels[0].thumbnail_url}></img> 
              </div>
             }
-            <div className= 'detail-record-grid-item-image pl-10px  col-start-1 col-span-4 lg:col-span-6' ><img className='pl-10px'  onMouseOver={() => setImageFocus(true)} onMouseOut={() => setImageFocus(false)} src={imageFocus && parsedImages.length > 1? parsedImages[1].uri: parsedImages[0].uri }></img> </div>
-            <div className="description-flexible col-start-1 col-span-4 lg:col-start-1 lg:col-span-10 p-10px row-start-5 lg:mt-20px lg:row-start-7 lg:mt-20px">
+            <div className= 'detail-record-grid-item-image pl-10px  col-start-1 col-span-4 md:col-span-6 lg:col-span-6' ><img className='pl-10px'  onMouseOver={() => setImageFocus(true)} onMouseOut={() => setImageFocus(false)} src={imageFocus && parsedImages.length > 1? parsedImages[1].uri: parsedImages[0].uri }></img> </div>
+   
+            <div className="description-flexible col-start-1 col-span-4 lg:col-start-1 lg:col-span-10 md:col-span-10 md:row-start-7 p-10px row-start-5 lg:mt-20px lg:row-start-7 lg:mt-20px">
             <br></br>
               <div className="title-artist">
                 <h3 className='text-base'>{r.title}</h3>
                 <h3  className='text-base inline'>{r.artists[0].artist_name}</h3>
                 <p id="release-format" className='mb-5px'> {r.format}</p>
                </div> 
-               {r.quantity > 0? <p className='text-green-600'>In stock</p>:<p>Out of stock</p>}  
-               <button className='detail-record-buttonToCart bg-blue inline hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' id="addToCart" onClick={() => addToCart(r.id)}><img src={add}></img></button>
+               {r.quantity > 0? <p className='text-green-600'>In stock<button className='h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' id="addToCart" onClick={() => addToCart(r.id)}>+</button></p>:<p>Out of stock</p>}  
             <div className='detail-record-grid-item-description'>
                <p className='preserveLineBreaks text-xs'>{r.description}</p> 
             <div id="tracklist" className='hidden lg:flex border-1 items-center p-20px col-span-3'>
@@ -80,16 +78,14 @@ function Detailrecord(){
             </div>
             {showEdit && <UpdateRecordForm artist={r.artist} title = {r.title} price={r.price} image_src={r.image_src} descr={r.description} genre={r.genre} id={r.id}/>}
         <hr></hr>
-            <div className='related-records-div col-start-1 col-span-4 lg:col-start-1 lg:col-span-10'>
             {allFromArtist.length > 1 && <h1 className='detail-record-grid-related-artist sm:text-sm md:text-base lg:text-lg xl:text-2xl'>More from {r.artists[0].artist_name}</h1>}<br></br>
             {allFromArtist.length > 1 &&<RelatedRecords collection={allFromArtist.filter((record) => record.id != r.id)}/>}
-            <br></br>
             <h1 className='related-header2 sm:text-sm md:text-base lg:text-lg xl:text-2xl'>If you like {r.artists[0].artist_name}, You may also like:</h1>
             {genreRecords.length > 1 && <RelatedRecords className='detail-record-grid-related-records2' collection={genreRecords.filter((genre) => genre.artists[0].id != r.artists[0].id).slice(0,4)}/>}
             <button  className='rounded-full' onClick={() => setShowEdit(!showEdit)}>Edit</button>
               </div>
              </div>
-            </div>
+            
             </>     
         )
        } else {

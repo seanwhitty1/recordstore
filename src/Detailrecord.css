@@ -19,8 +19,7 @@
   .related-records-div {
     grid-column: 1/5;
   }
-
-
+  
   .preserveLineBreaks {
     white-space: pre-wrap;
 overflow-wrap: break-word;

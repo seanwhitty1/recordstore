@@ -4,8 +4,12 @@ import Record from './Record'
 function RelatedRecords({collection}){
       return(
             <>
+            <div className='related-recordgrid-outer-container'>
+            <div className='recordgrid-container xl:col-span-20 col-start-1 col-span-2 md:col-span-6 lg:col-span-9'>
             {collection.map     
-            (r => <Record className='related-recordgrid-item lg:size-150px md:size-100px sm:size-100px' id={r.id} artists={r.artists} title={r.title} price={r.price} descr={r.descr} genre={r.genre} images={r.images} /> ) }
+            (r => <Record className='related-recordgrid-item' id={r.id} artists={r.artists} title={r.title} price={r.price} descr={r.descr} genre={r.genre} images={r.images} /> ) }
+            </div>
+            </div>
            </>
         )
     }

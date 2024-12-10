@@ -28,12 +28,12 @@ return(
     <>
     <div className='recordgrid-item' id={"record-" + id}  onMouseOver={() => dispatch({ type: "UPDATEFOCUS",payload: id})} onMouseOut={() => dispatch({ type: "UPDATEFOCUS",payload: null})}>
     <div className='recordAddToCartButton col-start-6 absolute'><a className={`${id == inFocus? 'flex': 'hidden'} z-1`} onClick={(e) => clickHandler(e)}><img src={inCart.length > 0 ? tickIcon  : cartIcon} className='addToCartImage'></img></a></div>
-      <div className='col-span-6 mb-10px'>
+      <div className='col-span-6 mb-10px z-0 relative'>
    
-    <NavLink to={`${baseURLFront}records/view/` + id}><img className='recordItem-Image hover:opacity-45 absolute z-0' src={parsedImages[0].uri}></img> </NavLink>
+    <NavLink to={`${baseURLFront}records/view/` + id}><img className='recordItem-Image hover:o-45 absolute z-0' src={parsedImages[0].uri}></img> </NavLink>
     </div>
 
-       <div className='absolute row-start-2 col-span-6 z-1'>
+       <div className='relative row-start-2 col-span-6 z-1'>
        {id == inFocus && <DetailBubble artist={artist} title={title} genre={genre} price={price} id={id}/>}
        </div>
     </div>
