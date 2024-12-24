@@ -1,8 +1,11 @@
+
+
 const createRecordGetURL = (genre) => 
-    genre? `http://127.0.0.1:3001/records/genre/${genre}`: `http://127.0.0.1:3001/records/`
+    genre? `http://127.0.0.1:3001/records/genre/${genre}`:`http://127.0.0.1:3001/records/`
 const baseURL = 'http://localhost:3001/'
 const baseURLFront = 'http://localhost:3000/'
-const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price * curr.quantity; },0); 
+
+const total = (arr) => arr.reduce(function(acc, curr){ return acc += curr.price * curr.quantity; }, 0); 
 
 const uniqueSetOfObjects = function(arr){       
     let uniqueArr = [];
@@ -25,5 +28,8 @@ const compareRecords = function(a, b){
 }
 
 
-module.exports = {createRecordGetURL, compareRecords, baseURL, baseURLFront, total, uniqueSetOfObjects};
+
+
+
+module.exports = {total, createRecordGetURL, compareRecords, baseURL, baseURLFront, uniqueSetOfObjects};
 

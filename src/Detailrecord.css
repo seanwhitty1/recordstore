@@ -1,7 +1,7 @@
 .detail-record-grid-container {
     display: grid;
     grid-template-columns: repeat(20, 50px);
-    grid-template-rows: repeat(20, 50px);
+    grid-template-rows: auto;
     grid-row-gaps: 10px;
     column-gap: 3px;
     margin-left: 20px;
@@ -90,7 +90,7 @@ overflow-wrap: break-word;
 
   .genresList {
     float-left: 20px;
-    margin: 0; padding: 0;
+    margin: 20px; padding: 0;
   }
 
   .genresListDiv {
@@ -100,14 +100,11 @@ overflow-wrap: break-word;
     display: flex;
   }
 
-  #tracklist {
-    columns: 4;
-    align-content:left;
-  }
 
   .trackDetail {
     font-size: 12px;
     display: inline;
+  
   
   }
 
@@ -116,9 +113,7 @@ overflow-wrap: break-word;
     float-left: 100px;
   }
 
-  .trackDetail {
-    fontsize: 30px;
-  }
+
 
   #release-format {
     size: 2px;

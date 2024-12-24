@@ -1,11 +1,13 @@
 
-const INITIAL_STATE = { focus: null, records: null, cart: [], genre: null, token: null, user: null};
+const INITIAL_STATE = { focus: null, records: null, labels:null, cart: [], genre: null, token: null, user: null};
 function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "UPDATEFOCUS":
       return { ...state, focus: action.payload };
     case "GETALLRECORDS":
       return {...state, records: [...action.payload]};
+      case "GETLABELS":
+        return {...state, labels: [...action.payload]};
     case "ADDTOCART":
       let inCart = state.cart.findIndex(object => object.id == action.payload.id) // is working
       if(inCart === -1){

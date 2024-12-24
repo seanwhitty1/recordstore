@@ -16,15 +16,18 @@ import { useAuth } from './AuthProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import UserDashboard from './UserDashboard';
-import { baseURL } from './helpers.js';
+import { baseURL, getLabels } from './helpers.js';
 import styles from "./index.css"
 
 const Main = () => {
   const {user } = useAuth()
     const dispatch = useDispatch();
     const upRecordsInState = (records) => dispatch({ type: "GETALLRECORDS",payload: records});
+    const updateLabelsInState = (labels) => dispatch({ type: "GETLABELS",payload: labels});
     const records = useSelector(state => state.records)
+    const labels = useSelector(state => state.labels)
     const genre = useSelector(state => state.genre)
+    console.log("labels stored in the state are", labels)
     const getRecords = async(g) => {
       try {
         let records = await axios.get(`${baseURL}records/`)
@@ -38,6 +41,16 @@ const Main = () => {
       } 
   }
 
+  const getLabels = async(g) => {
+    try {
+      let labels = await axios.get(`${baseURL}labels/`)
+      console.log(labels.data)
+      updateLabelsInState(labels.data)
+      }
+     catch(error) {
+      console.log(error)
+    } 
+  }
     const getUserCart = async (id) => {
       let cart = await axios.get(`${baseURL}users/getUserCart/${id}`)
     dispatch({type: "INITUSERCART", payload: cart.data})}
@@ -51,11 +64,12 @@ const Main = () => {
         getUserCart(user.data.id)  
       }
       getRecords(genre)
+      getLabels()
   },[user, genre])
   if(records){
 return(
     <>
-
+    <div className="grid-item-main col-start-4 md:col-start-6 lg:col-start-7 lg:col-span-20 xl:col-span-24"> 
     {user && <h1>hello {user.data.username}</h1>}
     <Routes>
     <Route path='/' element={ <Home/>} />
@@ -70,9 +84,7 @@ return(
     <Route path ='/userdashboard' element={<UserDashboard/>}/>
     <Route path= '/fullcart' element={<CartDetail/>}/>
     </Routes>
- 
-    <hr></hr>
-
+    </div>
     </>)
 } else {
   return(

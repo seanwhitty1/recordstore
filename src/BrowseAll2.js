@@ -5,10 +5,13 @@ import './App.css'
 import $ from 'jquery';
 import { useSelector} from 'react-redux';
 import Recordgrid from "./Recordgrid";
+import Record from "./Record";
+import Labelgrid from "./Labelgrid";
 
 function BrowseAll(){
     const recs = useSelector(state => state.records)
     let [recordsByLetter, setRecordsByLetter] = useState(recs)
+    const labels = useSelector(state => state.labels)
     let [searchItem, setSearchItem] = useState("")
     let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
     const inputs = ["artist","title", "genre", "price"]
@@ -55,6 +58,11 @@ function BrowseAll(){
             {recordsByLetter.length > 0? <Recordgrid records={recordsByLetter}/>
                                         : <h1 className="no-results">No results found</h1>} 
             </div>
+            <div>
+            <h1 className="main-header">Browse by label</h1>
+            {labels != null? <Labelgrid labels={labels}/>: <p>loading</p>}
+            </div>
+            
            </>
         )
     }

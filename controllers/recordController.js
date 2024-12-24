@@ -18,6 +18,9 @@ exports.createRecord = async (req, res) => {
          req.body.images = discogsRecord.data.images
          req.body.tracklist = []
          discogsRecord.data.tracklist.map(trackObject =>  req.body.tracklist.push({...trackObject}))
+         if(!discogsRecord.data.labels[0].thumbnail_url){
+            discogsRecord.data.labels[0].thumbnail_url = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD6iim4qakgnN9uqsvDun27ZlpI1QgPi0QaQ&s`
+         }
          let newRecord = await record.create(req.body)
          let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
          newRecord.addArtist(newArtist[0]) 

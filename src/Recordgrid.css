@@ -5,16 +5,15 @@
 }
 
 .recordgrid-item {
-  border: 2px solid black;
   display: inline-block;
   margin-right:10px;
   margin-top:10px;
+  border-botton:10px solid black;
 }
 .related-recordgrid-item{
   max-width: 150px;
   max-height: 150px;
   margin: 10px;
-  border: 1px solid black;
 }
 
 
