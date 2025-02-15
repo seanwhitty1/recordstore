@@ -27,8 +27,7 @@ function HamburgerMenu(){
         </ul> 
       </div>
     </nav>
-     </>     
-        )
+     </>  )
          
     }
     

@@ -10,4 +10,6 @@ const handleInputChange = (e) => {
     }
 }
 
-exports
+
+
+module.exports = {createNewImgJson}

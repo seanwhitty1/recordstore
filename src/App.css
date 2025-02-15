@@ -81,17 +81,15 @@ textarea { height: auto; }
 }
 
 .grid-item-genreBar{
-  grid-row: 4/6;
   z-index: -1;
   overflow: show;
   height: 500px;
-  z-index: 1;
 }
 
 .grid-item-main {
   z-index: 2;
   justify-content: center;
-  grid-row: 4/8;
+ 
   margin-left: -50px;
   padding-top: 30px;
 }

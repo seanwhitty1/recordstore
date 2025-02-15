@@ -17,7 +17,7 @@ const [isOpen, setOpen] = useState(false)
 return(
 <>
 <div className='col-start-3 hidden max-lg:flex'>
-<Hamburger toggled={isOpen} toggle={setOpen}  />
+<Hamburger toggled={isOpen} toggle={setOpen}/>
 </div>
 <div className="grid-item-navbar row-start-1 col-start-6 col-span-18">
 <nav>

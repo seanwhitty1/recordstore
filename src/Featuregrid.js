@@ -7,12 +7,10 @@ import './Featuregrid.css'
 
 function Featuregrid({records}){
     const [features, setFeatures] = useState([1,2,4]);
-
     useEffect(() => {
         let getFeatures = async() => {
             let features = await axios.get(`http://127.0.0.1:3001/features/`)        
-            setFeatures(features.data.slice(0,3))
-        }
+            setFeatures(features.data.slice(0,3))}
         getFeatures()
     },[])
         return(
@@ -23,5 +21,4 @@ function Featuregrid({records}){
            </>
         )
     }
-
 export default Featuregrid;

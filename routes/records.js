@@ -10,6 +10,7 @@ router.get('/:id', recordController.getByID);
 router.get('/', recordController.getAllRecords);
 // Route to create a new record
 router.post('/', recordController.createRecord);
+router.post('/changeimg/:id', recordController.changeImage)
 router.get('/genre/:genre_name', recordController.getAllFromGenre)
 // Route to update a record by ID
 router.put('/:id', recordController.updateRecord);

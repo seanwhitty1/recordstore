@@ -37,8 +37,8 @@ useEffect(() => {
     <AuthProvider>
     <Router>
     <div id='app' className='grid-container'>
-    <div className=" col-span-2 md:col-span-4" id="vinyldiv"><img className='offBlack' src={vinyl} /> </div>
-    <div className='mb-70px float-left col-start-1 col-span-9 lg:col-span-8' id="logodiv">
+    <div className=" col-span-2 md:col-span-4 relative lg:hidden" id="vinyldiv"><img className='offBlack' src={vinyl}/></div>
+    <div className='mb-70px float-left col-start-1  lg:row-start-1 lg:col-start-1 col-span-9 lg:col-span-7' id="logodiv">
       <img id="logo" src={logo} className='object-fill'/> 
     </div>
     <GenreSideBar/>

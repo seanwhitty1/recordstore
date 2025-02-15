@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(20, 50px);
     grid-template-rows: auto;
-    grid-row-gaps: 10px;
+    row-gap: 5px;
     column-gap: 3px;
     margin-left: 20px;
   }
@@ -11,9 +11,9 @@
     margin-top: 15px;
   }
 
-  .detail-record-grid-item-image {
-    grid-row: 1/5;
-    background-colour: red;
+  #release-art {
+ 
+    max-height: 590px;
   }
 
   .related-records-div {
@@ -28,9 +28,7 @@ overflow-wrap: break-word;
   .detail-record-grid-related-artist {
     grid-row: 8;
     grid-column: 2/14;
-    float-left:20px;
-    clear: right;
-    display: inline;
+
   }
   
   .detail-record-grid-related-records {
@@ -43,14 +41,6 @@ overflow-wrap: break-word;
     display: inline;
   }
 
-  .related-header2 {
-    grid-row: 14;
-    grid-column: 2/14;
-  
-    margin-top: 60px;
-    clear: right;
-    display: inline;
-  }
   #discover-more {
     margin-top: 10px;
     margin-left: 300px;
@@ -64,9 +54,13 @@ overflow-wrap: break-word;
     padding-top: 10px;
   }
 
-  .description-flexible {
-    grid-auto-flow: row;
+  .description {
+    display: grid;
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: auto;
   }
+
+
 
 
   .detail-record-grid-related-records2 {

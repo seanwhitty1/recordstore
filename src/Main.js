@@ -27,12 +27,18 @@ const Main = () => {
     const records = useSelector(state => state.records)
     const labels = useSelector(state => state.labels)
     const genre = useSelector(state => state.genre)
-    console.log("labels stored in the state are", labels)
     const getRecords = async(g) => {
       try {
         let records = await axios.get(`${baseURL}records/`)
+        console.log("records are", records.data)
+
+        let sortedByTimestamp = records.data.sort(function(x, y){
+        return y.id - x.id;
+        
+      })
+      console.log(sortedByTimestamp)
         if(g){
-         upRecordsInState(records.data.filter(record  => record.genres.some(gen => gen.genre_name == g)))
+         upRecordsInState(sortedByTimestamp.filter(record  => record.genres.some(gen => gen.genre_name == g)))
         } else {
           upRecordsInState(records.data)
         }
@@ -69,7 +75,7 @@ const Main = () => {
   if(records){
 return(
     <>
-    <div className="grid-item-main col-start-4 md:col-start-6 lg:col-start-7 lg:col-span-20 xl:col-span-24"> 
+    <div className="grid-item-main  inline row-start-4 row-span-4 lg:row-start-2 col-start-4 md:col-start-6 lg:col-start-7 lg:col-span-20 xl:col-span-24"> 
     {user && <h1>hello {user.data.username}</h1>}
     <Routes>
     <Route path='/' element={ <Home/>} />

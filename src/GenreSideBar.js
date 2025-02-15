@@ -10,14 +10,13 @@ import styles from "./index.css"
 
 function GenreSideBar(){
     const navigate = useNavigate()
-    let genre = useSelector(state => state.genre)
     const dispatch = useDispatch()
+    let genre = useSelector(state => state.genre)
     const [count, setCount] = useState([1,2,4]);
     const updateGenreInState = (genre) => {
         dispatch({ type: "SELECTGENRE", payload: genre})
         navigate("/")
     };
-
     useEffect(() => {
         let getGenres = async() => {
             let genres = await axios.get(`http://127.0.0.1:3001/genres/`)  
@@ -26,10 +25,9 @@ function GenreSideBar(){
         }
         getGenres()
     },[genre])
-
 return(
 <>
-<div className='grid-item-genreBar col-start-0 lg:col-span-5 inline'>
+<div className='grid-item-genreBar lg:col-start-1 lg:col-span-5 row-start-2 inline p-50px z-10'>
 <p>Browse by Genre</p>
 {count.map((c) => <p className="text-xs mb-20px sm:text-md md:text-lg lg-text-2xl lg:tracking-widest xl-text-2xl hover:text-4xl" onClick={() => updateGenreInState(c.genre_name)} data-text={c.genre_name}>{c.genre_name}</p>)}
 </div> 

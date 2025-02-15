@@ -1,4 +1,5 @@
 const {tag, record, genre, artist, label} = require('../models')
+
 const axios = require('axios')
 
 // Controller method to get all todos
@@ -22,8 +23,13 @@ exports.createRecord = async (req, res) => {
             discogsRecord.data.labels[0].thumbnail_url = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD6iim4qakgnN9uqsvDun27ZlpI1QgPi0QaQ&s`
          }
          let newRecord = await record.create(req.body)
-         let newArtist = await artist.findOrCreate({where: { artist_name: req.body.artist_name}})
-         newRecord.addArtist(newArtist[0]) 
+
+         let artists = req.body.artist_name.split(", ")
+         for(a of artists){
+            let newArtist = await artist.findOrCreate({where: { artist_name: a}})
+            newRecord.addArtist(newArtist[0]) 
+         }
+      
          for(genre_name of  discogsRecord.data.styles){
          let newGenre =  await genre.findOrCreate({
          where: { genre_name: genre_name }
@@ -92,6 +98,28 @@ exports.createRecord = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
     }
    };
+
+   exports.changeImage = async (req, res) => {
+      const {url} = req.body
+      const createNewImgJson = (url) => {
+         return `{"type":"primary","uri":"${url}","resource_url":"${url}","uri150":"${url}","width":432,"height":576}`
+       
+       }
+      try {
+      let foundRecord = await record.findByPk(req.params.id);
+      if (foundRecord) {
+         foundRecord.images = [createNewImgJson(url)]
+         
+      await foundRecord.save();
+      res.json(foundRecord);
+      } else {
+      res.status(404).json({ error: 'Record not found' });
+      }
+      } catch (error) {
+         console.log(error)
+      res.status(500).json({ error: 'Internal Server Error' });
+      }
+     };
    // Controller method to delete a todo by ID
    exports.deleteRecord = async (req, res) => {
     try {

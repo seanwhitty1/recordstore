@@ -49,6 +49,27 @@ exports.getAll = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
     }
    };
+
+   exports.changeThumb = async (req, res) => {
+      const {thumb_url} = req.body
+ 
+      try {
+      let foundLabel = await label.findByPk(req.params.id);
+      if (foundLabel) {
+         foundLabel.thumbnail_url = thumb_url
+         
+      await foundLabel.save();
+      res.json(foundLabel);
+      } else {
+      res.status(404).json({ error: 'Label not found' });
+      }
+      } catch (error) {
+         console.log(error)
+      res.status(500).json({ error: 'Internal Server Error' });
+      }
+     };
+
+
    // Controller method to delete a todo by ID
    exports.deleteLabel = async (req, res) => {
     try {
